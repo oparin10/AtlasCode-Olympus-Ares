@@ -13,14 +13,14 @@ type AuthenticationUser = {
   userRole: string | null;
 };
 
-type AuthenticationInialState = {
+type AuthenticationInitialState = {
   isAuth: boolean;
   authUser: AuthenticationUser;
   isLoading: boolean;
   error: Array<AuthenticationError | null>;
 };
 
-let initialState: AuthenticationInialState = {
+let initialState: AuthenticationInitialState = {
   isAuth: false,
   authUser: {
     userDisplayName: null,

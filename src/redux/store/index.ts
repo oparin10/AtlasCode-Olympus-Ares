@@ -1,8 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { firestoreReducer } from "./reducers/firebase/firestore";
-import { authenticationReducer } from "./reducers/firebase/authentication";
+import { firestoreReducer } from "./firestore/reducer";
+import { authenticationReducer } from "./authentication/reducer";
 
 const rootReducers = combineReducers({
   auth: authenticationReducer,

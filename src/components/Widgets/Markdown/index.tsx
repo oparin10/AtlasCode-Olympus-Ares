@@ -109,6 +109,26 @@ const Markdown = (props: Props) => {
     }
   };
 
+  const insertNewImage = () => {
+    let HTMLDocumentParser = document.createElement("div");
+
+    let imageNode = document.createElement("img");
+
+    let imageSrc = "https://i.imgur.com/5wAfv3w.png";
+    let imageAltText = "SEO is better this way";
+
+    imageNode.src = imageSrc;
+    imageNode.alt = imageAltText;
+
+    HTMLDocumentParser.insertAdjacentHTML(
+      "beforeend",
+      editorRef.current.editor.getContents()
+    );
+    HTMLDocumentParser.insertAdjacentElement("beforeend", imageNode);
+
+    editorRef.current.editor.setContents(HTMLDocumentParser.innerHTML);
+  };
+
   return (
     <div
       style={{
@@ -131,6 +151,7 @@ const Markdown = (props: Props) => {
           mode: "classic",
           charCounter: true,
           charCounterType: "char",
+          imageGalleryUrl: "https://atlascode.dev",
         }}
       ></MarkdownAres>
 
@@ -139,6 +160,10 @@ const Markdown = (props: Props) => {
       <button onClick={() => console.log(imgNodeData)}>Get image nodes</button>
 
       <button onClick={() => console.log(htmlContent)}>Get HTML content</button>
+
+      <br />
+      <br />
+      <button onClick={insertNewImage}>Insert img</button>
     </div>
   );
 };

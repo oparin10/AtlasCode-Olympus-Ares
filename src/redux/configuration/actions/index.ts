@@ -7,8 +7,8 @@ import {
   GET_CONFIG_START,
   GET_CONFIG_SUCCESS,
   SetConfigActionTypes,
-} from "../types";
-import schema from "../../../../warhorse-schema";
+} from "../../types";
+import schema from "../../../warhorse-schema";
 
 export const configurationSetup = (): ThunkAction<
   void,

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import Markdown from "./components/Widgets/Markdown";
-import { configurationSetup } from "./redux/store/configuration/actions";
+import { configurationSetup } from "./redux/configuration/actions";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,8 +16,6 @@ function App() {
 
   return (
     <div>
-      <Markdown />
-
       <button onClick={initializeConfigurationRedux}>haha</button>
     </div>
   );

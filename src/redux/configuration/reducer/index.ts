@@ -3,9 +3,8 @@ import {
   GET_CONFIG_FAIL,
   GET_CONFIG_START,
   GET_CONFIG_SUCCESS,
-  WarhorseConfig,
   WarhorseConfigState,
-} from "../types";
+} from "../../types";
 
 let initialState: WarhorseConfigState = {
   branding: {
@@ -16,7 +15,6 @@ let initialState: WarhorseConfigState = {
 
   collections: [],
   media_location: "",
-  isLoading: true,
   error: [],
 };
 
@@ -26,10 +24,10 @@ export const configurationReducer = (
 ): WarhorseConfigState => {
   switch (action.type) {
     case (action.type = GET_CONFIG_START):
-      return { ...state, isLoading: true };
+      return { ...state };
 
     case (action.type = GET_CONFIG_FAIL):
-      return { ...state, isLoading: false, error: action.error };
+      return { ...state, error: action.error };
 
     case (action.type = GET_CONFIG_SUCCESS):
       return {
@@ -40,7 +38,6 @@ export const configurationReducer = (
           logoUrl: action.payload.branding.logoUrl,
         },
         collections: action.payload.collections,
-        isLoading: false,
         media_location: action.payload.media_location,
       };
 

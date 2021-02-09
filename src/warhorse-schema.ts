@@ -1,4 +1,4 @@
-import { WarhorseConfig } from "./redux/store/configuration/types";
+import { WarhorseConfig } from "./redux/types";
 
 const schema: WarhorseConfig = {
   branding: {
@@ -7,7 +7,19 @@ const schema: WarhorseConfig = {
     logoUrl: "https://i.imgur.com/9npexxg.png",
   },
 
-  collections: [],
+  collections: [
+    {
+      name: "Teste1",
+      fields: [
+        {
+          label: "Field 1 Test",
+          name: "field1",
+          value: "test",
+          widget: "string",
+        },
+      ],
+    },
+  ],
   media_location: "",
 };
 

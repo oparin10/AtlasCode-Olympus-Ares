@@ -1,7 +1,7 @@
 import { RootStateOrAny } from "react-redux";
 import { Action, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
-import { auth as FirebaseAuth, db as Firestore } from "../../../../firebase";
+import { auth as FirebaseAuth, db as Firestore } from "../../../firebase";
 import {
   CreateUserWithFieldsTypes,
   CREATE_USER_WITH_FIELDS_START,
@@ -13,7 +13,7 @@ import {
   LOGOUT_USER_FAIL,
   LOGOUT_USER_START,
   LOGOUT_USER_SUCCESS,
-} from "../types";
+} from "../../types";
 
 export const loginUser = (
   email: string,

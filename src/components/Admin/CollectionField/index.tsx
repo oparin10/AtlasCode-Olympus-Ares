@@ -1,12 +1,20 @@
 import React from "react";
-import { WarhorseWidgets, Widgets } from "../../../schema";
+import {
+  CollectionWidgets,
+  WarhorseWidgets,
+  WidgetDictonary,
+  Widgets,
+  WidgetsTypes,
+} from "../../../schema";
 
 interface Props {
-  widgetType: Widgets;
+  widgetType: WidgetsTypes;
 }
 
 const CollectionField = ({ widgetType }: Props) => {
-  const WidgetComponent = WarhorseWidgets[widgetType];
+  const WidgetComponent: any = CollectionWidgets[widgetType];
+
+  const WidgetComponentWithDict = WidgetDictonary[widgetType];
 
   return (
     <div>

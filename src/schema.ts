@@ -13,7 +13,25 @@ export const WarhorseWidgets: any = {
   text: TextWidget,
 };
 
-export type Widgets = "string" | "image" | "markdown" | "text";
+export type WidgetsTypes = "string" | "image" | "markdown" | "text";
+
+export type Widgets<T> = {
+  [widget in WidgetsTypes]: T;
+};
+
+export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {
+  image: ImageWidget,
+  markdown: MarkdownWidget,
+  string: StringWidget,
+  text: TextWidget,
+};
+
+export const CollectionWidgets: Widgets<React.FC | JSX.Element> = {
+  image: ImageWidget,
+  markdown: MarkdownWidget,
+  string: StringWidget,
+  text: TextWidget,
+};
 
 const schema: WarhorseConfig = {
   branding: {

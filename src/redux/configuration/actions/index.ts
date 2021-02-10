@@ -12,7 +12,7 @@ import {
   SET_LOADING_FALSE,
   SET_LOADING_TRUE,
 } from "../../types";
-import schema from "../../../warhorse-schema";
+import schema from "../../../schema";
 import { setLoadingTrue } from "../../globalUI/actions";
 
 export const configurationSetup = (): ThunkAction<

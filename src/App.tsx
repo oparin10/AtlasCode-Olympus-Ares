@@ -5,31 +5,36 @@ import { configurationSetup } from "./redux/configuration/actions";
 import { changeContentField } from "./redux/contentEntry/actions";
 import { setLoadingTrue } from "./redux/globalUI/actions";
 import { Map, List } from "immutable";
-import { Content } from "./redux/types";
+import { WarCollection } from "./redux/types";
 import Loading from "./components/App/Loading";
+import WarCollections from "./components/Admin/Collections";
 
 function App() {
+  const [warCollection, setWarCollection] = React.useState<
+    Array<WarCollection>
+  >([]);
+
   const dispatch = useDispatch();
-
   const loadingState = useSelector((state: RootStateOrAny) => state.globalUI);
-
-  const configState: Map<string, Content> = useSelector(
+  const warCollectionsState: Array<WarCollection> = useSelector(
     (state: RootStateOrAny) => state.collections
   );
 
+  React.useEffect(() => {
+    dispatch(configurationSetup());
+
+    setWarCollection(warCollectionsState);
+  }, []);
+
   const setContent = (e: any) => {
     dispatch(changeContentField(e.target.value));
-    console.log(configState.toJS());
   };
-
 
   return (
     <div>
       <Loading isLoading={loadingState.isLoading} />
 
-      <button onClick={() => dispatch(configurationSetup())}>haha</button>
-
-      <input onChange={(e) => setContent(e)} type="text" name="input" id="" />
+      <WarCollections collections={warCollectionsState} />
     </div>
   );
 }

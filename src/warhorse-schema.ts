@@ -19,6 +19,18 @@ const schema: WarhorseConfig = {
         },
       ],
     },
+
+    {
+      name: "Test2",
+      fields: [
+        {
+          label: "Field 2 test",
+          name: "Field 2",
+          value: "test2",
+          widget: "string",
+        },
+      ],
+    },
   ],
   media_location: "",
 };

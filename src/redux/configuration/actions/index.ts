@@ -2,13 +2,18 @@ import { RootStateOrAny } from "react-redux";
 import { Action, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
 import {
+  ConfigurationActionTypes,
   GetConfigActionTypes,
   GET_CONFIG_FAIL,
   GET_CONFIG_START,
   GET_CONFIG_SUCCESS,
   SetConfigActionTypes,
+  SetLoadingActionTypes,
+  SET_LOADING_FALSE,
+  SET_LOADING_TRUE,
 } from "../../types";
 import schema from "../../../warhorse-schema";
+import { setLoadingTrue } from "../../globalUI/actions";
 
 export const configurationSetup = (): ThunkAction<
   void,
@@ -16,9 +21,17 @@ export const configurationSetup = (): ThunkAction<
   unknown,
   Action<string>
 > => {
-  return (dispatch: Dispatch<GetConfigActionTypes | SetConfigActionTypes>) => {
+  return (
+    dispatch: Dispatch<
+      GetConfigActionTypes | SetConfigActionTypes | SetLoadingActionTypes
+    >
+  ) => {
     dispatch({
       type: GET_CONFIG_START,
+    });
+
+    dispatch({
+      type: SET_LOADING_TRUE,
     });
 
     try {
@@ -40,5 +53,9 @@ export const configurationSetup = (): ThunkAction<
         error: error.message,
       });
     }
+
+    dispatch({
+      type: SET_LOADING_FALSE,
+    });
   };
 };

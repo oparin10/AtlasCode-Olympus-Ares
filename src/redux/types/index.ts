@@ -1,3 +1,6 @@
+import { List } from "immutable";
+import { Action } from "redux";
+
 export const GET_CONFIG_START = "GET_CONFIG_START";
 export const GET_CONFIG_SUCCESS = "GET_CONFIG_SUCCESS";
 export const GET_CONFIG_FAIL = "GET_CONFIG_FAIL";
@@ -16,6 +19,7 @@ export const CREATE_USER_WITH_FIELDS_SUCCESS =
 export const CREATE_USER_WITH_FIELDS_FAIL = "CREATE_USER_WITH_FIELDS_FAIL";
 export const SET_LOADING_TRUE = "SET_LOADING_TRUE";
 export const SET_LOADING_FALSE = "SET_LOADING_FALSE";
+export const CHANGE_CONTENT_FIELD = "CHANGE_CONTENT_FIELD";
 
 export interface WarhorseConfig {
   collections: Array<Content>;
@@ -31,6 +35,14 @@ export interface GlobalUIState {
   isLoading: boolean;
 }
 
+export interface CollectionsAction extends Action<string> {
+  payload?: {};
+}
+
+export interface ContentFieldsState {
+  data: Map<string, any>;
+}
+
 type BrandingConfigurationState = {
   companyName: string | null;
   companyWebsite: string | null;
@@ -44,7 +56,7 @@ interface ContentField {
   value: string | undefined | null;
 }
 
-type Content = {
+export type Content = {
   fields: Array<ContentField>;
   name: string;
 };
@@ -56,6 +68,13 @@ interface SetLoadingTrue {
 interface SetLoadingFalse {
   type: typeof SET_LOADING_FALSE;
 }
+
+interface ChangeContentField {
+  type: typeof CHANGE_CONTENT_FIELD;
+  payload: any;
+}
+
+export type ContentFieldActionTypes = ChangeContentField;
 
 export type SetLoadingActionTypes = SetLoadingTrue | SetLoadingFalse;
 
@@ -156,3 +175,52 @@ export type AuthenticationActionTypes =
   | CreateUserWithFieldsTypes
   | LogoutUserActionTypes
   | LoginUserActionTypes;
+
+export interface StaticallyTypedRecord<T> {
+  get<K extends keyof T>(key: K, defaultValue?: T[K]): T[K];
+  set<K extends keyof T, V extends T[K]>(
+    key: K,
+    value: V
+  ): StaticallyTypedRecord<T> & T;
+  has<K extends keyof T>(key: K): boolean;
+  delete<K extends keyof T>(key: K): StaticallyTypedRecord<T>;
+  getIn<K1 extends keyof T, K2 extends keyof T[K1], V extends T[K1][K2]>(
+    keys: [K1, K2],
+    defaultValue?: V
+  ): T[K1][K2];
+  getIn<
+    K1 extends keyof T,
+    K2 extends keyof T[K1],
+    K3 extends keyof T[K1][K2],
+    V extends T[K1][K2][K3]
+  >(
+    keys: [K1, K2, K3],
+    defaultValue?: V
+  ): T[K1][K2][K3];
+  getIn(keys: string[]): unknown;
+  setIn<K1 extends keyof T, K2 extends keyof T[K1], V extends T[K1][K2]>(
+    keys: [K1, K2],
+    value: V
+  ): StaticallyTypedRecord<T>;
+  setIn(keys: string[], value: unknown): StaticallyTypedRecord<T> & T;
+  toJS(): T;
+  isEmpty(): boolean;
+  some<K extends keyof T>(
+    predicate: (value: T[K], key: K, iter: this) => boolean
+  ): boolean;
+  mapKeys<K extends keyof T, V>(
+    mapFunc: (key: K, value: StaticallyTypedRecord<T>) => V
+  ): V[];
+  find<K extends keyof T>(findFunc: (value: T[K]) => boolean): T[K];
+  filter<K extends keyof T>(
+    predicate: (value: T[K], key: K, iter: this) => boolean
+  ): StaticallyTypedRecord<T>;
+  valueSeq<K extends keyof T>(): T[K][] & { toArray: () => T[K][] };
+  map<K extends keyof T, V>(
+    mapFunc: (value: T[K]) => V
+  ): StaticallyTypedRecord<{ [key: string]: V }>;
+  keySeq<K extends keyof T>(): { toArray: () => K[] };
+  withMutations(
+    mutator: (mutable: StaticallyTypedRecord<T>) => unknown
+  ): StaticallyTypedRecord<T>;
+}

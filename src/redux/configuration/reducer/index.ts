@@ -23,13 +23,13 @@ export const configurationReducer = (
   action: ConfigurationActionTypes
 ): WarhorseConfigState => {
   switch (action.type) {
-    case (action.type = GET_CONFIG_START):
+    case GET_CONFIG_START:
       return { ...state };
 
-    case (action.type = GET_CONFIG_FAIL):
+    case GET_CONFIG_FAIL:
       return { ...state, error: action.error };
 
-    case (action.type = GET_CONFIG_SUCCESS):
+    case GET_CONFIG_SUCCESS:
       return {
         ...state,
         branding: {

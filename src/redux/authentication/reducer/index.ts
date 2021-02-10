@@ -50,22 +50,22 @@ export const authenticationReducer = (
   action: AuthenticationActionTypes
 ) => {
   switch (action.type) {
-    case (action.type = LOGIN_USER_START):
+    case LOGIN_USER_START:
       return { ...state };
 
-    case (action.type = LOGIN_USER_SUCCESS):
+    case LOGIN_USER_SUCCESS:
       return { ...state, isAuth: true };
 
-    case (action.type = LOGIN_USER_FAIL):
+    case LOGIN_USER_FAIL:
       return { ...state, error: action.error };
 
-    case (action.type = LOGOUT_USER_START):
+    case LOGOUT_USER_START:
       return { ...state };
 
-    case (action.type = LOGOUT_USER_SUCCESS):
+    case LOGOUT_USER_SUCCESS:
       return { ...state, isAuth: false };
 
-    case (action.type = LOGOUT_USER_FAIL):
+    case LOGOUT_USER_FAIL:
       return { ...state, error: action.error };
 
     default:

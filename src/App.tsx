@@ -1,14 +1,13 @@
 import React from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { configurationSetup } from "./redux/configuration/actions";
-import { changeContentField } from "./redux/contentEntry/actions";
 import { WarCollection } from "./redux/types";
-import Loading from "./components/App/Loading";
-import WarCollections from "./components/App/Collections";
+import Loading from "./components/Util/Loading";
 import RouterCore from "./components/App/RouterCore";
 import { RouterItem } from "./types";
 import StringWidget from "./components/Widgets/StringWidget";
 import MarkdownWidget from "./components/Widgets/MarkdownWidget";
+import HadesLayout from "./layout/HadesLayout";
 
 function App() {
   const [warCollection, setWarCollection] = React.useState<
@@ -27,26 +26,10 @@ function App() {
     setWarCollection(warCollectionsState);
   }, []);
 
-  const setContent = (e: any) => {
-    dispatch(changeContentField(e.target.value));
-  };
-
   const routerList: Array<RouterItem> = [
     { component: StringWidget, path: "test" },
     { component: MarkdownWidget, path: "dashboard" },
   ];
-
-  const LayoutComponentYo = (props: any) => {
-    return (
-      <div>
-        <div
-          style={{ height: "250px", width: "150px", backgroundColor: "violet" }}
-        ></div>
-
-        <div>{props.children}</div>
-      </div>
-    );
-  };
 
   return (
     <div>
@@ -54,7 +37,7 @@ function App() {
 
       {/* <WarCollections collections={warCollectionsState} /> */}
 
-      <RouterCore routes={routerList} />
+      <RouterCore layoutComponent={HadesLayout} routes={routerList} />
     </div>
   );
 }

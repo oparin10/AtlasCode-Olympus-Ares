@@ -40,6 +40,10 @@ const schema: WarhorseConfig = {
     logoUrl: "https://i.imgur.com/9npexxg.png",
   },
 
+  // CMS -> Criar sua primeira coleção -> Posts ----- [ Label: imagem principal, name: field1, widget: 'string'  ]
+
+  // Calça --->
+
   collections: [
     {
       name: "Posts",
@@ -49,6 +53,13 @@ const schema: WarhorseConfig = {
           name: "field1",
           value: "test",
           widget: "string",
+        },
+
+        {
+          label: "Altura",
+          name: "height",
+          widget: "string",
+          value: "",
         },
       ],
     },

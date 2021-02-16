@@ -7,14 +7,11 @@ interface Props {
 }
 
 const WarCollections = ({ collections = [] }: Props) => {
-
-
-
-
-  
   return (
     <div>
       <CollectionField widgetType="string" />
+
+      <CollectionField widgetType="markdown" />
       {/* {collections.map((collectionItem: WarCollection, index: number) => {
         return (
           <div key={index}>
@@ -22,7 +19,6 @@ const WarCollections = ({ collections = [] }: Props) => {
           </div>
         );
       })} */}
-      <CollectionField widgetType="markdown" />
     </div>
   );
 };

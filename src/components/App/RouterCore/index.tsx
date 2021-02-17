@@ -2,8 +2,6 @@ import React from "react";
 import { AdminItem, RouterItem } from "../../../types";
 import { Router, navigate } from "@reach/router";
 import PrivateRoute from "../../Util/PrivateRoute";
-import StringWidget from "../../Widgets/StringWidget";
-import Login from "../Login";
 import NotFoundRoute from "../../Util/NotFoundRoute";
 
 interface Props {

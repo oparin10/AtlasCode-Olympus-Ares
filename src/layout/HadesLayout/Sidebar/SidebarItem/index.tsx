@@ -4,6 +4,7 @@ import { Link } from "@reach/router";
 import React from "react";
 import styled from "styled-components";
 import IconComponent from "../../../../components/App/IconComponent";
+import getCurrentPath from "../../../../helper/currentPath";
 import { IconTypes } from "../../../../types";
 
 const SidebarItemRootContainer = styled.div`
@@ -62,10 +63,12 @@ const SidebarItemMain = ({
   icon = "AccountBalance",
   label = "Default label",
 }: Props) => {
+  let currentLocationFn = getCurrentPath();
+
   return (
     <React.Fragment>
       <Link to={`/admin/${path}`}>
-        <SidebarItemContainer active={false}>
+        <SidebarItemContainer active={currentLocationFn == path ? true : false}>
           <div className="icon">
             <IconComponent iconType={icon} />
           </div>

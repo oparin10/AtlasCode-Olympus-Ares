@@ -9,12 +9,9 @@ import StringWidget from "./components/Widgets/StringWidget";
 import MarkdownWidget from "./components/Widgets/MarkdownWidget";
 import HadesLayout from "./layout/HadesLayout";
 import { AccountBalance, AttachMoney } from "@material-ui/icons";
+import IconComponent from "./components/App/IconComponent";
 
 function App() {
-  const [warCollection, setWarCollection] = React.useState<
-    Array<WarCollection>
-  >([]);
-
   const dispatch = useDispatch();
   const loadingState = useSelector((state: RootStateOrAny) => state.globalUI);
   const warCollectionsState: Array<WarCollection> = useSelector(
@@ -23,8 +20,6 @@ function App() {
 
   React.useEffect(() => {
     dispatch(configurationSetup());
-
-    setWarCollection(warCollectionsState);
   }, []);
 
   const routerList: Array<RouterItem> = [
@@ -45,8 +40,6 @@ function App() {
   return (
     <div>
       <Loading isLoading={loadingState.isLoading} />
-
-      {/* <WarCollections collections={warCollectionsState} /> */}
 
       <RouterCore layoutComponent={HadesLayout} routes={routerList} />
     </div>

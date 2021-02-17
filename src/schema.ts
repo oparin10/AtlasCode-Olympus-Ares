@@ -13,42 +13,10 @@ import {
   MonetizationOn,
   Security,
 } from "@material-ui/icons";
+import { AdminItem } from "./types";
 
-export const WarhorseWidgets: any = {
-  string: StringWidget,
-  image: ImageWidget,
-  markdown: MarkdownWidget,
-  text: TextWidget,
-};
 
-export type WidgetsTypes = "string" | "image" | "markdown" | "text";
-
-export type Widgets<T> = {
-  [widget in WidgetsTypes]: T;
-};
-
-export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {
-  image: ImageWidget,
-  markdown: MarkdownWidget,
-  string: StringWidget,
-  text: TextWidget,
-};
-
-export const CollectionWidgets: Widgets<React.FC | JSX.Element> = {
-  image: ImageWidget,
-  markdown: MarkdownWidget,
-  string: StringWidget,
-  text: TextWidget,
-};
-
-interface AdminItem {
-  component: (props: any) => JSX.Element;
-  path: string;
-  label: string;
-  icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
-}
-
-export const rootConfig: Array<AdminItem> = [
+export const collectionsConfig: Array<AdminItem> = [
   {
     component: StringWidget,
     icon: AccountBalance,
@@ -82,6 +50,8 @@ const schema: AppConfig = {
     companyWebsite: "https://atlascode.dev",
     logoUrl: "https://i.imgur.com/9npexxg.png",
   },
+
+  collections: collectionsConfig,
 
   media_location: "",
 };

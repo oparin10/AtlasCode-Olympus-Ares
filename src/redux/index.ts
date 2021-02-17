@@ -14,7 +14,7 @@ const rootReducers = combineReducers({
   config: configurationReducer,
   globalUI: globalUIReducer,
   // contentEntry: contentEntryReducer,
-  // collections: collectionsReducer,
+  collections: collectionsReducer,
 });
 
 const store = createStore(

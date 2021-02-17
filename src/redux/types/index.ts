@@ -1,4 +1,5 @@
 import { Action } from "redux";
+import { AdminItem } from "../../types";
 
 export const GET_CONFIG_START = "GET_CONFIG_START";
 export const GET_CONFIG_SUCCESS = "GET_CONFIG_SUCCESS";
@@ -23,6 +24,7 @@ export const CHANGE_CONTENT_FIELD = "CHANGE_CONTENT_FIELD";
 export interface AppConfig {
   media_location: string | null;
   branding: BrandingConfigurationState;
+  collections: Array<AdminItem>;
 }
 
 export interface AppConfigState extends AppConfig {

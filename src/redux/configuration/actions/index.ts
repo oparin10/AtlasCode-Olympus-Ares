@@ -43,6 +43,8 @@ export const configurationSetup = (): ThunkAction<
             companyWebsite: schema.branding.companyWebsite,
             logoUrl: schema.branding.logoUrl,
           },
+
+          collections: schema.collections,
           media_location: schema.media_location,
         },
       });

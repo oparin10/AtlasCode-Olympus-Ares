@@ -13,6 +13,8 @@ let initialState: AppConfigState = {
     logoUrl: "",
   },
 
+  collections: [],
+
   media_location: "",
   error: [],
 };
@@ -36,6 +38,7 @@ export const configurationReducer = (
           companyWebsite: action.payload.branding.companyWebsite,
           logoUrl: action.payload.branding.logoUrl,
         },
+        collections: action.payload.collections,
         media_location: action.payload.media_location,
       };
 

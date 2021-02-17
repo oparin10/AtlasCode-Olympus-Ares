@@ -17,6 +17,7 @@ import {
   Apps,
   AttachMoney,
 } from "@material-ui/icons";
+import Login from "../components/App/Login";
 import ImageWidget from "../components/Widgets/ImageWidget";
 import MarkdownWidget from "../components/Widgets/MarkdownWidget";
 import StringWidget from "../components/Widgets/StringWidget";
@@ -49,4 +50,5 @@ export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {
   markdown: MarkdownWidget,
   string: StringWidget,
   text: TextWidget,
+  login: Login,
 };

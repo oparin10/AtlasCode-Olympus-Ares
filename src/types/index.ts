@@ -15,7 +15,7 @@ export interface AdminItem {
   icon: IconTypes;
 }
 
-export type WidgetsTypes = "string" | "image" | "markdown" | "text";
+export type WidgetsTypes = "string" | "image" | "markdown" | "text" | "login";
 export type IconTypes =
   | "AttachMoney"
   | "AccountBalance"

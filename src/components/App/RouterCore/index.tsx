@@ -33,13 +33,13 @@ const RouterCore = ({
 
   return (
     <Router>
-      {/* <PrivateRoute
+      <PrivateRoute
         isAuth={testAuth}
-        component={Login}
+        component={"login"}
         path={"/admin/login"}
         basePath={basePath}
         startingPath={startingPath}
-      ></PrivateRoute> */}
+      ></PrivateRoute>
 
       {routes.map((routerItem: AdminItem, index: number) => {
         return (

@@ -1,7 +1,6 @@
 import React from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { configurationSetup } from "./redux/configuration/actions";
-import { WarCollection } from "./redux/types";
 import Loading from "./components/Util/Loading";
 import RouterCore from "./components/App/RouterCore";
 import { RouterItem } from "./types";
@@ -14,7 +13,7 @@ import IconComponent from "./components/App/IconComponent";
 function App() {
   const dispatch = useDispatch();
   const loadingState = useSelector((state: RootStateOrAny) => state.globalUI);
-  const warCollectionsState: Array<WarCollection> = useSelector(
+  const warCollectionsState: Array<any> = useSelector(
     (state: RootStateOrAny) => state.collections
   );
 

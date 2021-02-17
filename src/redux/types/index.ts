@@ -39,28 +39,10 @@ export interface CollectionsAction extends Action<string> {
   payload?: {};
 }
 
-export interface ContentFieldsState {
-  data: Map<string, any>;
-}
-
 export type BrandingConfig = {
   companyName: string | null;
   companyWebsite: string | null;
   logoUrl: string | null;
-};
-
-type Widget = "string" | "markdown" | "image" | "text";
-
-interface WarCollectionField {
-  widget: Widget;
-  name: string;
-  label: string;
-  value: string | undefined | null;
-}
-
-export type WarCollection = {
-  fields: Array<WarCollectionField>;
-  name: string;
 };
 
 interface SetLoadingTrue {

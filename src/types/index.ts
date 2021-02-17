@@ -8,6 +8,13 @@ export type RouterItem = {
   icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
 };
 
+export interface AdminItem {
+  widget: WidgetsTypes;
+  path: string;
+  label: string;
+  icon: IconTypes;
+}
+
 export type WidgetsTypes = "string" | "image" | "markdown" | "text";
 export type IconTypes =
   | "AttachMoney"
@@ -25,10 +32,3 @@ export type IconTypes =
   | "AddPhotoAlternate"
   | "AddShoppingCart"
   | "Apps";
-
-export interface AdminItem {
-  widget: WidgetsTypes;
-  path: string;
-  label: string;
-  icon: IconTypes;
-}

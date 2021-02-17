@@ -1,5 +1,7 @@
 import React from "react";
+import { RootStateOrAny, useSelector } from "react-redux";
 import styled from "styled-components";
+import { AdminItem } from "../../types";
 import Sidebar from "./Sidebar";
 
 interface Props {
@@ -17,9 +19,13 @@ const HadesMainContentContainer = styled.main`
 const HadesLayout = ({ any, ...rest }: Props) => {
   console.log(rest);
 
+  const collectionsState: Array<AdminItem> = useSelector(
+    (state: RootStateOrAny) => state.collections
+  );
+
   return (
     <HadesLayoutRoot>
-      <Sidebar />
+      <Sidebar collections={collectionsState} />
       <HadesMainContentContainer>{rest.children}</HadesMainContentContainer>
     </HadesLayoutRoot>
   );

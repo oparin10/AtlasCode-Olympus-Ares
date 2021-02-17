@@ -1,8 +1,10 @@
 import { SvgIcon } from "@material-ui/core";
-import { AssignmentTurnedIn } from "@material-ui/icons";
+import { AssignmentTurnedIn, Label } from "@material-ui/icons";
 import { Link } from "@reach/router";
 import React from "react";
 import styled from "styled-components";
+import IconComponent from "../../../../components/App/IconComponent";
+import { IconTypes } from "../../../../types";
 
 const SidebarItemRootContainer = styled.div`
   width: 100%;
@@ -49,18 +51,26 @@ const SidebarItemContainer = styled.div<SidebarItemContainerProps>`
   }
 `;
 
-interface Props {}
+interface Props {
+  path: string;
+  icon: IconTypes;
+  label: string;
+}
 
-const SidebarItemMain = (props: Props) => {
+const SidebarItemMain = ({
+  path = "",
+  icon = "AccountBalance",
+  label = "Default label",
+}: Props) => {
   return (
     <React.Fragment>
-      <Link to={"/admin/dashboard"}>
+      <Link to={`/admin/${path}`}>
         <SidebarItemContainer active={false}>
           <div className="icon">
-            <SvgIcon component={AssignmentTurnedIn} />
+            <IconComponent iconType={icon} />
           </div>
 
-          <div className="menuName">Cartas contempladas</div>
+          <div className="menuName">{label}</div>
         </SidebarItemContainer>
       </Link>
     </React.Fragment>

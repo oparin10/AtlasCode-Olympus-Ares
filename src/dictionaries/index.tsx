@@ -24,7 +24,7 @@ import TextWidget from "../components/Widgets/TextWidget";
 import { IconTypes, WidgetsTypes } from "../types";
 
 export const IconDictonary: Record<
-  IconTypes,
+  IconTypes | string,
   OverridableComponent<SvgIconTypeMap<{}, "svg">>
 > = {
   AccountBalance: AccountBalance,

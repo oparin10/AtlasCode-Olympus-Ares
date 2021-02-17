@@ -1,5 +1,5 @@
 import React from "react";
-import { RouterItem } from "../../../types";
+import { AdminItem, RouterItem } from "../../../types";
 import { Router, navigate } from "@reach/router";
 import PrivateRoute from "../../Util/PrivateRoute";
 import StringWidget from "../../Widgets/StringWidget";
@@ -8,7 +8,7 @@ import NotFoundRoute from "../../Util/NotFoundRoute";
 
 interface Props {
   basePath?: string;
-  routes: Array<RouterItem>;
+  routes: Array<AdminItem>;
   startingPath?: string;
   layoutComponent?: (props: any) => JSX.Element;
 }
@@ -33,21 +33,21 @@ const RouterCore = ({
 
   return (
     <Router>
-      <PrivateRoute
+      {/* <PrivateRoute
         isAuth={testAuth}
         component={Login}
         path={"/admin/login"}
         basePath={basePath}
         startingPath={startingPath}
-      ></PrivateRoute>
+      ></PrivateRoute> */}
 
-      {routes.map((routerItem: RouterItem, index: number) => {
+      {routes.map((routerItem: AdminItem, index: number) => {
         return (
           <PrivateRoute
             key={index}
             isAuth={testAuth}
             layout={layoutComponent}
-            component={routerItem.component}
+            component={routerItem.widget}
             path={`/${basePath}/${routerItem.path}`}
             basePath={basePath}
             startingPath={startingPath}
@@ -55,7 +55,7 @@ const RouterCore = ({
         );
       })}
 
-      <NotFoundRoute default />
+      {/* <NotFoundRoute default /> */}
     </Router>
   );
 };

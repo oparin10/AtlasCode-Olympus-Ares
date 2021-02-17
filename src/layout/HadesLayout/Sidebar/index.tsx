@@ -2,11 +2,8 @@ import { SvgIcon } from "@material-ui/core";
 import { AssignmentTurnedIn } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
+import { AdminItem } from "../../../types";
 import SidebarItemMain from "./SidebarItem";
-
-interface Props {
-  logoURL?: string;
-}
 
 const SidebarRoot = styled.div`
   height: 100vh;
@@ -57,7 +54,15 @@ const SidebarItemRootContainer = styled.div`
   }
 `;
 
-const Sidebar = ({ logoURL = "https://i.imgur.com/ZolrH6Q.png" }: Props) => {
+interface Props {
+  logoURL?: string;
+  collections: Array<AdminItem>;
+}
+
+const Sidebar = ({
+  logoURL = "https://i.imgur.com/ZolrH6Q.png",
+  collections = [],
+}: Props) => {
   const sidebarSizePercentage: number = 0.18525;
   const logoContainerHeight: number = 0.17578;
   const sidebarItemContainerHeight: number = 0.07291;
@@ -70,11 +75,16 @@ const Sidebar = ({ logoURL = "https://i.imgur.com/ZolrH6Q.png" }: Props) => {
       <SidebarDivider />
 
       <SidebarItemRootContainer>
-        <SidebarItemMain />
-        <SidebarItemMain />
-        <SidebarItemMain />
-        <SidebarItemMain />
-        <SidebarItemMain />
+        {collections.map((value: AdminItem, index: number) => {
+          return (
+            <SidebarItemMain
+              key={index}
+              icon={value.icon}
+              label={value.label}
+              path={value.path}
+            />
+          );
+        })}
       </SidebarItemRootContainer>
     </SidebarRoot>
   );

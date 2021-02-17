@@ -8,9 +8,9 @@ interface Props {
 }
 
 const IconComponent = ({ iconType, ...rest }: Props) => {
-  const IconComponentDynamic = IconDictonary[iconType];
+  const IconComponentDynamic = IconDictonary[iconType as IconTypes];
 
-  return <SvgIcon component={IconComponentDynamic}></SvgIcon>;
+  return <SvgIcon {...rest} component={IconComponentDynamic}></SvgIcon>;
 };
 
 export default IconComponent;

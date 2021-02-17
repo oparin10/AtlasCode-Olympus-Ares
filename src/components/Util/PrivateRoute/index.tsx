@@ -1,9 +1,10 @@
 import React from "react";
-import { navigate, useNavigate } from "@reach/router";
-import { RouterItem } from "../../../types";
+import { navigate } from "@reach/router";
+import { WidgetsTypes } from "../../../types";
+import CollectionField from "../../App/CollectionField";
 
 interface Props {
-  component: (props: any) => React.ComponentElement<any, any>;
+  component: WidgetsTypes;
   layout?: React.ElementType;
   location?: Location;
   isAuth: boolean;
@@ -14,7 +15,7 @@ interface Props {
 }
 
 const PrivateRoute: React.FC<Props> = ({
-  component: Component,
+  component = "string",
   layout: Layout,
   location,
   isAuth,
@@ -25,18 +26,18 @@ const PrivateRoute: React.FC<Props> = ({
 }) => {
   const auth = isAuth;
 
-  if (!auth && location!.pathname !== `/${basePath}/login`) {
-    navigate(`/${basePath}/login`);
-  } else if (auth && location!.pathname == `/${basePath}/login`) {
-    navigate(`/${basePath}/${startingPath}`);
-  }
+  // if (!auth && location!.pathname !== `/${basePath}/login`) {
+  //   navigate(`/${basePath}/login`);
+  // } else if (auth && location!.pathname == `/${basePath}/login`) {
+  //   navigate(`/${basePath}/${startingPath}`);
+  // }
 
   if (typeof Layout == null || typeof Layout == "undefined") {
-    return <Component {...rest}></Component>;
+    return <CollectionField widgetType={component} />;
   } else {
     return (
       <Layout>
-        <Component {...rest}></Component>
+        <CollectionField widgetType={component} />
       </Layout>
     );
   }

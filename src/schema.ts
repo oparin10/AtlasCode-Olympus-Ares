@@ -9,20 +9,20 @@ export const collectionsConfig: Array<AdminItem> = [
     path: "test",
   },
   {
-    widget: "string",
+    widget: "markdown",
     icon: "AddAPhoto",
     label: "Money1",
     path: "test2",
   },
   {
-    widget: "string",
+    widget: "image",
     icon: "AddCircle",
     label: "Image",
     path: "image",
   },
 
   {
-    widget: "string",
+    widget: "text",
     icon: "AddShoppingCart",
     label: "Security",
     path: "security",

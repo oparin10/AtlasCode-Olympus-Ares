@@ -76,8 +76,8 @@ export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {
 };
 
 export interface AdminItem {
-  component: (props: any) => JSX.Element;
+  widget: WidgetsTypes;
   path: string;
   label: string;
-  icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
+  icon: IconTypes;
 }

@@ -1,44 +1,29 @@
-import { Map } from "immutable";
 import { AppConfig } from "./redux/types";
-import React from "react";
-import StringWidget from "./components/Widgets/StringWidget";
-import ImageWidget from "./components/Widgets/ImageWidget";
-import MarkdownWidget from "./components/Widgets/MarkdownWidget";
-import TextWidget from "./components/Widgets/TextWidget";
-import { OverridableComponent } from "@material-ui/core/OverridableComponent";
-import { SvgIconTypeMap } from "@material-ui/core";
-import {
-  AccountBalance,
-  ImageAspectRatio,
-  MonetizationOn,
-  Security,
-} from "@material-ui/icons";
 import { AdminItem } from "./types";
-
 
 export const collectionsConfig: Array<AdminItem> = [
   {
-    component: StringWidget,
-    icon: AccountBalance,
+    widget: "string",
+    icon: "AttachMoney",
     label: "Teste1",
     path: "test",
   },
   {
-    component: MarkdownWidget,
-    icon: MonetizationOn,
+    widget: "string",
+    icon: "AddAPhoto",
     label: "Money1",
     path: "test2",
   },
   {
-    component: ImageWidget,
-    icon: ImageAspectRatio,
+    widget: "string",
+    icon: "AddCircle",
     label: "Image",
     path: "image",
   },
 
   {
-    component: TextWidget,
-    icon: Security,
+    widget: "string",
+    icon: "AddShoppingCart",
     label: "Security",
     path: "security",
   },

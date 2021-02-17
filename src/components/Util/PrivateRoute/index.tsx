@@ -1,5 +1,6 @@
 import React from "react";
 import { navigate, useNavigate } from "@reach/router";
+import { RouterItem } from "../../../types";
 
 interface Props {
   component: (props: any) => React.ComponentElement<any, any>;

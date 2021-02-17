@@ -3,17 +3,16 @@ import {
   GET_CONFIG_FAIL,
   GET_CONFIG_START,
   GET_CONFIG_SUCCESS,
-  WarhorseConfigState,
+  AppConfigState,
 } from "../../types";
 
-let initialState: WarhorseConfigState = {
+let initialState: AppConfigState = {
   branding: {
     companyName: "",
     companyWebsite: "",
     logoUrl: "",
   },
 
-  collections: [],
   media_location: "",
   error: [],
 };
@@ -21,7 +20,7 @@ let initialState: WarhorseConfigState = {
 export const configurationReducer = (
   state = initialState,
   action: ConfigurationActionTypes
-): WarhorseConfigState => {
+): AppConfigState => {
   switch (action.type) {
     case GET_CONFIG_START:
       return { ...state };
@@ -37,7 +36,6 @@ export const configurationReducer = (
           companyWebsite: action.payload.branding.companyWebsite,
           logoUrl: action.payload.branding.logoUrl,
         },
-        collections: action.payload.collections,
         media_location: action.payload.media_location,
       };
 

@@ -8,6 +8,7 @@ import { RouterItem } from "./types";
 import StringWidget from "./components/Widgets/StringWidget";
 import MarkdownWidget from "./components/Widgets/MarkdownWidget";
 import HadesLayout from "./layout/HadesLayout";
+import { AccountBalance, AttachMoney } from "@material-ui/icons";
 
 function App() {
   const [warCollection, setWarCollection] = React.useState<
@@ -27,8 +28,18 @@ function App() {
   }, []);
 
   const routerList: Array<RouterItem> = [
-    { component: StringWidget, path: "test" },
-    { component: MarkdownWidget, path: "dashboard" },
+    {
+      component: StringWidget,
+      path: "test",
+      label: "Test",
+      icon: AccountBalance,
+    },
+    {
+      component: MarkdownWidget,
+      path: "dashboard",
+      label: "Dashboard",
+      icon: AttachMoney,
+    },
   ];
 
   return (

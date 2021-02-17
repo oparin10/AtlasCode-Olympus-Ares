@@ -10,11 +10,11 @@ import { collectionsReducer } from "./collections/reducer";
 
 const rootReducers = combineReducers({
   auth: authenticationReducer,
-  db: firestoreReducer,
+  // db: firestoreReducer,
   config: configurationReducer,
   globalUI: globalUIReducer,
-  contentEntry: contentEntryReducer,
-  collections: collectionsReducer,
+  // contentEntry: contentEntryReducer,
+  // collections: collectionsReducer,
 });
 
 const store = createStore(

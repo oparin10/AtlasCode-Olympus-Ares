@@ -1,4 +1,3 @@
-import { List } from "immutable";
 import { Action } from "redux";
 
 export const GET_CONFIG_START = "GET_CONFIG_START";
@@ -21,13 +20,12 @@ export const SET_LOADING_TRUE = "SET_LOADING_TRUE";
 export const SET_LOADING_FALSE = "SET_LOADING_FALSE";
 export const CHANGE_CONTENT_FIELD = "CHANGE_CONTENT_FIELD";
 
-export interface WarhorseConfig {
-  collections: Array<WarCollection>;
+export interface AppConfig {
   media_location: string | null;
   branding: BrandingConfigurationState;
 }
 
-export interface WarhorseConfigState extends WarhorseConfig {
+export interface AppConfigState extends AppConfig {
   error: string | Array<string> | null | undefined;
 }
 
@@ -87,7 +85,7 @@ interface GetConfigStart {
 }
 interface GetConfigSuccess {
   type: typeof GET_CONFIG_SUCCESS;
-  payload: WarhorseConfig;
+  payload: AppConfig;
 }
 interface GetConfigFail {
   type: typeof GET_CONFIG_FAIL;

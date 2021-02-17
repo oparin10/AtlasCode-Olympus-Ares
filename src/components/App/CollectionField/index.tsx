@@ -1,5 +1,6 @@
 import React from "react";
-import { WidgetDictonary, WidgetsTypes } from "../../../types";
+import { WidgetDictonary } from "../../../dictionaries";
+import { WidgetsTypes } from "../../../types";
 
 interface Props {
   widgetType: WidgetsTypes;

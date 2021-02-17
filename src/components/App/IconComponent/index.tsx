@@ -1,6 +1,7 @@
 import { SvgIcon } from "@material-ui/core";
 import React from "react";
-import { IconDictonary, IconTypes } from "../../../types";
+import { IconDictonary } from "../../../dictionaries";
+import { IconTypes } from "../../../types";
 
 interface Props {
   iconType: IconTypes;

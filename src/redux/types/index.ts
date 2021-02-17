@@ -23,7 +23,7 @@ export const CHANGE_CONTENT_FIELD = "CHANGE_CONTENT_FIELD";
 
 export interface AppConfig {
   media_location: string | null;
-  branding: BrandingConfigurationState;
+  branding: BrandingConfig;
   collections: Array<AdminItem>;
 }
 
@@ -43,7 +43,7 @@ export interface ContentFieldsState {
   data: Map<string, any>;
 }
 
-type BrandingConfigurationState = {
+export type BrandingConfig = {
   companyName: string | null;
   companyWebsite: string | null;
   logoUrl: string | null;

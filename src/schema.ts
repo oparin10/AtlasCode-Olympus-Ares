@@ -1,4 +1,4 @@
-import { AppConfig } from "./redux/types";
+import { AppConfig, BrandingConfig } from "./redux/types";
 import { AdminItem } from "./types";
 
 export const collectionsConfig: Array<AdminItem> = [
@@ -29,15 +29,15 @@ export const collectionsConfig: Array<AdminItem> = [
   },
 ];
 
+export const brandingConfig: BrandingConfig = {
+  companyName: "AtlasCode",
+  companyWebsite: "https://atlascode.dev",
+  logoUrl: "https://i.imgur.com/9npexxg.png",
+};
+
 const schema: AppConfig = {
-  branding: {
-    companyName: "AtlasCode",
-    companyWebsite: "https://atlascode.dev",
-    logoUrl: "https://i.imgur.com/9npexxg.png",
-  },
-
+  branding: brandingConfig,
   collections: collectionsConfig,
-
   media_location: "",
 };
 

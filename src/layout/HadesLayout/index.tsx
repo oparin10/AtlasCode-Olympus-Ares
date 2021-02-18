@@ -25,6 +25,10 @@ const HadesLayout = ({ any, ...rest }: Props) => {
     (state: RootStateOrAny) => state.collections
   );
 
+  const activeCollection: AdminItem = useSelector(
+    (state: RootStateOrAny) => state.activeCollection
+  );
+
   const dispatch = useDispatch();
   const currentPath = getCurrentPath();
 
@@ -40,7 +44,7 @@ const HadesLayout = ({ any, ...rest }: Props) => {
     <HadesLayoutRoot>
       <Sidebar collections={collectionsState} />
       <HadesContentContainer>
-        <Upperbar />
+        <Upperbar label={activeCollection.label} />
 
         <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
           <div>{rest.children}</div>

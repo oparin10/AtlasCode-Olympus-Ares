@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import IconComponent from "../../../components/App/IconComponent";
 import getCurrentPath from "../../../helper/currentPath";
+import { AdminItem } from "../../../types";
 import UserProfileButton from "./UserProfileButton";
 
 const UpperbarRoot = styled.div`
@@ -45,9 +46,10 @@ const UpperbarTitleContainer = styled.div`
 
 interface Props {
   any?: string;
+  label: string;
 }
 
-const Upperbar = (props: Props) => {
+const Upperbar = ({ label = "Place holder label" }: Props) => {
   let currentPath = getCurrentPath();
 
   return (
@@ -55,7 +57,7 @@ const Upperbar = (props: Props) => {
       <UpperbarInnerContainer>
         <UpperbarTitleContainer>
           <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
-            <div>{currentPath}</div>
+            <div>{label}</div>
           </Fade>
         </UpperbarTitleContainer>
         <Box

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import UserProfileButton from "./UserProfileButton";
 
 const UpperbarRoot = styled.div`
   width: 100%;
@@ -10,10 +11,28 @@ const UpperbarRoot = styled.div`
   backdrop-filter: blur(30px);
 `;
 
+const UpperbarInnerContainer = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 100%;
+  margin-right: 15px;
+
+  @media (min-width: 1024px) {
+    margin-right: 25px;
+  }
+`;
+
 interface Props {}
 
 const Upperbar = (props: Props) => {
-  return <UpperbarRoot></UpperbarRoot>;
+  return (
+    <UpperbarRoot>
+      <UpperbarInnerContainer>
+        <UserProfileButton />
+      </UpperbarInnerContainer>
+    </UpperbarRoot>
+  );
 };
 
 export default Upperbar;

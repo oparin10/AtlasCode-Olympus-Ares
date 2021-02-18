@@ -1,7 +1,8 @@
 import { Fade } from "@material-ui/core";
 import React from "react";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { setActiveCollection } from "../../redux/activeCollection/actions";
 import { AdminItem } from "../../types";
 import Sidebar from "./Sidebar";
 import Upperbar from "./Upperbar";
@@ -19,11 +20,15 @@ const HadesContentContainer = styled.div`
 `;
 
 const HadesLayout = ({ any, ...rest }: Props) => {
-  console.log(rest);
-
   const collectionsState: Array<AdminItem> = useSelector(
     (state: RootStateOrAny) => state.collections
   );
+
+  const dispatch = useDispatch();
+
+  // React.useEffect(() => {
+  //   dispatch(setActiveCollection(collectionsState[0]));
+  // }, []);
 
   return (
     <HadesLayoutRoot>

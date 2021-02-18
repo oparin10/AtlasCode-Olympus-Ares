@@ -1,20 +1,24 @@
 import { AppConfig, BrandingConfig } from "./redux/types";
 import { AdminItem } from "./types";
+import _ from "lodash";
 
 export const collectionsConfig: Array<AdminItem> = [
   {
+    name: "id1",
     widget: "string",
     icon: "AttachMoney",
     label: "Teste1",
     path: "test",
   },
   {
+    name: "id2",
     widget: "markdown",
     icon: "AddAPhoto",
     label: "Money1",
     path: "test2",
   },
   {
+    name: "id3",
     widget: "image",
     icon: "AddCircle",
     label: "Image",
@@ -22,6 +26,7 @@ export const collectionsConfig: Array<AdminItem> = [
   },
 
   {
+    name: "id4",
     widget: "text",
     icon: "AddShoppingCart",
     label: "Security",
@@ -42,3 +47,9 @@ const schema: AppConfig = {
 };
 
 export default schema;
+
+const resultIwish = collectionsConfig.filter((obj) => {
+  return obj.name == "id2";
+});
+
+console.log(resultIwish[0]);

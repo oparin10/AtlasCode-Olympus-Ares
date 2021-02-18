@@ -43,7 +43,9 @@ const UpperbarTitleContainer = styled.div`
   }
 `;
 
-interface Props {}
+interface Props {
+  any?: string;
+}
 
 const Upperbar = (props: Props) => {
   let currentPath = getCurrentPath();

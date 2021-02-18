@@ -4,14 +4,14 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { authenticationReducer } from "./authentication/reducer";
 import { configurationReducer } from "./configuration/reducer";
 import { globalUIReducer } from "./globalUI/reducer";
-import { contentEntryReducer } from "./contentEntry/reducer";
 import { collectionsReducer } from "./collections/reducer";
+import { activeCollectionReducer } from "./activeCollection/reducer";
 
 const rootReducers = combineReducers({
   auth: authenticationReducer,
   config: configurationReducer,
   globalUI: globalUIReducer,
-  // contentEntry: contentEntryReducer,
+  activeCollection: activeCollectionReducer,
   collections: collectionsReducer,
 });
 

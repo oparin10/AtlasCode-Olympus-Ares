@@ -17,8 +17,6 @@ const useStyles = makeStyles((theme) => ({
 const Loading = ({ isLoading = true }: Props) => {
   const classes = useStyles();
 
-  console.log(isLoading);
-
   return (
     <div
       style={{ display: isLoading ? "block" : "none" }}

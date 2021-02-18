@@ -13,8 +13,6 @@ function App() {
     (state: RootStateOrAny) => state.collections
   );
 
-  console.log(collectionsState);
-
   React.useEffect(() => {
     dispatch(configurationSetup());
   }, []);

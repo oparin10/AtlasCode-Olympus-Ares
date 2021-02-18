@@ -9,6 +9,7 @@ export type RouterItem = {
 };
 
 export interface AdminItem {
+  name: string;
   widget: WidgetsTypes;
   path: string;
   label: string;
@@ -32,4 +33,4 @@ export type IconTypes =
   | "AddPhotoAlternate"
   | "AddShoppingCart"
   | "Apps"
-  | "PhotoLibrary"
+  | "PhotoLibrary";

@@ -2,6 +2,7 @@ import { Fade } from "@material-ui/core";
 import React from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import getCurrentPath from "../../helper/currentPath";
 import { setActiveCollection } from "../../redux/activeCollection/actions";
 import { AdminItem } from "../../types";
 import Sidebar from "./Sidebar";
@@ -25,10 +26,15 @@ const HadesLayout = ({ any, ...rest }: Props) => {
   );
 
   const dispatch = useDispatch();
+  const currentPath = getCurrentPath();
 
-  // React.useEffect(() => {
-  //   dispatch(setActiveCollection(collectionsState[0]));
-  // }, []);
+  React.useEffect(() => {
+    const activeCollection = collectionsState.filter((obj) => {
+      return obj.path == currentPath;
+    });
+
+    dispatch(setActiveCollection(activeCollection[0] as AdminItem));
+  }, []);
 
   return (
     <HadesLayoutRoot>

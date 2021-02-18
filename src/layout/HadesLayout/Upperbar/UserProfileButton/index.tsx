@@ -133,7 +133,7 @@ const UserProfileButton = ({
           </DialogTitle>
 
           <Box
-            marginTop={"-10px"}
+            // marginTop={"-10px"}
             height="1px"
             width={"100%"}
             bgcolor="#333"

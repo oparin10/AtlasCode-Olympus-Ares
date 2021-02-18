@@ -1,5 +1,7 @@
+import { Box } from "@material-ui/core";
 import React from "react";
 import styled from "styled-components";
+import IconComponent from "../../../components/App/IconComponent";
 import UserProfileButton from "./UserProfileButton";
 
 const UpperbarRoot = styled.div`
@@ -29,6 +31,15 @@ const Upperbar = (props: Props) => {
   return (
     <UpperbarRoot>
       <UpperbarInnerContainer>
+        <Box pt={1.75} mr={10} color={"#e4e5ed"}>
+          <IconComponent
+            clickable
+            height="2em"
+            width="1.5em"
+            iconType="PhotoLibrary"
+          />
+        </Box>
+
         <UserProfileButton />
       </UpperbarInnerContainer>
     </UpperbarRoot>

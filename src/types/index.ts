@@ -31,4 +31,5 @@ export type IconTypes =
   | "AddComment"
   | "AddPhotoAlternate"
   | "AddShoppingCart"
-  | "Apps";
+  | "Apps"
+  | "PhotoLibrary"

@@ -16,6 +16,7 @@ import {
   AddShoppingCart,
   Apps,
   AttachMoney,
+  PhotoLibrary,
 } from "@material-ui/icons";
 import Login from "../components/App/Login";
 import ImageWidget from "../components/Widgets/ImageWidget";
@@ -25,7 +26,7 @@ import TextWidget from "../components/Widgets/TextWidget";
 import { IconTypes, WidgetsTypes } from "../types";
 
 export const IconDictonary: Record<
-  IconTypes | string,
+  IconTypes,
   OverridableComponent<SvgIconTypeMap<{}, "svg">>
 > = {
   AccountBalance: AccountBalance,
@@ -43,6 +44,7 @@ export const IconDictonary: Record<
   AddPhotoAlternate: AddPhotoAlternate,
   AddShoppingCart: AddShoppingCart,
   Apps: Apps,
+  PhotoLibrary: PhotoLibrary,
 };
 
 export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {

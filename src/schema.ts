@@ -32,6 +32,20 @@ export const collectionsConfig: Array<AdminItem> = [
     label: "Security",
     path: "security",
   },
+  {
+    name: "id5",
+    widget: "string",
+    icon: "AcUnit",
+    path: "amostra",
+    label: "Amostra label",
+  },
+  {
+    name: "blog",
+    widget: "markdown",
+    icon: "AddShoppingCart",
+    label: "Blog posts",
+    path: "blog",
+  },
 ];
 
 export const brandingConfig: BrandingConfig = {
@@ -47,9 +61,3 @@ const schema: AppConfig = {
 };
 
 export default schema;
-
-const resultIwish = collectionsConfig.filter((obj) => {
-  return obj.name == "id2";
-});
-
-console.log(resultIwish[0]);

@@ -9,7 +9,7 @@
 /coverage
 .env
 .firebaserc
-
+./functions/node_modules
 
 # production
 /build

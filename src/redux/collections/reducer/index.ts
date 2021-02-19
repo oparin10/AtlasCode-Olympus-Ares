@@ -6,12 +6,6 @@ export const collectionsReducer = (state = [], action: any) => {
     case GET_CONFIG_SUCCESS:
       let configCollectionsTwo: Array<any> = get(action.payload, "collections");
 
-      // let toListType: List<WarCollection> = List(configCollectionsTwo);
-
-      // return List(configCollectionsTwo)
-      //   .toOrderedMap()
-      //   .mapKeys((key, value) => value.name.toLowerCase());
-
       return configCollectionsTwo;
 
     default:

@@ -17,7 +17,7 @@ const HadesLayoutRoot = styled.div`
   display: flex;
 `;
 const HadesContentContainer = styled.div`
-  flex-grow: 1;
+  width: calc(100% * 0.81475);
 `;
 
 const HadesLayout = ({ any, ...rest }: Props) => {
@@ -44,7 +44,7 @@ const HadesLayout = ({ any, ...rest }: Props) => {
     <HadesLayoutRoot>
       <Sidebar collections={collectionsState} />
       <HadesContentContainer>
-        <Upperbar label={activeCollection.label} />
+        <Upperbar label={activeCollection ? activeCollection.label : ""} />
 
         <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
           <div>{rest.children}</div>

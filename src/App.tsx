@@ -6,6 +6,7 @@ import RouterCore from "./components/App/RouterCore";
 import { AdminItem, RouterItem } from "./types";
 import HadesLayout from "./layout/HadesLayout";
 import { storage } from "./firebase";
+import axios from "axios";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,29 +23,6 @@ function App() {
 
   let storageRef = firebaseStorage.ref().child("pictures");
 
-  // storageRef
-  //   .listAll()
-  //   .then((result) => {
-  //     result.prefixes.forEach((item) => {
-  //       console.log(
-  //         item
-  //           .list()
-  //           .then((result) => console.log(result.items[0].fullPath))
-  //           .catch((error) => console.log(error))
-  //       );
-  //     });
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-
-  // let getPic = storage
-  //   .ref()
-  //   .child("pictures/ 0ccdf6a0-0eca-4f61-b59c-ada48f8698ee /Arte-02.png")
-  //   .getDownloadURL()
-  //   .then((result) => console.log(result))
-  //   .catch((error) => console.log(error));
-
   let blackClouds = storage.refFromURL(
     "https://firebasestorage.googleapis.com/v0/b/atlas-ares.appspot.com/o/dionysus%2Fgallery%2F98ab15d4-e8d2-4443-b65c-01eb277f0d07%2Fpos-filter-1.png?alt=media&token=8527de95-7e0f-4e51-9abc-8c024414d08d"
   ).parent?.fullPath;
@@ -57,7 +35,6 @@ function App() {
   //   stringUrl.toString();
 
   //   stringUrl.split("pictures");
-
   //   stringUrl.toString();
 
   //   return stringUrl;
@@ -92,9 +69,44 @@ function App() {
   //   )
   //   .catch((error) => console.log(error));
 
+  const onFileUpload = (event: any) => {
+    const file: File = event.target.files[0];
+
+    file
+      .arrayBuffer()
+      .then((result) => {
+        let byteArray: Uint8Array = new Uint8Array(result);
+
+        console.log(byteArray);
+
+        axios
+          .post("http://localhost:5001/atlas-ares/us-central1/api/testMe", {
+            array: byteArray,
+          })
+          .then((result) => console.log(result))
+          .catch((error) => console.log(error));
+      })
+      .catch((error) => console.log(error));
+
+    // const reader = new FileReader();
+
+    // reader.onabort = () => console.log("File was aborted");
+    // reader.onerror = () => console.log("File reading failed");
+
+    // reader.onload = () => {
+    //   const binaryString = reader.readAsArrayBuffer(file);
+
+    //   console.log(binaryString);
+    // };
+  };
+
   return (
     <div>
       <Loading isLoading={loadingState.isLoading} />
+
+      <form action="/profile" method="post" encType="multipart/form-data">
+        <input type="file" name="avatar" />
+      </form>
 
       <RouterCore layoutComponent={HadesLayout} routes={collectionsState} />
     </div>

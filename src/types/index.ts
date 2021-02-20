@@ -33,4 +33,5 @@ export type IconTypes =
   | "AddPhotoAlternate"
   | "AddShoppingCart"
   | "Apps"
-  | "PhotoLibrary";
+  | "PhotoLibrary"
+  | "MoreHoriz";

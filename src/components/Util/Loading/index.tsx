@@ -22,7 +22,9 @@ const Loading = ({ isLoading = true }: Props) => {
       style={{ display: isLoading ? "block" : "none" }}
       className={classes.root}
     >
-      <LinearProgress />
+      <LinearProgress
+        style={{ color: "#132f70", backgroundColor: "#fff", zIndex: 1000 }}
+      />
     </div>
   );
 };

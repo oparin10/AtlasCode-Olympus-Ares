@@ -23,10 +23,10 @@ const SidebarLogoContainer = styled.div`
 `;
 
 const SidebarLogo = styled.img`
-  height: max-content;
+  height: auto;
   width: 100%;
 
-  padding: 7%;
+  padding: 10%;
 `;
 
 const SidebarDivider = styled.div`

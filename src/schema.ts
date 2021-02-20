@@ -42,7 +42,7 @@ export const collectionsConfig: Array<AdminItem> = [
   {
     name: "blog",
     widget: "markdown",
-    icon: "AddShoppingCart",
+    icon: "MoreHoriz",
     label: "Blog posts",
     path: "blog",
   },

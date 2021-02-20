@@ -26,11 +26,11 @@ const PrivateRoute: React.FC<Props> = ({
 }) => {
   const auth = isAuth;
 
-  // if (!auth && location!.pathname !== `/${basePath}/login`) {
-  //   navigate(`/${basePath}/login`);
-  // } else if (auth && location!.pathname == `/${basePath}/login`) {
-  //   navigate(`/${basePath}/${startingPath}`);
-  // }
+  if (!auth && location!.pathname !== `/${basePath}/login`) {
+    navigate(`/${basePath}/login`);
+  } else if (auth && location!.pathname == `/${basePath}/login`) {
+    navigate(`/${basePath}/${startingPath}`);
+  }
 
   if (typeof Layout == null || typeof Layout == "undefined") {
     return <CollectionField widgetType={component} />;

@@ -64,7 +64,7 @@ const Upperbar = ({ label = "Place holder label" }: Props) => {
           display="flex"
           flexDirection="row"
           flexGrow={1}
-          justifyContent="end"
+          justifyContent="flex-end"
           mr={5}
           color={"#e4e5ed"}
         >

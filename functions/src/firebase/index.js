@@ -1,9 +1,14 @@
 const admin = require("firebase-admin");
 const functions = require("firebase-functions");
 
-const firebaseApp = admin.initializeApp();
+const serviceAccount = require("../../serviceAccount.json");
+
+const firebaseApp = admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: "atlas-ares.appspot.com",
+});
 const firestore = firebaseApp.firestore();
-const storage = firebaseApp.storage();
+const storage = firebaseApp.storage().bucket();
 
 if (process.env.NODE_ENV !== "production") {
   firestore.settings({

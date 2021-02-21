@@ -1,13 +1,12 @@
-const sharp = require("sharp");
-const base64img = require("./base64img");
-const fs = require("fs");
+const sharp = require("./functions/node_modules/sharp");
+const base64img = require("./base64");
 const path = require("path");
-const { storage } = require("./src/firebase/");
 const os = require("os");
 const { nanoid } = require("nanoid");
 
 const imageMetadata = {
   cacheControl: "public, max-age=300",
+
   contentType: "image/webp",
 };
 
@@ -73,24 +72,6 @@ const createCivilizedOptimizedImage = async (
     .blur(8)
     .toFile(path.resolve(os.tmpdir(), `${thumbnailBlurredImagePath}`));
 
-  // Upload every file to storage bucket
-
-  await storage.upload(fullSizeImagePath, {
-    destination: bucketPath.gallery,
-    metadata: imageMetadata,
-  });
-
-  await storage.upload(thumbnailImagePath, {
-    destination: bucketPath.gallery_thumbnail,
-    metadata: imageMetadata,
-  });
-
-  await storage.upload(thumbnailBlurredImagePath, {
-    destination: bucketPath.gallery_thumbnail_blur,
-    metadata: imageMetadata,
-  });
-  //   Delete files from tmp folder to free up disk
-
   //   try {
   //     fs.unlinkSync(path.join(os.tmpdir(), fileNameWithExtension));
   //     fs.unlinkSync(thumbnailImagePath);
@@ -105,57 +86,3 @@ const createCivilizedOptimizedImage = async (
 };
 
 createCivilizedOptimizedImage();
-
-// fs.unlinkSync(path.join(os.tmpdir(), ));
-
-const createOptimizedImage = async () => {
-  // Remove base64 to prevent invalid format error from Sharp
-  let validURI = base64img.split(";base64,").pop();
-  // Creates buffer from base64 URI
-  let imgBuffer = Buffer.from(validURI, "base64");
-
-  sharp(imgBuffer)
-    .toFormat("webp", { nearLossless: true })
-    .toBuffer()
-    .then((fileBufferFull) => {
-      sharp(fileBufferFull)
-        .toFile(path.resolve(os.tmpdir(), "optimizedFile.webp"))
-        .then(() => {
-          console.log(
-            "Full sized imaged converted successfully, initating thumbnail generation"
-          );
-          sharp(fileBufferFull)
-            .resize(null, 500)
-            .toFile(path.resolve(os.tmpdir(), "optimizedFile_thumbnail.webp"))
-            .then(() => {
-              console.log(
-                "thumbnail created successfully, iniating blured thumbnail gerenation"
-              );
-              sharp(fileBufferFull)
-                .blur(5)
-                .toFile(
-                  path.resolve(
-                    os.tmpdir(),
-                    "optimizedFile_thumbnail_blurred.webp"
-                  )
-                )
-                .then(() => {
-                  console.log("All files were optimized, good job");
-                  return "haha";
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};

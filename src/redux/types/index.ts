@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { AdminItem } from "../../types";
+import { AdminItem, AppConfig } from "../../types";
 
 export const GET_CONFIG_START = "GET_CONFIG_START";
 export const GET_CONFIG_SUCCESS = "GET_CONFIG_SUCCESS";
@@ -29,29 +29,14 @@ interface SetActiveContent {
 
 export type ActiveContentActionTypes = SetActiveContent;
 
-export interface AppConfig {
-  media_location: string | null;
-  branding: BrandingConfig;
-  collections: Array<AdminItem>;
-}
-
 export interface AppConfigState extends AppConfig {
   error: string | Array<string> | null | undefined;
 }
-
 export interface GlobalUIState {
   isLoading: boolean;
 }
 
-export interface CollectionsAction extends Action<string> {
-  payload?: {};
-}
 
-export type BrandingConfig = {
-  companyName: string | null;
-  companyWebsite: string | null;
-  logoUrl: string | null;
-};
 
 interface SetLoadingTrue {
   type: typeof SET_LOADING_TRUE;

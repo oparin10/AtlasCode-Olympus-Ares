@@ -10,6 +10,6 @@ dionysusRouter.get("/", cors(), (req: Request, res: Response) => {
   return res.send("All systems go").status(200);
 });
 
-dionysusRouter.post("/optimize", optimizeAndCreateThumbnail);
+dionysusRouter.post("/optimize", cors(), optimizeAndCreateThumbnail);
 
 export default dionysusRouter;

@@ -15,7 +15,14 @@ let initialState: AppConfigState = {
 
   collections: [],
 
-  media_location: "",
+  dionysus: {
+    path: {
+      gallery: "",
+      galleryThumbnail: "",
+      galleryThumbnailBlur: "",
+    },
+    createBlur: true,
+  },
   error: [],
 };
 
@@ -39,7 +46,7 @@ export const configurationReducer = (
           logoUrl: action.payload.branding.logoUrl,
         },
         collections: action.payload.collections,
-        media_location: action.payload.media_location,
+        dionysus: action.payload.dionysus,
       };
 
     default:

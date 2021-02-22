@@ -1,5 +1,10 @@
-import { AppConfig, BrandingConfig } from "./redux/types";
-import { AdminItem } from "./types";
+import {
+  AdminItem,
+  AppConfig,
+  BrandingConfig,
+  DionysusConfig,
+  DionysusPath,
+} from "./types";
 import _ from "lodash";
 
 export const collectionsConfig: Array<AdminItem> = [
@@ -54,10 +59,21 @@ export const brandingConfig: BrandingConfig = {
   logoUrl: "https://i.imgur.com/9npexxg.png",
 };
 
+const imageGalleryPath: DionysusPath = {
+  gallery: "gallery",
+  galleryThumbnail: "gallery_thumbnail",
+  galleryThumbnailBlur: "gallery_thumbnail_blur",
+};
+
+const dionysusConfig: DionysusConfig = {
+  path: imageGalleryPath,
+  createBlur: true,
+};
+
 const schema: AppConfig = {
   branding: brandingConfig,
   collections: collectionsConfig,
-  media_location: "",
+  dionysus: dionysusConfig,
 };
 
 export default schema;

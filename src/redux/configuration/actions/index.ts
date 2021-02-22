@@ -45,7 +45,7 @@ export const configurationSetup = (): ThunkAction<
           },
 
           collections: schema.collections,
-          media_location: schema.media_location,
+          dionysus: schema.dionysus,
         },
       });
     } catch (error) {

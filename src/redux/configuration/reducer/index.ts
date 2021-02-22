@@ -22,6 +22,7 @@ let initialState: AppConfigState = {
       galleryThumbnailBlur: "",
     },
     createBlur: true,
+    storageBucketPath: "",
   },
   error: [],
 };

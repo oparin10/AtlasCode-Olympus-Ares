@@ -1,7 +1,7 @@
 import * as functions from "firebase-functions";
 import express from "express";
 import dionysusRouter from "./routes/dionysus";
-import globalConfig from "../../global_config";
+import globalConfig from "../../src/global_config";
 
 export const appConfig = globalConfig;
 

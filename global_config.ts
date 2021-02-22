@@ -4,7 +4,7 @@ import {
   BrandingConfig,
   DionysusConfig,
   DionysusPath,
-} from "./types";
+} from "./src/types";
 import _ from "lodash";
 
 export const collectionsConfig: Array<AdminItem> = [
@@ -68,12 +68,13 @@ const imageGalleryPath: DionysusPath = {
 const dionysusConfig: DionysusConfig = {
   path: imageGalleryPath,
   createBlur: true,
+  storageBucketPath: "atlas-ares.appspot.com",
 };
 
-const schema: AppConfig = {
+export const global_config: AppConfig = {
   branding: brandingConfig,
   collections: collectionsConfig,
   dionysus: dionysusConfig,
 };
 
-export default schema;
+export default global_config;

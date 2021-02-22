@@ -5,6 +5,7 @@ import { nanoid } from "nanoid";
 import sharp from "sharp";
 import { Request, Response } from "express";
 import fs from "fs";
+import { appConfig } from "../..";
 
 interface DionysusBucketPath {
   gallery: string;
@@ -69,16 +70,21 @@ export const optimizeAndCreateThumbnail = async (
   //   Cloud storage bucket path
 
   const bucketPath: DionysusBucketPath = {
-    gallery: path.join("dionysus", "gallery", nanoID, fullResolutionImagePath),
+    gallery: path.join(
+      "dionysus",
+      appConfig.dionysus.path.gallery,
+      nanoID,
+      fullResolutionImagePath
+    ),
     gallery_thumbnail: path.join(
       "dionysus",
-      "gallery_thumbnail",
+      appConfig.dionysus.path.galleryThumbnail,
       nanoID,
       thumbnailImagePath
     ),
     gallery_thumbnail_blur: path.join(
       "dionysus",
-      "gallery_thumbnail_blur",
+      appConfig.dionysus.path.galleryThumbnailBlur,
       nanoID,
       thumbnailBlurredImagePath
     ),

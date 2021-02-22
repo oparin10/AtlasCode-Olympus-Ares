@@ -31,12 +31,13 @@ export interface AdminItem {
 export interface DionysusPath {
   gallery: string;
   galleryThumbnail: string;
-  galleryThumbnailBlur?: string;
+  galleryThumbnailBlur: string;
 }
 
 export interface DionysusConfig {
   path: DionysusPath;
   createBlur: boolean;
+  storageBucketPath: string;
 }
 
 export interface AppConfig {

@@ -12,7 +12,7 @@ import {
   SET_LOADING_FALSE,
   SET_LOADING_TRUE,
 } from "../../types";
-import schema from "../../../schema";
+import global_config from "../../../../global_config";
 import { setLoadingTrue } from "../../globalUI/actions";
 
 export const configurationSetup = (): ThunkAction<
@@ -39,13 +39,13 @@ export const configurationSetup = (): ThunkAction<
         type: GET_CONFIG_SUCCESS,
         payload: {
           branding: {
-            companyName: schema.branding.companyName,
-            companyWebsite: schema.branding.companyWebsite,
-            logoUrl: schema.branding.logoUrl,
+            companyName: global_config.branding.companyName,
+            companyWebsite: global_config.branding.companyWebsite,
+            logoUrl: global_config.branding.logoUrl,
           },
 
-          collections: schema.collections,
-          dionysus: schema.dionysus,
+          collections: global_config.collections,
+          dionysus: global_config.dionysus,
         },
       });
     } catch (error) {

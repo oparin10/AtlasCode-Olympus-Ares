@@ -1,5 +1,6 @@
 import { Action } from "redux";
-import { AdminItem, AppConfig } from "../../types";
+import { AdminItem } from "../../config/collections.config";
+import { AppConfig } from "../../config/global.config";
 
 export const GET_CONFIG_START = "GET_CONFIG_START";
 export const GET_CONFIG_SUCCESS = "GET_CONFIG_SUCCESS";
@@ -35,8 +36,6 @@ export interface AppConfigState extends AppConfig {
 export interface GlobalUIState {
   isLoading: boolean;
 }
-
-
 
 interface SetLoadingTrue {
   type: typeof SET_LOADING_TRUE;

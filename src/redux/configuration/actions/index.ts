@@ -12,8 +12,7 @@ import {
   SET_LOADING_FALSE,
   SET_LOADING_TRUE,
 } from "../../types";
-import global_config from "../../../../global_config";
-import { setLoadingTrue } from "../../globalUI/actions";
+import globalConfig from "../../../config/global.config";
 
 export const configurationSetup = (): ThunkAction<
   void,
@@ -39,13 +38,13 @@ export const configurationSetup = (): ThunkAction<
         type: GET_CONFIG_SUCCESS,
         payload: {
           branding: {
-            companyName: global_config.branding.companyName,
-            companyWebsite: global_config.branding.companyWebsite,
-            logoUrl: global_config.branding.logoUrl,
+            companyName: globalConfig.branding.companyName,
+            companyWebsite: globalConfig.branding.companyWebsite,
+            logoUrl: globalConfig.branding.logoUrl,
           },
 
-          collections: global_config.collections,
-          dionysus: global_config.dionysus,
+          collections: globalConfig.collections,
+          dionysus: globalConfig.dionysus,
         },
       });
     } catch (error) {

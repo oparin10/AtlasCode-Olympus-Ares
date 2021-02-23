@@ -1,4 +1,4 @@
-import { AdminItem } from "../../../types";
+import { AdminItem } from "../../../config/collections.config";
 import { ActiveContentActionTypes, SET_ACTIVE_CONTENT } from "../../types";
 
 let initialState: AdminItem | null = null;

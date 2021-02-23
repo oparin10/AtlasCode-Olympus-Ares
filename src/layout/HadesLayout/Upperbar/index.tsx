@@ -3,7 +3,6 @@ import React from "react";
 import styled from "styled-components";
 import IconComponent from "../../../components/App/IconComponent";
 import getCurrentPath from "../../../helper/currentPath";
-import { AdminItem } from "../../../types";
 import UserProfileButton from "./UserProfileButton";
 
 const UpperbarRoot = styled.div`

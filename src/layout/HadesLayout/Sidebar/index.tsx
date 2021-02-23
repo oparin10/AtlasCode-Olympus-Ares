@@ -2,7 +2,7 @@ import { SvgIcon } from "@material-ui/core";
 import { AssignmentTurnedIn } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
-import { AdminItem } from "../../../types";
+import { AdminItem } from "../../../config/collections.config";
 import SidebarItemMain from "./SidebarItem";
 
 const SidebarRoot = styled.div`

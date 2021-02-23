@@ -2,9 +2,9 @@ import { Fade } from "@material-ui/core";
 import React from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { AdminItem } from "../../config/collections.config";
 import getCurrentPath from "../../helper/currentPath";
 import { setActiveCollection } from "../../redux/activeCollection/actions";
-import { AdminItem } from "../../types";
 import Sidebar from "./Sidebar";
 import Upperbar from "./Upperbar";
 

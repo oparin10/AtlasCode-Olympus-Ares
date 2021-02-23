@@ -1,8 +1,9 @@
 import React from "react";
-import { AdminItem, RouterItem } from "../../../types";
+import { RouterItem } from "../../../types";
 import { Router, navigate } from "@reach/router";
 import PrivateRoute from "../../Util/PrivateRoute";
 import NotFoundRoute from "../../Util/NotFoundRoute";
+import { AdminItem } from "../../../config/collections.config";
 
 interface Props {
   basePath?: string;

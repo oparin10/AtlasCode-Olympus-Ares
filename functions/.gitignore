@@ -10,3 +10,7 @@ serviceAccount.json
 node_modules/
 firebaseEnv.json
 lib
+
+# LOG FILES
+
+*.log

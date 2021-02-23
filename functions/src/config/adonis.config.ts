@@ -25,3 +25,6 @@ export const adonisConfig: AdonisConfig = {
   storageBucketPath: "atlas-ares.appspot.com",
   baseCloudURL: "https://firebasestorage.googleapis.com/v0/b/",
 };
+
+
+// DONT FORGET TO REPLICATE CHANGES HERE AT THE ADONIS.CONFIG.TS FILE INSIDE THE ./SRC/CONFIG/

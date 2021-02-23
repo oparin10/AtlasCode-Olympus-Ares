@@ -5,6 +5,7 @@ import { nanoid } from "nanoid";
 import sharp from "sharp";
 import { Request, Response } from "express";
 import fs from "fs";
+import { adonisConfig, AdonisPath } from "../../config/adonis.config";
 
 interface DionysusBucketPath {
   gallery: string;
@@ -69,10 +70,11 @@ export const optimizeAndCreateThumbnail = async (
 
   //   Cloud storage bucket path
 
-  const bucketPath: DionysusBucketPath = {
-    gallery: `dionysus/gallery/${nanoID}/${fileNameWithExtension}`,
-    gallery_thumbnail: `dionysus/gallery_thumbnail/${nanoID}/${fileNameWithExtension}`,
-    gallery_thumbnail_blur: `dionysus/gallery_thumbnail_blur/${nanoID}/${fileNameWithExtension}`,
+  const bucketPath: AdonisPath = {
+    rootFolder: adonisConfig.path.rootFolder,
+    gallery: `${adonisConfig.path.rootFolder}/${adonisConfig.path.gallery}/${nanoID}/${fileNameWithExtension}`,
+    galleryThumbnail: `${adonisConfig.path.rootFolder}/${adonisConfig.path.galleryThumbnail}/${nanoID}/${fileNameWithExtension}`,
+    galleryThumbnailBlur: `${adonisConfig.path.rootFolder}/${adonisConfig.path.galleryThumbnailBlur}/${nanoID}/${fileNameWithExtension}`,
   };
 
   //   Convert images, transform them and save them to OS temp folder
@@ -98,12 +100,12 @@ export const optimizeAndCreateThumbnail = async (
   });
 
   await bucket.upload(thumbnailImagePath, {
-    destination: bucketPath.gallery_thumbnail,
+    destination: bucketPath.galleryThumbnail,
     metadata: imageMetadata,
   });
 
   await bucket.upload(thumbnailBlurredImagePath, {
-    destination: bucketPath.gallery_thumbnail_blur,
+    destination: bucketPath.galleryThumbnailBlur,
     metadata: imageMetadata,
   });
 
@@ -121,13 +123,13 @@ export const optimizeAndCreateThumbnail = async (
     .json({
       gallery: `${baseCloudURL}${
         admin.storage().app.options.storageBucket
-      }/o/dionysus%2Fgallery%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+      }/o/${adonisConfig.path.rootFolder}%2F${adonisConfig.path.gallery}%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
       gallery_thumbnail: `${baseCloudURL}${
         admin.storage().app.options.storageBucket
-      }/o/dionysus%2Fgallery_thumbnail%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+      }/o/${adonisConfig.path.rootFolder}%2F${adonisConfig.path.galleryThumbnail}%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
       gallery_thumbnail_blur: `${baseCloudURL}${
         admin.storage().app.options.storageBucket
-      }/o/dionysus%2Fgallery_thumbnail_blur%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+      }/o/${adonisConfig.path.rootFolder}%2F${adonisConfig.path.galleryThumbnailBlur}%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
     })
     .status(200);
 };

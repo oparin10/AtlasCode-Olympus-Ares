@@ -12,7 +12,7 @@ import {
   SET_LOADING_FALSE,
   SET_LOADING_TRUE,
 } from "../../types";
-import global_config from "../../../global_config";
+import global_config from "../../../../global_config";
 import { setLoadingTrue } from "../../globalUI/actions";
 
 export const configurationSetup = (): ThunkAction<

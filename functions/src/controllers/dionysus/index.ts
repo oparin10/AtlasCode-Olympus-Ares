@@ -33,11 +33,11 @@ export const optimizeAndCreateThumbnail = async (
       .status(400);
   }
 
-  if (!req.body.fileExtension) {
-    return res.json({
-      error: "A file extension must be supplied",
-    });
-  }
+  // if (!req.body.fileExtension) {
+  //   return res.json({
+  //     error: "A file extension must be supplied",
+  //   });
+  // }
 
   const imageMetadata = {
     cacheControl: "public, max-age=1000",
@@ -47,7 +47,7 @@ export const optimizeAndCreateThumbnail = async (
   const validURI: string = req.body.base64URI.split(";base64,").pop();
   const imgBuffer: Buffer = Buffer.from(validURI, "base64");
   const fileName: string = req.body.fileName;
-  const fileExtension: string = req.body.fileExtension;
+  const fileExtension: string = "webp";
   const nanoID: string = nanoid();
   const fileNameWithExtension: string = `${fileName}.${fileExtension}`;
 
@@ -70,24 +70,9 @@ export const optimizeAndCreateThumbnail = async (
   //   Cloud storage bucket path
 
   const bucketPath: DionysusBucketPath = {
-    gallery: path.join(
-      "dionysus",
-      appConfig.dionysus.path.gallery,
-      nanoID,
-      fullResolutionImagePath
-    ),
-    gallery_thumbnail: path.join(
-      "dionysus",
-      appConfig.dionysus.path.galleryThumbnail,
-      nanoID,
-      thumbnailImagePath
-    ),
-    gallery_thumbnail_blur: path.join(
-      "dionysus",
-      appConfig.dionysus.path.galleryThumbnailBlur,
-      nanoID,
-      thumbnailBlurredImagePath
-    ),
+    gallery: `dionysus/${appConfig.dionysus.path.gallery}/${nanoID}/${fileNameWithExtension}`,
+    gallery_thumbnail: `dionysus/${appConfig.dionysus.path.galleryThumbnail}/${nanoID}/${fileNameWithExtension}`,
+    gallery_thumbnail_blur: `dionysus/${appConfig.dionysus.path.galleryThumbnailBlur}/${nanoID}/${fileNameWithExtension}`,
   };
 
   //   Convert images, transform them and save them to OS temp folder

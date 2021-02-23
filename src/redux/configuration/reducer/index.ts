@@ -14,6 +14,7 @@ let initialState: AppConfigState = {
   },
 
   collections: [],
+      
 
   dionysus: {
     path: {

@@ -4,7 +4,7 @@ import {
   BrandingConfig,
   DionysusConfig,
   DionysusPath,
-} from "./types";
+} from "./src/types";
 import _ from "lodash";
 
 export const collectionsConfig: Array<AdminItem> = [

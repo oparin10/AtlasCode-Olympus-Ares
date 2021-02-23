@@ -1,23 +1,25 @@
-export interface DionysusPath {
+export interface AdonisPath {
+  rootFolder: string;
   gallery: string;
   galleryThumbnail: string;
   galleryThumbnailBlur: string;
 }
 
-export interface DionysusConfig {
-  path: DionysusPath;
+export interface AdonisConfig {
+  path: AdonisPath;
   createBlur: boolean;
   storageBucketPath: string;
 }
 
-export const imageGalleryPath: DionysusPath = {
+export const adonisImagePath: AdonisPath = {
+  rootFolder: "adonis",
   gallery: "gallery",
   galleryThumbnail: "gallery_thumbnail",
   galleryThumbnailBlur: "gallery_thumbnail_blur",
 };
 
-export const dionysusConfig: DionysusConfig = {
-  path: imageGalleryPath,
+export const adonisConfig: AdonisConfig = {
+  path: adonisImagePath,
   createBlur: true,
   storageBucketPath: "atlas-ares.appspot.com",
 };

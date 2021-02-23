@@ -1,9 +1,8 @@
-import { DionysusConfig, dionysusConfig } from "./adonis.config";
+import { AdonisConfig, adonisConfig } from "./adonis.config";
 import { BrandingConfig, brandingConfig } from "./branding.config";
 import { AdminItem, collectionsConfig } from "./collections.config";
 
 export interface AppConfig {
-  dionysus: DionysusConfig;
   branding: BrandingConfig;
   collections: Array<AdminItem>;
 }
@@ -11,7 +10,6 @@ export interface AppConfig {
 export const globalConfig: AppConfig = {
   branding: brandingConfig,
   collections: collectionsConfig,
-  dionysus: dionysusConfig,
 };
 
 export default globalConfig;

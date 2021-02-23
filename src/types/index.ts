@@ -1,6 +1,6 @@
 import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
-import { DionysusConfig } from "../config/adonis.config";
+import { AdonisConfig } from "../config/adonis.config";
 import { BrandingConfig } from "../config/branding.config";
 
 export type RouterItem = {

@@ -1,11 +1,10 @@
-import { bucket } from "../../firebase";
+import admin, { bucket } from "../../firebase";
 import path from "path";
 import os from "os";
 import { nanoid } from "nanoid";
 import sharp from "sharp";
 import { Request, Response } from "express";
 import fs from "fs";
-import { appConfig } from "../..";
 
 interface DionysusBucketPath {
   gallery: string;
@@ -40,7 +39,7 @@ export const optimizeAndCreateThumbnail = async (
   // }
 
   const imageMetadata = {
-    cacheControl: "public, max-age=1000",
+    cacheControl: "public, max-age=1296000",
     contentType: "image/webp",
   };
 
@@ -50,6 +49,7 @@ export const optimizeAndCreateThumbnail = async (
   const fileExtension: string = "webp";
   const nanoID: string = nanoid();
   const fileNameWithExtension: string = `${fileName}.${fileExtension}`;
+  const baseCloudURL: string = "https://firebasestorage.googleapis.com/v0/b/";
 
   //   Temp dir file path for each img variation
   const fullResolutionImagePath: string = path.resolve(
@@ -70,9 +70,9 @@ export const optimizeAndCreateThumbnail = async (
   //   Cloud storage bucket path
 
   const bucketPath: DionysusBucketPath = {
-    gallery: `dionysus/${appConfig.dionysus.path.gallery}/${nanoID}/${fileNameWithExtension}`,
-    gallery_thumbnail: `dionysus/${appConfig.dionysus.path.galleryThumbnail}/${nanoID}/${fileNameWithExtension}`,
-    gallery_thumbnail_blur: `dionysus/${appConfig.dionysus.path.galleryThumbnailBlur}/${nanoID}/${fileNameWithExtension}`,
+    gallery: `dionysus/gallery/${nanoID}/${fileNameWithExtension}`,
+    gallery_thumbnail: `dionysus/gallery_thumbnail/${nanoID}/${fileNameWithExtension}`,
+    gallery_thumbnail_blur: `dionysus/gallery_thumbnail_blur/${nanoID}/${fileNameWithExtension}`,
   };
 
   //   Convert images, transform them and save them to OS temp folder
@@ -87,6 +87,7 @@ export const optimizeAndCreateThumbnail = async (
 
   await sharp(fullImgBuffer)
     .resize(null, 400)
+    .blur(10)
     .toFile(thumbnailBlurredImagePath);
 
   // Upload every file to storage bucket
@@ -117,6 +118,16 @@ export const optimizeAndCreateThumbnail = async (
   }
 
   return res
-    .send("Images were optimized and uploaded with success")
+    .json({
+      gallery: `${baseCloudURL}${
+        admin.storage().app.options.storageBucket
+      }/o/dionysus%2Fgallery%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+      gallery_thumbnail: `${baseCloudURL}${
+        admin.storage().app.options.storageBucket
+      }/o/dionysus%2Fgallery_thumbnail%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+      gallery_thumbnail_blur: `${baseCloudURL}${
+        admin.storage().app.options.storageBucket
+      }/o/dionysus%2Fgallery_thumbnail_blur%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+    })
     .status(200);
 };

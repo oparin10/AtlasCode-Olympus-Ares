@@ -9,5 +9,4 @@ app.use("/adonis", adonisRouter);
 app.get("/hello", (req: Request, res: Response) => {
   res.send("HELLO DUDE").status(200);
 });
-
 export const api = functions.https.onRequest(app);

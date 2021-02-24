@@ -4,9 +4,6 @@ import { configurationSetup } from "./redux/configuration/actions";
 import Loading from "./components/Util/Loading";
 import RouterCore from "./components/App/RouterCore";
 import HadesLayout from "./layout/HadesLayout";
-import { storage } from "./firebase";
-import imageGroupFromURL from "./helper/imageGroupFromURL";
-import getBucketImageTriple from "./helper/getBucketImageTriple";
 import { AdminItem } from "./config/collections.config";
 import AdonisGallery from "./components/App/AdonisGallery";
 import { AdonisGalleryState } from "./redux/adonis/types";
@@ -15,6 +12,9 @@ import { GlobalUIState } from "./redux/types";
 
 function App() {
   const dispatch = useDispatch();
+
+  const [defaultPath, setDefaultPath] = React.useState<string>("");
+
   const globalUIState: GlobalUIState = useSelector(
     (state: RootStateOrAny) => state.globalUI
   );
@@ -29,10 +29,6 @@ function App() {
     dispatch(configurationSetup());
   }, []);
 
-  // React.useEffect(() => {
-  //   console.log(getBucketImageTriple("testing1.webp", "drcrz2qxcB7mNFSq1rolw"));
-  // }, []);
-
   return (
     <div>
       <Loading isLoading={globalUIState.isLoading} />
@@ -44,7 +40,13 @@ function App() {
 
       <AdonisGallery isOpen={adonisState.isOpen} />
 
-      <RouterCore layoutComponent={HadesLayout} routes={collectionsState} />
+      {collectionsState.length > 0 ? (
+        <RouterCore
+          layoutComponent={HadesLayout}
+          startingPath={collectionsState[0].path}
+          routes={collectionsState}
+        />
+      ) : null}
     </div>
   );
 }

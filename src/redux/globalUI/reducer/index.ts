@@ -5,6 +5,10 @@ import {
   UPLOAD_ADONIS_PHOTO_SUCCESS,
 } from "../../adonis/types";
 import {
+  ConfigurationActionTypes,
+  GET_CONFIG_FAIL,
+  GET_CONFIG_START,
+  GET_CONFIG_SUCCESS,
   GlobalStateActionTypes,
   GlobalUIState,
   SET_LOADING_FALSE,
@@ -24,9 +28,21 @@ let initialState: GlobalUIState = {
 
 export const globalUIReducer = (
   state = initialState,
-  action: GlobalStateActionTypes | UploadAdonisPhotoActionTypes
+  action:
+    | GlobalStateActionTypes
+    | UploadAdonisPhotoActionTypes
+    | ConfigurationActionTypes
 ): GlobalUIState => {
   switch (action.type) {
+    case GET_CONFIG_START:
+      return { ...state, isLoading: true };
+
+    case GET_CONFIG_FAIL:
+      return { ...state, isLoading: false };
+
+    case GET_CONFIG_SUCCESS:
+      return { ...state, isLoading: false };
+
     case SET_GLOBAL_NOTIFICATION_OPEN:
       return { ...state };
 

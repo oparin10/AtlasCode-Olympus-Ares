@@ -1,4 +1,5 @@
 import { createMuiTheme, Theme } from "@material-ui/core";
+import { green } from "@material-ui/core/colors";
 
 export const theme: Theme = createMuiTheme({
   palette: {
@@ -13,6 +14,17 @@ export const theme: Theme = createMuiTheme({
 
   typography: {
     fontFamily: "Iceland",
+  },
+
+  overrides: {
+    MuiLinearProgress: {
+      colorPrimary: {
+        backgroundColor: "#fff",
+      },
+      barColorPrimary: {
+        backgroundColor: "#F15D3C",
+      },
+    },
   },
 });
 

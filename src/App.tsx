@@ -10,10 +10,11 @@ import getBucketImageTriple from "./helper/getBucketImageTriple";
 import { AdminItem } from "./config/collections.config";
 import AdonisGallery from "./components/App/AdonisGallery";
 import { AdonisGalleryState } from "./redux/adonis/types";
+import GlobalAlert from "./components/Util/GlobalAlert";
 
 function App() {
   const dispatch = useDispatch();
-  const loadingState = useSelector((state: RootStateOrAny) => state.globalUI);
+  const globalUIState = useSelector((state: RootStateOrAny) => state.globalUI);
   const collectionsState: Array<AdminItem> = useSelector(
     (state: RootStateOrAny) => state.collections
   );
@@ -25,13 +26,14 @@ function App() {
     dispatch(configurationSetup());
   }, []);
 
-  React.useEffect(() => {
-    console.log(getBucketImageTriple("testing1.webp", "drcrz2qxcB7mNFSq1rolw"));
-  }, []);
+  // React.useEffect(() => {
+  //   console.log(getBucketImageTriple("testing1.webp", "drcrz2qxcB7mNFSq1rolw"));
+  // }, []);
 
   return (
     <div>
-      <Loading isLoading={loadingState.isLoading} />
+      <Loading isLoading={globalUIState.isLoading} />
+      <GlobalAlert />
 
       <AdonisGallery isOpen={adonisState.isOpen} />
 

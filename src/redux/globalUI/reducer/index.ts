@@ -1,4 +1,10 @@
 import {
+  UploadAdonisPhotoActionTypes,
+  UPLOAD_ADONIS_PHOTO_FAIL,
+  UPLOAD_ADONIS_PHOTO_START,
+  UPLOAD_ADONIS_PHOTO_SUCCESS,
+} from "../../adonis/types";
+import {
   GlobalStateActionTypes,
   GlobalUIState,
   SET_LOADING_FALSE,
@@ -11,7 +17,7 @@ let initialState: GlobalUIState = {
 
 export const globalUIReducer = (
   state = initialState,
-  action: GlobalStateActionTypes
+  action: GlobalStateActionTypes | UploadAdonisPhotoActionTypes
 ) => {
   switch (action.type) {
     case SET_LOADING_TRUE:
@@ -19,6 +25,17 @@ export const globalUIReducer = (
 
     case SET_LOADING_FALSE:
       return { ...state, isLoading: false };
+
+    // Adonis photo upload process
+
+    case UPLOAD_ADONIS_PHOTO_START:
+      return { isLoading: true };
+
+    case UPLOAD_ADONIS_PHOTO_FAIL:
+      return { isLoading: false };
+
+    case UPLOAD_ADONIS_PHOTO_SUCCESS:
+      return { isLoading: false };
 
     default:
       return state;

@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import convertBase64 from "../../../../helper/converFileUploadToBase64";
 import { galleryClose } from "../../../../redux/adonis/actions";
 import IconComponent from "../../IconComponent";
 
@@ -70,16 +71,62 @@ const AdonisGalleryCloseButtonBase = styled.div`
   cursor: pointer;
 `;
 
+const AdonisUploadInputField = styled.input`
+  display: none;
+`;
+
 interface Props {}
 
 const AdonisGalleryHeader = (props: Props) => {
   const dispatch = useDispatch();
 
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const openFileUpload = () => {
+    if (typeof inputRef == null || typeof inputRef == "undefined") {
+      return;
+    }
+
+    inputRef!.current!.click();
+  };
+
+  const onFileUpload = (event: any) => {
+    event.stopPropagation();
+    event.preventDefault();
+    var file: File = event.target.files[0];
+
+    let base64URI: string;
+    let fileName: string;
+
+    fileName = file.name;
+
+    let fileNameWithoutExtension: string = fileName
+      .split(".")
+      .slice(0, -1)
+      .join(".");
+
+    console.log(fileNameWithoutExtension);
+
+    // convertBase64(file)
+    //   .then((result) => {
+    //     console.log(result);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
+
   return (
     <AdonisGalleryBodyHeader>
+      <AdonisUploadInputField
+        onChange={(e) => onFileUpload(e)}
+        type="file"
+        ref={inputRef}
+      />
+
       <AdonisGalleryBodyHeaderInnerContainer>
         <AdonisGalleryUploadButtonContainer>
-          <AdonisGalleryHeaderUploadButton>
+          <AdonisGalleryHeaderUploadButton onClick={openFileUpload}>
             Enviar imagem
           </AdonisGalleryHeaderUploadButton>
         </AdonisGalleryUploadButtonContainer>

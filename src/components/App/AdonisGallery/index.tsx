@@ -34,6 +34,8 @@ const AdonisGalleryBodyInnerContainer = styled.div`
   height: 100%;
 `;
 
+// Adonis uploader
+
 interface Props {
   isOpen: boolean;
 }

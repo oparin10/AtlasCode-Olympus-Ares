@@ -1,8 +1,10 @@
 import { Box, Fade } from "@material-ui/core";
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import IconComponent from "../../../components/App/IconComponent";
 import getCurrentPath from "../../../helper/currentPath";
+import { galleryOpen } from "../../../redux/adonis/actions";
 import UserProfileButton from "./UserProfileButton";
 
 const UpperbarRoot = styled.div`
@@ -51,6 +53,8 @@ interface Props {
 const Upperbar = ({ label = "Place holder label" }: Props) => {
   let currentPath = getCurrentPath();
 
+  const dispatch = useDispatch();
+
   return (
     <UpperbarRoot>
       <UpperbarInnerContainer>
@@ -60,6 +64,7 @@ const Upperbar = ({ label = "Place holder label" }: Props) => {
           </Fade>
         </UpperbarTitleContainer>
         <Box
+          onClick={() => dispatch(galleryOpen())}
           display="flex"
           flexDirection="row"
           flexGrow={1}

@@ -16,8 +16,10 @@ import {
   AddShoppingCart,
   Apps,
   AttachMoney,
+  Close,
   MoreHoriz,
   PhotoLibrary,
+  Settings,
 } from "@material-ui/icons";
 import Login from "../components/App/Login";
 import ImageWidget from "../components/Widgets/ImageWidget";
@@ -47,6 +49,8 @@ export const IconDictonary: Record<
   Apps: Apps,
   PhotoLibrary: PhotoLibrary,
   MoreHoriz: MoreHoriz,
+  Close: Close,
+  Settings: Settings,
 };
 
 export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {

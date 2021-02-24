@@ -1,5 +1,5 @@
 export const SET_ADONIS_GALLERY_OPEN = "SET_ADONIS_GALLERY_OPEN";
-export const SET_ADONIS_GALLERY_CLOSE = "SET_ADONIS_GALLERY_OPEN";
+export const SET_ADONIS_GALLERY_CLOSE = "SET_ADONIS_GALLERY_CLOSE";
 
 export const GET_ADONIS_GALLERY_PHOTOS_START =
   "GET_ADONIS_GALLERY_PHOTOS_START";
@@ -20,6 +20,7 @@ export interface AdonisGalleryState {
   gallery_thumbnail: Array<string>;
   selectedPhoto: string;
   error: Array<string> | string | null | undefined;
+  isOpen: boolean;
 }
 
 interface SetAdonisGalleryOpen {
@@ -28,7 +29,6 @@ interface SetAdonisGalleryOpen {
 
 interface SetAdonisGalleryClose {
   type: typeof SET_ADONIS_GALLERY_CLOSE;
-  payload: any;
 }
 
 export type SetAdonisGalleryComponentActionTypes =

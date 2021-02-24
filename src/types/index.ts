@@ -16,9 +16,6 @@ export interface DionysusImageURL {
   gallery_thumbnail_blur: string;
 }
 
-
-
-
 export type WidgetsTypes = "string" | "image" | "markdown" | "text" | "login";
 export type IconTypes =
   | "AttachMoney"
@@ -37,4 +34,6 @@ export type IconTypes =
   | "AddShoppingCart"
   | "Apps"
   | "PhotoLibrary"
-  | "MoreHoriz";
+  | "MoreHoriz"
+  | "Close"
+  | "Settings";

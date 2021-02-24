@@ -3,6 +3,10 @@ import { Action, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { auth as FirebaseAuth, db as Firestore } from "../../../firebase";
 import {
+  AdonisActionTypes,
+  GET_ADONIS_GALLERY_PHOTOS_START,
+} from "../../adonis/types";
+import {
   CreateUserWithFieldsTypes,
   CREATE_USER_WITH_FIELDS_START,
   LoginUserActionTypes,

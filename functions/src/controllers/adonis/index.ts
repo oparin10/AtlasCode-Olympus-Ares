@@ -6,6 +6,7 @@ import sharp from "sharp";
 import { Request, Response } from "express";
 import fs from "fs";
 import { adonisConfig, AdonisPath } from "../../config/adonis.config";
+import converToSlug from "../../helper/converToSlug";
 
 export const optimizeAndCreateThumbnail = async (
   req: Request,
@@ -33,19 +34,23 @@ export const optimizeAndCreateThumbnail = async (
   //   });
   // }
 
-  const imageMetadata = {
-    cacheControl: "public, max-age=1296000",
-    contentType: "image/webp",
-  };
-
   const validURI: string = req.body.base64URI.split(";base64,").pop();
   const imgBuffer: Buffer = Buffer.from(validURI, "base64");
-  const fileName: string = req.body.fileName;
+  const fileName: string = converToSlug(req.body.fileName);
   const fileExtension: string = "webp";
   const nanoID: string = nanoid();
   const fileNameWithExtension: string = `${fileName}.${fileExtension}`;
   const baseCloudURL: string = "https://firebasestorage.googleapis.com/v0/b/";
+  const uploadTime: string = new Date().toISOString();
 
+  const imageMetadata = {
+    cacheControl: "public, max-age=1296000",
+    contentType: "image/webp",
+    metadata: {
+      storagePathID: nanoID,
+      uploadDate: uploadTime,
+    },
+  };
   //   Temp dir file path for each img variation
   const fullResolutionImagePath: string = path.resolve(
     os.tmpdir(),
@@ -79,10 +84,10 @@ export const optimizeAndCreateThumbnail = async (
 
   await sharp(fullImgBuffer).toFile(fullResolutionImagePath);
 
-  await sharp(fullImgBuffer).resize(null, 500).toFile(thumbnailImagePath);
+  await sharp(fullImgBuffer).resize(null, 400).toFile(thumbnailImagePath);
 
   await sharp(fullImgBuffer)
-    .resize(null, 400)
+    .resize(null, 300)
     .blur(10)
     .toFile(thumbnailBlurredImagePath);
 

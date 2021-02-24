@@ -78,6 +78,7 @@ const AdonisGallery = ({ isOpen = false }: Props) => {
               <AdonisGalleryBody>
                 <AdonisGalleryBodyInnerContainer>
                   <AdonisGalleryHeader />
+                  
                 </AdonisGalleryBodyInnerContainer>
               </AdonisGalleryBody>
             </AdonisGalleryBodyRoot>

@@ -2,7 +2,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import convertBase64 from "../../../../helper/converFileUploadToBase64";
-import { galleryClose } from "../../../../redux/adonis/actions";
+import {
+  galleryClose,
+  uploadAndOptimizeImage,
+} from "../../../../redux/adonis/actions";
 import IconComponent from "../../IconComponent";
 
 const AdonisGalleryBodyHeader = styled.div`
@@ -90,12 +93,12 @@ const AdonisGalleryHeader = (props: Props) => {
     inputRef!.current!.click();
   };
 
-  const onFileUpload = (event: any) => {
+  const onFileUpload = async (event: any) => {
     event.stopPropagation();
     event.preventDefault();
     var file: File = event.target.files[0];
 
-    let base64URI: string;
+    // let base64URI: string;
     let fileName: string;
 
     fileName = file.name;
@@ -107,13 +110,9 @@ const AdonisGalleryHeader = (props: Props) => {
 
     console.log(fileNameWithoutExtension);
 
-    // convertBase64(file)
-    //   .then((result) => {
-    //     console.log(result);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    let base64URI: string | any = await convertBase64(file);
+
+    dispatch(uploadAndOptimizeImage(fileNameWithoutExtension, base64URI));
   };
 
   return (

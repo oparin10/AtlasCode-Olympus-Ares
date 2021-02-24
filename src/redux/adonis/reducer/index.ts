@@ -3,6 +3,9 @@ import {
   AdonisActionTypes,
   SET_ADONIS_GALLERY_OPEN,
   SET_ADONIS_GALLERY_CLOSE,
+  UPLOAD_ADONIS_PHOTO_START,
+  UPLOAD_ADONIS_PHOTO_FAIL,
+  UPLOAD_ADONIS_PHOTO_SUCCESS,
 } from "../types";
 
 export const hehe = "hehe";
@@ -25,6 +28,18 @@ export const adonisReducer = (
 
     case SET_ADONIS_GALLERY_CLOSE:
       return { ...state, isOpen: false };
+
+    case UPLOAD_ADONIS_PHOTO_START: {
+      return { ...state };
+    }
+
+    case UPLOAD_ADONIS_PHOTO_FAIL: {
+      return { ...state, error: action.payload.error };
+    }
+
+    case UPLOAD_ADONIS_PHOTO_SUCCESS: {
+      return { ...state, gallery: [action.payload.gallery] };
+    }
 
     default:
       return state;

@@ -11,10 +11,13 @@ import { AdminItem } from "./config/collections.config";
 import AdonisGallery from "./components/App/AdonisGallery";
 import { AdonisGalleryState } from "./redux/adonis/types";
 import GlobalAlert from "./components/Util/GlobalAlert";
+import { GlobalUIState } from "./redux/types";
 
 function App() {
   const dispatch = useDispatch();
-  const globalUIState = useSelector((state: RootStateOrAny) => state.globalUI);
+  const globalUIState: GlobalUIState = useSelector(
+    (state: RootStateOrAny) => state.globalUI
+  );
   const collectionsState: Array<AdminItem> = useSelector(
     (state: RootStateOrAny) => state.collections
   );
@@ -33,7 +36,11 @@ function App() {
   return (
     <div>
       <Loading isLoading={globalUIState.isLoading} />
-      <GlobalAlert />
+      <GlobalAlert
+        alertMessage={globalUIState.notificationMessage}
+        alertOpen={globalUIState.notificationOpen}
+        alertSeverity={globalUIState.notificationSeverity}
+      />
 
       <AdonisGallery isOpen={adonisState.isOpen} />
 

@@ -1,6 +1,10 @@
 import { Action } from "redux";
 import { AdminItem } from "../../config/collections.config";
 import { AppConfig } from "../../config/global.config";
+import {
+  AlertSeverity,
+  SetGlobalNotificationActionTypes,
+} from "../globalUI/types";
 
 export const GET_CONFIG_START = "GET_CONFIG_START";
 export const GET_CONFIG_SUCCESS = "GET_CONFIG_SUCCESS";
@@ -35,6 +39,9 @@ export interface AppConfigState extends AppConfig {
 }
 export interface GlobalUIState {
   isLoading: boolean;
+  notificationOpen: boolean;
+  notificationMessage: string;
+  notificationSeverity: AlertSeverity;
 }
 
 interface SetLoadingTrue {
@@ -54,7 +61,9 @@ export type ContentFieldActionTypes = ChangeContentField;
 
 export type SetLoadingActionTypes = SetLoadingTrue | SetLoadingFalse;
 
-export type GlobalStateActionTypes = SetLoadingActionTypes;
+export type GlobalStateActionTypes =
+  | SetLoadingActionTypes
+  | SetGlobalNotificationActionTypes;
 
 interface GetConfigStart {
   type: typeof GET_CONFIG_START;

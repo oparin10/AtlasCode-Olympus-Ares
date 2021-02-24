@@ -6,6 +6,7 @@ import { configurationReducer } from "./configuration/reducer";
 import { globalUIReducer } from "./globalUI/reducer";
 import { collectionsReducer } from "./collections/reducer";
 import { activeCollectionReducer } from "./activeCollection/reducer";
+import { adonisReducer } from "./adonis/reducer";
 
 const rootReducers = combineReducers({
   auth: authenticationReducer,
@@ -13,6 +14,7 @@ const rootReducers = combineReducers({
   globalUI: globalUIReducer,
   activeCollection: activeCollectionReducer,
   collections: collectionsReducer,
+  adonis: adonisReducer,
 });
 
 const store = createStore(

@@ -7,12 +7,6 @@ import { Request, Response } from "express";
 import fs from "fs";
 import { adonisConfig, AdonisPath } from "../../config/adonis.config";
 
-interface DionysusBucketPath {
-  gallery: string;
-  gallery_thumbnail: string;
-  gallery_thumbnail_blur: string;
-}
-
 export const optimizeAndCreateThumbnail = async (
   req: Request,
   res: Response
@@ -121,15 +115,21 @@ export const optimizeAndCreateThumbnail = async (
 
   return res
     .json({
-      gallery: `${baseCloudURL}${
-        admin.storage().app.options.storageBucket
-      }/o/${adonisConfig.path.rootFolder}%2F${adonisConfig.path.gallery}%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+      gallery: `${baseCloudURL}${admin.storage().app.options.storageBucket}/o/${
+        adonisConfig.path.rootFolder
+      }%2F${
+        adonisConfig.path.gallery
+      }%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
       gallery_thumbnail: `${baseCloudURL}${
         admin.storage().app.options.storageBucket
-      }/o/${adonisConfig.path.rootFolder}%2F${adonisConfig.path.galleryThumbnail}%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+      }/o/${adonisConfig.path.rootFolder}%2F${
+        adonisConfig.path.galleryThumbnail
+      }%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
       gallery_thumbnail_blur: `${baseCloudURL}${
         admin.storage().app.options.storageBucket
-      }/o/${adonisConfig.path.rootFolder}%2F${adonisConfig.path.galleryThumbnailBlur}%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+      }/o/${adonisConfig.path.rootFolder}%2F${
+        adonisConfig.path.galleryThumbnailBlur
+      }%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
     })
     .status(200);
 };

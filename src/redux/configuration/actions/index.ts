@@ -2,7 +2,6 @@ import { RootStateOrAny } from "react-redux";
 import { Action, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
 import {
-  ConfigurationActionTypes,
   GetConfigActionTypes,
   GET_CONFIG_FAIL,
   GET_CONFIG_START,

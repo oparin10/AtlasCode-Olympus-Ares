@@ -8,6 +8,7 @@ interface Props {
   height?: string;
   width?: string;
   clickable?: boolean;
+  disabled?: boolean;
 }
 
 const IconComponent = ({
@@ -15,6 +16,7 @@ const IconComponent = ({
   width,
   height,
   clickable,
+  disabled,
   ...rest
 }: Props) => {
   const IconComponentDynamic = IconDictonary[iconType as IconTypes];
@@ -24,7 +26,9 @@ const IconComponent = ({
       style={{
         width: `${width ? width : "1em"}`,
         height: `${height ? height : "1em"}`,
-        cursor: `${clickable ? "pointer" : "initial"}`,
+        cursor: `${clickable && !disabled ? "pointer" : "initial"}`,
+        color: `${disabled ? "#bdbdbd" : "inherit"}`,
+        transition: "all 0.5s ease",
       }}
       {...rest}
       component={IconComponentDynamic}

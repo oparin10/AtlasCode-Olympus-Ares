@@ -114,12 +114,16 @@ export const uploadAndOptimizeImage = (
       .then((uploadSuccessResponse) => {
         console.log(uploadSuccessResponse.data);
 
+        let orderTripleLocal: AdonisOrderedTriple = {
+          gallery: uploadSuccessResponse.data.gallery,
+          gallery_thumbnail: uploadSuccessResponse.data.gallery_thumbnail,
+          gallery_thumbnail_blur:
+            uploadSuccessResponse.data.gallery_thumbnail_blur,
+        };
+
         dispatch({
           type: UPLOAD_ADONIS_PHOTO_SUCCESS,
-          payload: {
-            gallery: uploadSuccessResponse.data
-              .gallery as Array<AdonisOrderedTriple>,
-          },
+          payload: orderTripleLocal,
         });
       })
       .catch((error) => {

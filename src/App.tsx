@@ -36,7 +36,10 @@ function App() {
         alertSeverity={globalUIState.notificationSeverity}
       />
 
-      <AdonisGallery isOpen={adonisState.isOpen} />
+      <AdonisGallery
+        gallery={adonisState.gallery}
+        isOpen={adonisState.isOpen}
+      />
 
       {collectionsState.length > 0 ? (
         <RouterCore

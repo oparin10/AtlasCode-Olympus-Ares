@@ -3,14 +3,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { galleryClose, getAllImageLinks } from "../../../redux/adonis/actions";
 import styled from "styled-components";
-import IconComponent from "../IconComponent";
 import AdonisGalleryHeader from "./AdonisGalleryHeader";
-import { storage } from "../../../firebase";
-import {
-  adonisConfig,
-  AdonisOrderedTriple,
-} from "../../../config/adonis.config";
-import getAdonisOrderedTriple from "../../../helper/getAdonisOrderedTriple";
+import { AdonisOrderedTriple } from "../../../config/adonis.config";
+import imageGroupFromURL from "../../../helper/imageGroupFromURL";
+import AdonisPhoto from "./AdonisPhoto";
 
 const AdonisGalleryBodyRoot = styled.div`
   display: flex;
@@ -28,6 +24,7 @@ const AdonisGalleryBody = styled.div`
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   position: absolute;
+  overflow: scroll;
 
   @media (min-width: 1024px) {
     width: 80%;
@@ -40,13 +37,28 @@ const AdonisGalleryBodyInnerContainer = styled.div`
   height: 100%;
 `;
 
+const AdonisGalleryPhotoGridContainer = styled.div`
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 33% 33% 33%;
+    grid-auto-flow: row;
+    grid-template-rows: none;
+  }
+`;
+
 // Adonis uploader
 
 interface Props {
   isOpen: boolean;
+  gallery: Array<AdonisOrderedTriple>;
 }
 
-const AdonisGallery = ({ isOpen = false }: Props) => {
+const AdonisGallery = ({ isOpen = false, gallery = [] }: Props) => {
   const dispatch = useDispatch();
 
   const bodyRootRef = React.useRef<HTMLDivElement>(null);
@@ -62,6 +74,8 @@ const AdonisGallery = ({ isOpen = false }: Props) => {
   React.useEffect(() => {
     dispatch(getAllImageLinks());
   }, []);
+
+  console.log(gallery);
 
   return (
     <div>
@@ -88,6 +102,22 @@ const AdonisGallery = ({ isOpen = false }: Props) => {
               <AdonisGalleryBody>
                 <AdonisGalleryBodyInnerContainer>
                   <AdonisGalleryHeader />
+
+                  <AdonisGalleryPhotoGridContainer>
+                    {gallery.map((item, index) => {
+                      return (
+                        <Fade
+                          key={index}
+                          in={true}
+                          timeout={{ enter: 500, exit: 500 }}
+                        >
+                          <div>
+                            <AdonisPhoto photoURL={item.gallery_thumbnail} />
+                          </div>
+                        </Fade>
+                      );
+                    })}
+                  </AdonisGalleryPhotoGridContainer>
                 </AdonisGalleryBodyInnerContainer>
               </AdonisGalleryBody>
             </AdonisGalleryBodyRoot>

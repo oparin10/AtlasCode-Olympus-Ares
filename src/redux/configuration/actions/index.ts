@@ -28,10 +28,6 @@ export const configurationSetup = (): ThunkAction<
       type: GET_CONFIG_START,
     });
 
-    dispatch({
-      type: SET_LOADING_TRUE,
-    });
-
     try {
       dispatch({
         type: GET_CONFIG_SUCCESS,
@@ -51,9 +47,5 @@ export const configurationSetup = (): ThunkAction<
         error: error.message,
       });
     }
-
-    dispatch({
-      type: SET_LOADING_FALSE,
-    });
   };
 };

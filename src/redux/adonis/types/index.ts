@@ -25,7 +25,7 @@ interface UploadAdonisPhotoFail {
 
 interface UploadAdonisPhotoSuccess {
   type: typeof UPLOAD_ADONIS_PHOTO_SUCCESS;
-  payload: Partial<AdonisGalleryState>;
+  payload: AdonisOrderedTriple;
 }
 
 export type UploadAdonisPhotoActionTypes =

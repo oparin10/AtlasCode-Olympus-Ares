@@ -1,4 +1,10 @@
-import { Backdrop, Fade, Modal, Slide } from "@material-ui/core";
+import {
+  Backdrop,
+  CircularProgress,
+  Fade,
+  Modal,
+  Slide,
+} from "@material-ui/core";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { galleryClose, getAllImageLinks } from "../../../redux/adonis/actions";
@@ -7,6 +13,29 @@ import AdonisGalleryHeader from "./AdonisGalleryHeader";
 import { AdonisOrderedTriple } from "../../../config/adonis.config";
 import imageGroupFromURL from "../../../helper/imageGroupFromURL";
 import AdonisPhoto from "./AdonisPhoto";
+
+const AdonisGalleryCircularLoaderContainer = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 45%;
+
+  .adonisGalleryLoading {
+    position: relative;
+    left: -50%;
+    z-index: 5000;
+    width: 80px !important;
+    height: 80px !important;
+
+    @media (min-width: 1024px) {
+      width: 140px !important;
+      height: 140px !important;
+    }
+  }
+
+  .MuiCircularProgress-colorPrimary {
+    color: #f15d3c;
+  }
+`;
 
 const AdonisGalleryBodyRoot = styled.div`
   display: flex;
@@ -56,9 +85,14 @@ const AdonisGalleryPhotoGridContainer = styled.div`
 interface Props {
   isOpen: boolean;
   gallery: Array<AdonisOrderedTriple>;
+  isLoading: boolean;
 }
 
-const AdonisGallery = ({ isOpen = false, gallery = [] }: Props) => {
+const AdonisGallery = ({
+  isOpen = false,
+  gallery = [],
+  isLoading = true,
+}: Props) => {
   const dispatch = useDispatch();
 
   const bodyRootRef = React.useRef<HTMLDivElement>(null);
@@ -103,13 +137,25 @@ const AdonisGallery = ({ isOpen = false, gallery = [] }: Props) => {
                 <AdonisGalleryBodyInnerContainer>
                   <AdonisGalleryHeader />
 
+                  <AdonisGalleryCircularLoaderContainer>
+                    <Fade
+                      in={isLoading}
+                      unmountOnExit
+                      timeout={{ enter: 750, exit: 750 }}
+                    >
+                      <div>
+                        <CircularProgress className="adonisGalleryLoading" />
+                      </div>
+                    </Fade>
+                  </AdonisGalleryCircularLoaderContainer>
+
                   <AdonisGalleryPhotoGridContainer>
                     {gallery.map((item, index) => {
                       return (
                         <Fade
                           key={index}
                           in={true}
-                          timeout={{ enter: 500, exit: 500 }}
+                          timeout={{ enter: 1000, exit: 500 }}
                         >
                           <div>
                             <AdonisPhoto photoURL={item.gallery_thumbnail} />

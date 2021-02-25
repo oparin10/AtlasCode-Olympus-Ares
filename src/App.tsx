@@ -39,6 +39,7 @@ function App() {
       <AdonisGallery
         gallery={adonisState.gallery}
         isOpen={adonisState.isOpen}
+        isLoading={adonisState.isLoading}
       />
 
       {collectionsState.length > 0 ? (

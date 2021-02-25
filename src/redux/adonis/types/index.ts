@@ -43,6 +43,7 @@ export interface AdonisGalleryState {
   gallery: Array<AdonisOrderedTriple>;
   selectedPhoto: string;
   isOpen: boolean;
+  isLoading: boolean;
 }
 
 interface SetAdonisGalleryOpen {

@@ -45,11 +45,5 @@ export const collectionsConfig: Array<AdminItem> = [
     path: "amostra",
     label: "Amostra label",
   },
-  {
-    name: "blog",
-    widget: "markdown",
-    icon: "MoreHoriz",
-    label: "Blog posts",
-    path: "blog",
-  },
+ 
 ];

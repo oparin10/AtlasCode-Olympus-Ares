@@ -8,12 +8,15 @@ import {
   UPLOAD_ADONIS_PHOTO_FAIL,
   UPLOAD_ADONIS_PHOTO_SUCCESS,
   GET_ADONIS_GALLERY_PHOTOS_SUCCESS,
+  GET_ADONIS_GALLERY_PHOTOS_START,
+  GET_ADONIS_GALLERY_PHOTOS_FAIL,
 } from "../types";
 
 let initialState: AdonisGalleryState = {
   gallery: [],
   selectedPhoto: "",
   isOpen: false,
+  isLoading: false,
 };
 
 export const adonisReducer = (
@@ -45,9 +48,16 @@ export const adonisReducer = (
         gallery: localGalleryArray,
       };
     }
+    case GET_ADONIS_GALLERY_PHOTOS_START: {
+      return { ...state, isLoading: true };
+    }
 
     case GET_ADONIS_GALLERY_PHOTOS_SUCCESS: {
-      return { ...state, gallery: action.payload };
+      return { ...state, isLoading: false, gallery: action.payload };
+    }
+
+    case GET_ADONIS_GALLERY_PHOTOS_FAIL: {
+      return { ...state, isLoading: false };
     }
 
     default:

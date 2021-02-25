@@ -17,6 +17,9 @@ import {
   Apps,
   AttachMoney,
   Close,
+  Delete,
+  DeleteForever,
+  FileCopy,
   MoreHoriz,
   PhotoLibrary,
   Settings,
@@ -51,6 +54,9 @@ export const IconDictonary: Record<
   MoreHoriz: MoreHoriz,
   Close: Close,
   Settings: Settings,
+  Delete: Delete,
+  DeleteForever: DeleteForever,
+  FileCopy: FileCopy,
 };
 
 export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {

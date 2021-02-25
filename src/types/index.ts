@@ -30,4 +30,7 @@ export type IconTypes =
   | "PhotoLibrary"
   | "MoreHoriz"
   | "Close"
-  | "Settings";
+  | "Settings"
+  | "FileCopy"
+  | "Delete"
+  | "DeleteForever";

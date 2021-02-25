@@ -53,7 +53,8 @@ const AdonisGalleryBody = styled.div`
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   position: absolute;
-  overflow: scroll;
+  overflow-y: scroll;
+  scrollbar-width: none;
 
   @media (min-width: 1024px) {
     width: 80%;
@@ -106,7 +107,9 @@ const AdonisGallery = ({
   };
 
   React.useEffect(() => {
-    dispatch(getAllImageLinks());
+    if (gallery.length <= 0) {
+      dispatch(getAllImageLinks());
+    }
   }, []);
 
   console.log(gallery);

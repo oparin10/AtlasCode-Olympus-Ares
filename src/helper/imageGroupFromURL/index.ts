@@ -1,7 +1,9 @@
+import { AdonisOrderedTriple } from "../../config/adonis.config";
 import { storage } from "../../firebase";
-import { DionysusImageURL } from "../../types";
 
-const imageGroupFromURL = async (storageImageURL: string) => {
+const imageGroupFromURL = async (
+  storageImageURL: string
+): Promise<AdonisOrderedTriple | undefined> => {
   let getStorageImagePath: string;
 
   try {
@@ -28,7 +30,7 @@ const imageGroupFromURL = async (storageImageURL: string) => {
   thumbnailBlurPath.splice(parentPathIndex, 1);
   thumbnailBlurPath.splice(parentPathIndex, 0, "gallery_thumbnail_blur");
 
-  let imageGroup: DionysusImageURL = {
+  let imageGroup: AdonisOrderedTriple = {
     gallery: storageURIArray.join("/"),
     gallery_thumbnail: thumbnailPath.join("/"),
     gallery_thumbnail_blur: thumbnailBlurPath.join("/"),
@@ -44,7 +46,7 @@ const imageGroupFromURL = async (storageImageURL: string) => {
     await storage.ref().child(imageGroup.gallery_thumbnail_blur).list()
   ).items[0].getDownloadURL();
 
-  let imageGroupAbsolute: DionysusImageURL = {
+  let imageGroupAbsolute: AdonisOrderedTriple = {
     gallery: absoluteGalleryURL,
     gallery_thumbnail: absoluteGalleryThumbnailURL,
     gallery_thumbnail_blur: absoluteGalleryThumbnailBlurURL,

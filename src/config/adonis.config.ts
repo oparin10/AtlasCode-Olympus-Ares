@@ -5,6 +5,12 @@ export interface AdonisPath {
   galleryThumbnailBlur: string;
 }
 
+export type AdonisOrderedTriple = {
+  gallery: string;
+  gallery_thumbnail: string;
+  gallery_thumbnail_blur: string;
+};
+
 export interface AdonisConfig {
   path: AdonisPath;
   createBlur: boolean;

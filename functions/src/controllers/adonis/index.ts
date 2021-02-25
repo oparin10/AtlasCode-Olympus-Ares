@@ -36,6 +36,7 @@ export const optimizeAndCreateThumbnail = async (
 
   const validURI: string = req.body.base64URI.split(";base64,").pop();
   const imgBuffer: Buffer = Buffer.from(validURI, "base64");
+  // Sanitize filename input
   const fileName: string = converToSlug(req.body.fileName);
   const fileExtension: string = "webp";
   const nanoID: string = nanoid();
@@ -47,8 +48,9 @@ export const optimizeAndCreateThumbnail = async (
     cacheControl: "public, max-age=1296000",
     contentType: "image/webp",
     metadata: {
-      storagePathID: nanoID,
+      uuid: nanoID,
       uploadDate: uploadTime,
+      fileName: fileName,
     },
   };
   //   Temp dir file path for each img variation

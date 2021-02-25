@@ -10,12 +10,6 @@ export type RouterItem = {
   icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
 };
 
-export interface DionysusImageURL {
-  gallery: string;
-  gallery_thumbnail: string;
-  gallery_thumbnail_blur: string;
-}
-
 export type WidgetsTypes = "string" | "image" | "markdown" | "text" | "login";
 export type IconTypes =
   | "AttachMoney"

@@ -1,3 +1,5 @@
+import { AdonisOrderedTriple } from "../../../config/adonis.config";
+
 export const SET_ADONIS_GALLERY_OPEN = "SET_ADONIS_GALLERY_OPEN";
 export const SET_ADONIS_GALLERY_CLOSE = "SET_ADONIS_GALLERY_CLOSE";
 
@@ -19,7 +21,6 @@ interface UploadAdonisPhotoStart {
 
 interface UploadAdonisPhotoFail {
   type: typeof UPLOAD_ADONIS_PHOTO_FAIL;
-  payload: Partial<AdonisGalleryState>;
 }
 
 interface UploadAdonisPhotoSuccess {
@@ -39,10 +40,8 @@ interface SetAdonisSelectedPhoto {
 export type SetAdonisSelectedPhotoActionTypes = SetAdonisSelectedPhoto;
 
 export interface AdonisGalleryState {
-  gallery: Array<string>;
-  gallery_thumbnail: Array<string>;
+  gallery: Array<AdonisOrderedTriple>;
   selectedPhoto: string;
-  error: Array<string> | string | null | undefined;
   isOpen: boolean;
 }
 
@@ -64,7 +63,7 @@ interface GetAdonisGalleryPhotosStart {
 
 interface GetAdonisGalleryPhotosSuccess {
   type: typeof GET_ADONIS_GALLERY_PHOTOS_SUCCESS;
-  payload: any;
+  payload: Array<AdonisOrderedTriple>;
 }
 
 interface GetAdonisGalleryPhotosFail {

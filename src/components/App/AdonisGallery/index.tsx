@@ -1,7 +1,7 @@
 import { Backdrop, Fade, Modal, Slide } from "@material-ui/core";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { galleryClose } from "../../../redux/adonis/actions";
+import { galleryClose, getAllImageLinks } from "../../../redux/adonis/actions";
 import styled from "styled-components";
 import IconComponent from "../IconComponent";
 import AdonisGalleryHeader from "./AdonisGalleryHeader";
@@ -42,12 +42,6 @@ const AdonisGalleryBodyInnerContainer = styled.div`
 
 // Adonis uploader
 
-interface AdonisGalleryImage extends AdonisOrderedTriple {
-  storagePathID: string;
-  dateCreated: string;
-  fileName: string;
-}
-
 interface Props {
   isOpen: boolean;
 }
@@ -65,48 +59,8 @@ const AdonisGallery = ({ isOpen = false }: Props) => {
     dispatch(galleryClose());
   };
 
-  const getAllFiles = async () => {
-    let allThumbNailFolder = await storage
-      .ref()
-      .child(
-        `${adonisConfig.path.rootFolder}/${adonisConfig.path.galleryThumbnail}`
-      )
-      .listAll();
-
-    let allFilesPaths: Array<string> = [];
-
-    allThumbNailFolder.prefixes.forEach((item) => {
-      allFilesPaths.push(item.fullPath);
-    });
-
-    let adonisImages: Array<AdonisOrderedTriple> = [];
-
-    for (let i = 0; i < allFilesPaths.length; i++) {
-      const element = allFilesPaths[i];
-
-      let fullImagePath: string = (await storage.ref().child(element).listAll())
-        .items[0].fullPath;
-
-      let thumbNailMetadata: any = await storage
-        .ref()
-        .child(fullImagePath)
-        .getMetadata();
-
-      // console.log(thumbNailMetadata);
-
-      let orderTripleLocal: AdonisOrderedTriple = getAdonisOrderedTriple(
-        thumbNailMetadata.name,
-        thumbNailMetadata.customMetadata.uuid
-      );
-
-      adonisImages.push(orderTripleLocal);
-    }
-
-    console.log(adonisImages);
-  };
-
   React.useEffect(() => {
-    getAllFiles();
+    dispatch(getAllImageLinks());
   }, []);
 
   return (

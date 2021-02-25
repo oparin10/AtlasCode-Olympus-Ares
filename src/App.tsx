@@ -13,8 +13,6 @@ import { GlobalUIState } from "./redux/types";
 function App() {
   const dispatch = useDispatch();
 
-  const [defaultPath, setDefaultPath] = React.useState<string>("");
-
   const globalUIState: GlobalUIState = useSelector(
     (state: RootStateOrAny) => state.globalUI
   );

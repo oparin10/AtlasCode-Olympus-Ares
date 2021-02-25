@@ -6,15 +6,14 @@ import {
   UPLOAD_ADONIS_PHOTO_START,
   UPLOAD_ADONIS_PHOTO_FAIL,
   UPLOAD_ADONIS_PHOTO_SUCCESS,
+  GET_ADONIS_GALLERY_PHOTOS_SUCCESS,
 } from "../types";
 
 export const hehe = "hehe";
 
 let initialState: AdonisGalleryState = {
   gallery: [],
-  gallery_thumbnail: [],
   selectedPhoto: "",
-  error: null,
   isOpen: false,
 };
 
@@ -34,11 +33,15 @@ export const adonisReducer = (
     }
 
     case UPLOAD_ADONIS_PHOTO_FAIL: {
-      return { ...state, error: action.payload.error };
+      return { ...state };
     }
 
     case UPLOAD_ADONIS_PHOTO_SUCCESS: {
       return { ...state, gallery: [action.payload.gallery] };
+    }
+
+    case GET_ADONIS_GALLERY_PHOTOS_SUCCESS: {
+      return { ...state, gallery: action.payload };
     }
 
     default:

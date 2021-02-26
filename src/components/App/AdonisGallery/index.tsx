@@ -96,6 +96,11 @@ const AdonisGallery = ({
 }: Props) => {
   const dispatch = useDispatch();
 
+  const [imageActive, setImageActive] = React.useState<{
+    active: boolean;
+    index: number | null;
+  }>({ active: false, index: null });
+
   const bodyRootRef = React.useRef<HTMLDivElement>(null);
 
   const eventOnParent = (e: any) => {
@@ -160,8 +165,17 @@ const AdonisGallery = ({
                           in={true}
                           timeout={{ enter: 1000, exit: 500 }}
                         >
-                          <div>
-                            <AdonisPhoto photoURL={item.gallery_thumbnail} />
+                          <div
+                            onClick={() =>
+                              setImageActive({ active: true, index: index })
+                            }
+                          >
+                            <AdonisPhoto
+                              active={
+                                imageActive.active && imageActive.index == index
+                              }
+                              photoURL={item.gallery_thumbnail}
+                            />
                           </div>
                         </Fade>
                       );

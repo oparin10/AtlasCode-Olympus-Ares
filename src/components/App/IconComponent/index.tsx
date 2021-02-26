@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { setTimeout } from "timers";
 
 const IconHelperRoot = styled.div`
-  width: 200px;
+  width: 220px;
   text-align: center;
   border-radius: 10px;
   background-color: #fff;

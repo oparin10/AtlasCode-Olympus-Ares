@@ -132,12 +132,17 @@ const AdonisGalleryHeader = (props: Props) => {
 
         <AdonisGalleryAltActionsContainer>
           <IconComponent
-            helper={"Selecione um componente para deletá-lo"}
+            helper={"Selecione uma imagem para deletá-la"}
             clickable
             disabled={true}
             iconType="DeleteForever"
           />
-          <IconComponent clickable disabled={true} iconType="FileCopy" />
+          <IconComponent
+            helper={"Selecione uma imagem para copiar seu link"}
+            clickable
+            disabled={true}
+            iconType="FileCopy"
+          />
 
           <AdonisGalleryCloseButtonBase
             onClick={() => dispatch(galleryClose())}

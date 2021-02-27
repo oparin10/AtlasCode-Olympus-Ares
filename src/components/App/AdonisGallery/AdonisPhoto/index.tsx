@@ -14,9 +14,7 @@ const AdonisImageCardBase = styled.div<AdonisImageCardBaseProps>`
   overflow: hidden;
   border-radius: 10px;
   box-shadow: ${(props) =>
-    props.active
-      ? "0px 0px 8px #F15D3C"
-      : "2px 3px 4px rgba(0, 0, 0, 0.25)"};
+    props.active ? "0px 0px 8px #F15D3C" : "2px 3px 4px rgba(0, 0, 0, 0.25)"};
   transition: all 0.2s ease-in-out;
 `;
 
@@ -64,13 +62,13 @@ const AdonisCardImageInfo = styled.p`
 
 interface Props {
   photoURL?: string;
-  imageInfo?: string;
+  imageName?: string;
   active?: boolean;
 }
 
 const AdonisPhoto = ({
   photoURL = "https://via.placeholder.com/200",
-  imageInfo = "Imageinfo.webp",
+  imageName = "Imageinfo.webp",
   active = false,
 }: Props) => {
   return (
@@ -78,7 +76,7 @@ const AdonisPhoto = ({
       <AdonisCardImageContainer>
         <AdonisCardImage src={photoURL}></AdonisCardImage>
       </AdonisCardImageContainer>
-      <AdonisCardImageInfo>{imageInfo}</AdonisCardImageInfo>
+      <AdonisCardImageInfo>{imageName}</AdonisCardImageInfo>
     </AdonisImageCardBase>
   );
 };

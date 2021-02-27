@@ -1,4 +1,7 @@
-import { AdonisOrderedTriple } from "../../../config/adonis.config";
+import {
+  AdonisImage,
+  AdonisOrderedTriple,
+} from "../../../config/adonis.config";
 import {
   AdonisGalleryState,
   AdonisActionTypes,
@@ -39,7 +42,7 @@ export const adonisReducer = (
     }
 
     case UPLOAD_ADONIS_PHOTO_SUCCESS: {
-      let localGalleryArray: Array<AdonisOrderedTriple> = [...state.gallery];
+      let localGalleryArray: Array<AdonisImage> = [...state.gallery];
 
       localGalleryArray.splice(0, 0, action.payload);
 

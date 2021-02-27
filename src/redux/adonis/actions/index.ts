@@ -15,10 +15,11 @@ import {
   UPLOAD_ADONIS_PHOTO_START,
   UPLOAD_ADONIS_PHOTO_SUCCESS,
 } from "../types";
-import Axios from "axios";
+import Axios, { AxiosResponse } from "axios";
 import { storage } from "../../../firebase";
 import {
   adonisConfig,
+  AdonisImage,
   AdonisOrderedTriple,
 } from "../../../config/adonis.config";
 import getAdonisOrderedTriple from "../../../helper/getAdonisOrderedTriple";
@@ -60,7 +61,7 @@ export const getAllImageLinks = (): ThunkAction<
         allFilesPaths.push(item.fullPath);
       });
 
-      let adonisImages: Array<AdonisOrderedTriple> = [];
+      let adonisImages: Array<AdonisImage> = [];
 
       for (let i = 0; i < allFilesPaths.length; i++) {
         const element = allFilesPaths[i];
@@ -79,7 +80,15 @@ export const getAllImageLinks = (): ThunkAction<
           thumbNailMetadata.customMetadata.uuid
         );
 
-        adonisImages.push(orderTripleLocal);
+        let orderedTripleWithMeta: AdonisImage = {
+          fileName: thumbNailMetadata.name,
+          uuid: thumbNailMetadata.customMetadata.uuid,
+          gallery: orderTripleLocal.gallery,
+          gallery_thumbnail: orderTripleLocal.gallery_thumbnail,
+          gallery_thumbnail_blur: orderTripleLocal.gallery_thumbnail_blur,
+        };
+
+        adonisImages.push(orderedTripleWithMeta);
       }
 
       dispatch({
@@ -104,7 +113,7 @@ export const uploadAndOptimizeImage = (
       type: UPLOAD_ADONIS_PHOTO_START,
     });
 
-    Axios.post(
+    Axios.post<AdonisImage, AxiosResponse<AdonisImage>>(
       "http://localhost:5001/atlas-ares/us-central1/api/adonis/optimize",
       {
         fileName: fileName,
@@ -114,7 +123,9 @@ export const uploadAndOptimizeImage = (
       .then((uploadSuccessResponse) => {
         console.log(uploadSuccessResponse.data);
 
-        let orderTripleLocal: AdonisOrderedTriple = {
+        let orderTripleLocal: AdonisImage = {
+          fileName: uploadSuccessResponse.data.fileName,
+          uuid: uploadSuccessResponse.data.uuid,
           gallery: uploadSuccessResponse.data.gallery,
           gallery_thumbnail: uploadSuccessResponse.data.gallery_thumbnail,
           gallery_thumbnail_blur:

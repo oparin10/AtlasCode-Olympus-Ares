@@ -5,7 +5,11 @@ import { nanoid } from "nanoid";
 import sharp from "sharp";
 import { Request, Response } from "express";
 import fs from "fs";
-import { adonisConfig, AdonisPath } from "../../config/adonis.config";
+import {
+  adonisConfig,
+  AdonisImage,
+  AdonisPath,
+} from "../../config/adonis.config";
 import converToSlug from "../../helper/converToSlug";
 
 export const optimizeAndCreateThumbnail = async (
@@ -120,23 +124,25 @@ export const optimizeAndCreateThumbnail = async (
     console.log(error);
   }
 
-  return res
-    .json({
-      gallery: `${baseCloudURL}${admin.storage().app.options.storageBucket}/o/${
-        adonisConfig.path.rootFolder
-      }%2F${
-        adonisConfig.path.gallery
-      }%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
-      gallery_thumbnail: `${baseCloudURL}${
-        admin.storage().app.options.storageBucket
-      }/o/${adonisConfig.path.rootFolder}%2F${
-        adonisConfig.path.galleryThumbnail
-      }%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
-      gallery_thumbnail_blur: `${baseCloudURL}${
-        admin.storage().app.options.storageBucket
-      }/o/${adonisConfig.path.rootFolder}%2F${
-        adonisConfig.path.galleryThumbnailBlur
-      }%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
-    })
-    .status(200);
+  let optimizationResponse: AdonisImage = {
+    fileName: fileName,
+    uuid: nanoID,
+    gallery: `${baseCloudURL}${admin.storage().app.options.storageBucket}/o/${
+      adonisConfig.path.rootFolder
+    }%2F${
+      adonisConfig.path.gallery
+    }%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+    gallery_thumbnail: `${baseCloudURL}${
+      admin.storage().app.options.storageBucket
+    }/o/${adonisConfig.path.rootFolder}%2F${
+      adonisConfig.path.galleryThumbnail
+    }%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+    gallery_thumbnail_blur: `${baseCloudURL}${
+      admin.storage().app.options.storageBucket
+    }/o/${adonisConfig.path.rootFolder}%2F${
+      adonisConfig.path.galleryThumbnailBlur
+    }%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+  };
+
+  return res.json(optimizationResponse).status(200);
 };

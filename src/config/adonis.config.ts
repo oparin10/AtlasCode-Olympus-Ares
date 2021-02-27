@@ -11,6 +11,11 @@ export type AdonisOrderedTriple = {
   gallery_thumbnail_blur: string;
 };
 
+export interface AdonisImage extends AdonisOrderedTriple {
+  fileName: string;
+  uuid: string;
+}
+
 export interface AdonisConfig {
   path: AdonisPath;
   createBlur: boolean;

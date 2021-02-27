@@ -10,8 +10,10 @@ import { useDispatch } from "react-redux";
 import { galleryClose, getAllImageLinks } from "../../../redux/adonis/actions";
 import styled from "styled-components";
 import AdonisGalleryHeader from "./AdonisGalleryHeader";
-import { AdonisOrderedTriple } from "../../../config/adonis.config";
-import imageGroupFromURL from "../../../helper/imageGroupFromURL";
+import {
+  AdonisImage,
+  AdonisOrderedTriple,
+} from "../../../config/adonis.config";
 import AdonisPhoto from "./AdonisPhoto";
 
 const AdonisGalleryCircularLoaderContainer = styled.div`
@@ -85,7 +87,7 @@ const AdonisGalleryPhotoGridContainer = styled.div`
 
 interface Props {
   isOpen: boolean;
-  gallery: Array<AdonisOrderedTriple>;
+  gallery: Array<AdonisImage>;
   isLoading: boolean;
 }
 
@@ -117,6 +119,12 @@ const AdonisGallery = ({
     }
   }, []);
 
+  const handleGalleryClose = () => {
+    dispatch(galleryClose());
+
+    setImageActive({ active: false, index: null });
+  };
+
   console.log(gallery);
 
   return (
@@ -124,7 +132,7 @@ const AdonisGallery = ({
       <Modal
         style={{ outline: "none" }}
         open={isOpen}
-        onClose={() => dispatch(galleryClose())}
+        onClose={handleGalleryClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{ timeout: 500, style: { outline: "none" } }}
@@ -171,6 +179,7 @@ const AdonisGallery = ({
                             }
                           >
                             <AdonisPhoto
+                              imageName={item.fileName}
                               active={
                                 imageActive.active && imageActive.index == index
                               }

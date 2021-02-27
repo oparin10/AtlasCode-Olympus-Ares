@@ -37,6 +37,8 @@ function App() {
       />
 
       <AdonisGallery
+        isPhotoSelected={adonisState.isPhotoSelected}
+        selectedPhoto={adonisState.selectedPhoto}
         gallery={adonisState.gallery}
         isOpen={adonisState.isOpen}
         isLoading={adonisState.isLoading}

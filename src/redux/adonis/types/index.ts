@@ -60,7 +60,8 @@ export type SetAdonisSelectedPhotoActionTypes = SetAdonisSelectedPhoto;
 
 export interface AdonisGalleryState {
   gallery: Array<AdonisImage>;
-  selectedPhoto: AdonisImage | null;
+  selectedPhoto: AdonisImage;
+  isPhotoSelected: boolean;
   isOpen: boolean;
   isLoading: boolean;
 }

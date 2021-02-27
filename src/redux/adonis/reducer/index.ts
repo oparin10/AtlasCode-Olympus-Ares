@@ -19,7 +19,14 @@ import {
 
 let initialState: AdonisGalleryState = {
   gallery: [],
-  selectedPhoto: null,
+  selectedPhoto: {
+    fileName: "",
+    gallery: "",
+    gallery_thumbnail: "",
+    gallery_thumbnail_blur: "",
+    uuid: "",
+  },
+  isPhotoSelected: false,
   isOpen: false,
   isLoading: false,
 };
@@ -30,16 +37,24 @@ export const adonisReducer = (
 ) => {
   switch (action.type) {
     case SET_ADONIS_ACTIVE_PHOTO:
-      return { ...state, selectedPhoto: action.payload };
-
-    case SET_ADONIS_ACTIVE_PHOTO_NULL:
-      return { ...state, selectedPhoto: null };
+      return { ...state, selectedPhoto: action.payload, isPhotoSelected: true };
 
     case SET_ADONIS_GALLERY_OPEN:
       return { ...state, isOpen: true };
 
     case SET_ADONIS_GALLERY_CLOSE:
-      return { ...state, isOpen: false };
+      return {
+        ...state,
+        isOpen: false,
+        selectedPhoto: {
+          fileName: "",
+          gallery: "",
+          gallery_thumbnail: "",
+          gallery_thumbnail_blur: "",
+          uuid: "",
+        },
+        isPhotoSelected: false,
+      };
 
     case UPLOAD_ADONIS_PHOTO_START: {
       return { ...state };

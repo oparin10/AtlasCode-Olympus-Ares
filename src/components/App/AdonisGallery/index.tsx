@@ -7,7 +7,12 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { galleryClose, getAllImageLinks } from "../../../redux/adonis/actions";
+import {
+  galleryClose,
+  getAllImageLinks,
+  setActivePhoto,
+  setActivePhotoNull,
+} from "../../../redux/adonis/actions";
 import styled from "styled-components";
 import AdonisGalleryHeader from "./AdonisGalleryHeader";
 import {
@@ -89,12 +94,16 @@ interface Props {
   isOpen: boolean;
   gallery: Array<AdonisImage>;
   isLoading: boolean;
+  isPhotoSelected: boolean;
+  selectedPhoto: AdonisImage;
 }
 
 const AdonisGallery = ({
   isOpen = false,
   gallery = [],
   isLoading = true,
+  isPhotoSelected = false,
+  selectedPhoto,
 }: Props) => {
   const dispatch = useDispatch();
 
@@ -121,11 +130,7 @@ const AdonisGallery = ({
 
   const handleGalleryClose = () => {
     dispatch(galleryClose());
-
-    setImageActive({ active: false, index: null });
   };
-
-  console.log(gallery);
 
   return (
     <div>
@@ -166,7 +171,7 @@ const AdonisGallery = ({
                   </AdonisGalleryCircularLoaderContainer>
 
                   <AdonisGalleryPhotoGridContainer>
-                    {gallery.map((item, index) => {
+                    {gallery.map((adonisPhoto, index) => {
                       return (
                         <Fade
                           key={index}
@@ -175,15 +180,17 @@ const AdonisGallery = ({
                         >
                           <div
                             onClick={() =>
-                              setImageActive({ active: true, index: index })
+                              dispatch(setActivePhoto(adonisPhoto))
                             }
                           >
                             <AdonisPhoto
-                              imageName={item.fileName}
+                              uuid={adonisPhoto.uuid}
+                              imageName={adonisPhoto.fileName}
                               active={
-                                imageActive.active && imageActive.index == index
+                                isPhotoSelected &&
+                                selectedPhoto.uuid == adonisPhoto.uuid
                               }
-                              photoURL={item.gallery_thumbnail}
+                              photoURL={adonisPhoto.gallery_thumbnail}
                             />
                           </div>
                         </Fade>

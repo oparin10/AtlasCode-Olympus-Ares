@@ -1,11 +1,13 @@
-import React from "react";
+import React, { HtmlHTMLAttributes } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { AdonisImage } from "../../../../config/adonis.config";
 import convertBase64 from "../../../../helper/converFileUploadToBase64";
 import {
   galleryClose,
   uploadAndOptimizeImage,
 } from "../../../../redux/adonis/actions";
+import { globalNotificationCustom } from "../../../../redux/globalUI/actions";
 import IconComponent from "../../IconComponent";
 
 const AdonisGalleryBodyHeader = styled.div`
@@ -80,9 +82,13 @@ const AdonisUploadInputField = styled.input`
 
 interface Props {
   isPhotoSelected: boolean;
+  selectedPhoto: AdonisImage;
 }
 
-const AdonisGalleryHeader = ({ isPhotoSelected = false }: Props) => {
+const AdonisGalleryHeader = ({
+  isPhotoSelected = false,
+  selectedPhoto,
+}: Props) => {
   const dispatch = useDispatch();
 
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -117,6 +123,27 @@ const AdonisGalleryHeader = ({ isPhotoSelected = false }: Props) => {
     dispatch(uploadAndOptimizeImage(fileNameWithoutExtension, base64URI));
   };
 
+  const onFileCopy = () => {
+    navigator.clipboard
+      .writeText(selectedPhoto.gallery)
+      .then((result) => {
+        dispatch(
+          globalNotificationCustom(
+            "Link da imagem copiado com sucesso",
+            "success"
+          )
+        );
+      })
+      .catch((error) => {
+        dispatch(
+          globalNotificationCustom(
+            "Ocorreu um erro ao tentar copiar o link da imagem",
+            "error"
+          )
+        );
+      });
+  };
+
   return (
     <AdonisGalleryBodyHeader>
       <AdonisUploadInputField
@@ -139,12 +166,14 @@ const AdonisGalleryHeader = ({ isPhotoSelected = false }: Props) => {
             disabled={!isPhotoSelected}
             iconType="DeleteForever"
           />
-          <IconComponent
-            helper={"Selecione uma imagem para copiar seu link"}
-            clickable
-            disabled={!isPhotoSelected}
-            iconType="FileCopy"
-          />
+          <div onClick={onFileCopy}>
+            <IconComponent
+              helper={"Selecione uma imagem para copiar seu link"}
+              clickable
+              disabled={!isPhotoSelected}
+              iconType="FileCopy"
+            />
+          </div>
 
           <AdonisGalleryCloseButtonBase
             onClick={() => dispatch(galleryClose())}

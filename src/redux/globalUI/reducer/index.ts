@@ -15,6 +15,7 @@ import {
   SET_LOADING_TRUE,
 } from "../../types";
 import {
+  GLOBAL_NOTIFICATION_CUSTOM,
   SET_GLOBAL_NOTIFICATION_CLOSED,
   SET_GLOBAL_NOTIFICATION_OPEN,
 } from "../types";
@@ -34,6 +35,16 @@ export const globalUIReducer = (
     | ConfigurationActionTypes
 ): GlobalUIState => {
   switch (action.type) {
+    case GLOBAL_NOTIFICATION_CUSTOM:
+      return {
+        ...state,
+        notificationOpen: true,
+        notificationMessage: action.payload.notificationMessage,
+        notificationSeverity: action.payload.notificationSeverity,
+      };
+
+    // General Global UI events
+
     case GET_CONFIG_START:
       return { ...state, isLoading: true };
 
@@ -55,7 +66,7 @@ export const globalUIReducer = (
     case SET_LOADING_FALSE:
       return { ...state, isLoading: false };
 
-    // Adonis photo upload process
+    // Adonis photo upload process  s
 
     case UPLOAD_ADONIS_PHOTO_START:
       return {

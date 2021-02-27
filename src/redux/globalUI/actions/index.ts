@@ -4,10 +4,25 @@ import {
   SET_LOADING_TRUE,
 } from "../../types";
 import {
+  AlertSeverity,
+  GLOBAL_NOTIFICATION_CUSTOM,
   SetGlobalNotificationActionTypes,
   SET_GLOBAL_NOTIFICATION_CLOSED,
   SET_GLOBAL_NOTIFICATION_OPEN,
 } from "../types";
+
+export const globalNotificationCustom = (
+  notificationMessage: string,
+  notificationSeverity: AlertSeverity
+): SetGlobalNotificationActionTypes => {
+  return {
+    type: GLOBAL_NOTIFICATION_CUSTOM,
+    payload: {
+      notificationMessage: notificationMessage,
+      notificationSeverity: notificationSeverity,
+    },
+  };
+};
 
 export const setLoadingTrue = (): SetLoadingActionTypes => {
   return {

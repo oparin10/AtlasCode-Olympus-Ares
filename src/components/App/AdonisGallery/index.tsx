@@ -107,11 +107,6 @@ const AdonisGallery = ({
 }: Props) => {
   const dispatch = useDispatch();
 
-  const [imageActive, setImageActive] = React.useState<{
-    active: boolean;
-    index: number | null;
-  }>({ active: false, index: null });
-
   const bodyRootRef = React.useRef<HTMLDivElement>(null);
 
   const eventOnParent = (e: any) => {
@@ -126,6 +121,10 @@ const AdonisGallery = ({
     if (gallery.length <= 0) {
       dispatch(getAllImageLinks());
     }
+
+    return () => {
+      console.log("component closed");
+    };
   }, []);
 
   const handleGalleryClose = () => {
@@ -156,7 +155,10 @@ const AdonisGallery = ({
             >
               <AdonisGalleryBody>
                 <AdonisGalleryBodyInnerContainer>
-                  <AdonisGalleryHeader isPhotoSelected={isPhotoSelected} />
+                  <AdonisGalleryHeader
+                    selectedPhoto={selectedPhoto}
+                    isPhotoSelected={isPhotoSelected}
+                  />
 
                   <AdonisGalleryCircularLoaderContainer>
                     <Fade

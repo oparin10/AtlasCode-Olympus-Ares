@@ -18,6 +18,18 @@ export const UPLOAD_ADONIS_PHOTO_START = "UPLOAD_ADONIS_PHOTO_START";
 export const UPLOAD_ADONIS_PHOTO_SUCCESS = "UPLOAD_ADONIS_PHOTO_SUCCESS";
 export const UPLOAD_ADONIS_PHOTO_FAIL = "UPLOAD_ADONIS_PHOTO_FAIL";
 
+export const SET_ADONIS_ACTIVE_PHOTO = "SET_ADONIS_ACTIVE_PHOTO";
+export const SET_ADONIS_ACTIVE_PHOTO_NULL = "SET_ADONIS_ACTIVE_PHOTO_NULL";
+
+interface SetAdonisActivePhoto {
+  type: typeof SET_ADONIS_ACTIVE_PHOTO;
+  payload: AdonisImage;
+}
+
+interface SetAdonisActivePhotoNull {
+  type: typeof SET_ADONIS_ACTIVE_PHOTO_NULL;
+}
+
 interface UploadAdonisPhotoStart {
   type: typeof UPLOAD_ADONIS_PHOTO_START;
 }
@@ -30,6 +42,10 @@ interface UploadAdonisPhotoSuccess {
   type: typeof UPLOAD_ADONIS_PHOTO_SUCCESS;
   payload: AdonisImage;
 }
+
+export type SetAdonisActivePhotoActionTypes =
+  | SetAdonisActivePhoto
+  | SetAdonisActivePhotoNull;
 
 export type UploadAdonisPhotoActionTypes =
   | UploadAdonisPhotoStart
@@ -44,7 +60,7 @@ export type SetAdonisSelectedPhotoActionTypes = SetAdonisSelectedPhoto;
 
 export interface AdonisGalleryState {
   gallery: Array<AdonisImage>;
-  selectedPhoto: string;
+  selectedPhoto: AdonisImage | null;
   isOpen: boolean;
   isLoading: boolean;
 }
@@ -84,4 +100,5 @@ export type AdonisActionTypes =
   | GetAdonisGalleryPhotosActionTypes
   | SetAdonisGalleryComponentActionTypes
   | SetAdonisSelectedPhotoActionTypes
-  | UploadAdonisPhotoActionTypes;
+  | UploadAdonisPhotoActionTypes
+  | SetAdonisActivePhotoActionTypes;

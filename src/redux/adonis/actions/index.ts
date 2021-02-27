@@ -7,7 +7,10 @@ import {
   GET_ADONIS_GALLERY_PHOTOS_FAIL,
   GET_ADONIS_GALLERY_PHOTOS_START,
   GET_ADONIS_GALLERY_PHOTOS_SUCCESS,
+  SetAdonisActivePhotoActionTypes,
   SetAdonisGalleryComponentActionTypes,
+  SET_ADONIS_ACTIVE_PHOTO,
+  SET_ADONIS_ACTIVE_PHOTO_NULL,
   SET_ADONIS_GALLERY_CLOSE,
   SET_ADONIS_GALLERY_OPEN,
   UploadAdonisPhotoActionTypes,
@@ -33,6 +36,27 @@ export const galleryClose = (): SetAdonisGalleryComponentActionTypes => {
 export const galleryOpen = (): SetAdonisGalleryComponentActionTypes => {
   return {
     type: SET_ADONIS_GALLERY_OPEN,
+  };
+};
+
+export const setActivePhoto = (
+  adonisImage: AdonisImage
+): SetAdonisActivePhotoActionTypes => {
+  return {
+    type: SET_ADONIS_ACTIVE_PHOTO,
+    payload: {
+      fileName: adonisImage.fileName,
+      uuid: adonisImage.uuid,
+      gallery: adonisImage.gallery,
+      gallery_thumbnail: adonisImage.gallery_thumbnail,
+      gallery_thumbnail_blur: adonisImage.gallery_thumbnail_blur,
+    },
+  };
+};
+
+export const setActivePhotoNull = (): SetAdonisActivePhotoActionTypes => {
+  return {
+    type: SET_ADONIS_ACTIVE_PHOTO_NULL,
   };
 };
 

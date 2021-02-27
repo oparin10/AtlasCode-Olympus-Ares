@@ -64,6 +64,7 @@ interface Props {
   photoURL?: string;
   imageName?: string;
   active?: boolean;
+  uuid?: string;
 }
 
 const AdonisPhoto = ({

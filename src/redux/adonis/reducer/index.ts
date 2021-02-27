@@ -13,11 +13,13 @@ import {
   GET_ADONIS_GALLERY_PHOTOS_SUCCESS,
   GET_ADONIS_GALLERY_PHOTOS_START,
   GET_ADONIS_GALLERY_PHOTOS_FAIL,
+  SET_ADONIS_ACTIVE_PHOTO,
+  SET_ADONIS_ACTIVE_PHOTO_NULL,
 } from "../types";
 
 let initialState: AdonisGalleryState = {
   gallery: [],
-  selectedPhoto: "",
+  selectedPhoto: null,
   isOpen: false,
   isLoading: false,
 };
@@ -27,6 +29,12 @@ export const adonisReducer = (
   action: AdonisActionTypes
 ) => {
   switch (action.type) {
+    case SET_ADONIS_ACTIVE_PHOTO:
+      return { ...state, selectedPhoto: action.payload };
+
+    case SET_ADONIS_ACTIVE_PHOTO_NULL:
+      return { ...state, selectedPhoto: null };
+
     case SET_ADONIS_GALLERY_OPEN:
       return { ...state, isOpen: true };
 

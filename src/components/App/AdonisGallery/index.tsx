@@ -156,7 +156,7 @@ const AdonisGallery = ({
             >
               <AdonisGalleryBody>
                 <AdonisGalleryBodyInnerContainer>
-                  <AdonisGalleryHeader />
+                  <AdonisGalleryHeader isPhotoSelected={isPhotoSelected} />
 
                   <AdonisGalleryCircularLoaderContainer>
                     <Fade

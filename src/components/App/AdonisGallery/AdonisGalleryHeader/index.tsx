@@ -78,9 +78,11 @@ const AdonisUploadInputField = styled.input`
   display: none;
 `;
 
-interface Props {}
+interface Props {
+  isPhotoSelected: boolean;
+}
 
-const AdonisGalleryHeader = (props: Props) => {
+const AdonisGalleryHeader = ({ isPhotoSelected = false }: Props) => {
   const dispatch = useDispatch();
 
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -134,13 +136,13 @@ const AdonisGalleryHeader = (props: Props) => {
           <IconComponent
             helper={"Selecione uma imagem para deletá-la"}
             clickable
-            disabled={true}
+            disabled={!isPhotoSelected}
             iconType="DeleteForever"
           />
           <IconComponent
             helper={"Selecione uma imagem para copiar seu link"}
             clickable
-            disabled={true}
+            disabled={!isPhotoSelected}
             iconType="FileCopy"
           />
 

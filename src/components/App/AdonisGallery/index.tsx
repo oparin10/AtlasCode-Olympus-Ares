@@ -16,10 +16,13 @@ import {
 import styled from "styled-components";
 import AdonisGalleryHeader from "./AdonisGalleryHeader";
 import {
+  adonisConfig,
   AdonisImage,
   AdonisOrderedTriple,
 } from "../../../config/adonis.config";
 import AdonisPhoto from "./AdonisPhoto";
+import { storage } from "../../../firebase";
+import getAdonisOrderedTriple from "../../../helper/getAdonisOrderedTriple";
 
 const AdonisGalleryCircularLoaderContainer = styled.div`
   position: absolute;

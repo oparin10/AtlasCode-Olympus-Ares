@@ -44,9 +44,21 @@ export const optimizeAndCreateThumbnail = async (
   const fileName: string = converToSlug(req.body.fileName);
   const fileExtension: string = "webp";
   const nanoID: string = nanoid();
-  const fileNameWithExtension: string = `${fileName}.${fileExtension}`;
+  let fileNameWithExtension: string = `${fileName}.${fileExtension}`;
   const baseCloudURL: string = "https://firebasestorage.googleapis.com/v0/b/";
   const uploadTime: string = new Date().toISOString();
+
+  let fileDuplicated = await bucket
+    .file(
+      `${adonisConfig.path.rootFolder}/${adonisConfig.path.gallery}/${fileNameWithExtension}`
+    )
+    .exists();
+
+  if (fileDuplicated[0]) {
+    let fileDuplicateID: string = nanoid(5);
+
+    fileNameWithExtension = `${fileName}-${fileDuplicateID}.${fileExtension}`;
+  }
 
   const imageMetadata = {
     cacheControl: "public, max-age=1296000",
@@ -77,9 +89,9 @@ export const optimizeAndCreateThumbnail = async (
 
   const bucketPath: AdonisPath = {
     rootFolder: adonisConfig.path.rootFolder,
-    gallery: `${adonisConfig.path.rootFolder}/${adonisConfig.path.gallery}/${nanoID}/${fileNameWithExtension}`,
-    galleryThumbnail: `${adonisConfig.path.rootFolder}/${adonisConfig.path.galleryThumbnail}/${nanoID}/${fileNameWithExtension}`,
-    galleryThumbnailBlur: `${adonisConfig.path.rootFolder}/${adonisConfig.path.galleryThumbnailBlur}/${nanoID}/${fileNameWithExtension}`,
+    gallery: `${adonisConfig.path.rootFolder}/${adonisConfig.path.gallery}/${fileNameWithExtension}`,
+    galleryThumbnail: `${adonisConfig.path.rootFolder}/${adonisConfig.path.galleryThumbnail}/${fileNameWithExtension}`,
+    galleryThumbnailBlur: `${adonisConfig.path.rootFolder}/${adonisConfig.path.galleryThumbnailBlur}/${fileNameWithExtension}`,
   };
 
   //   Convert images, transform them and save them to OS temp folder
@@ -129,19 +141,17 @@ export const optimizeAndCreateThumbnail = async (
     uuid: nanoID,
     gallery: `${baseCloudURL}${admin.storage().app.options.storageBucket}/o/${
       adonisConfig.path.rootFolder
-    }%2F${
-      adonisConfig.path.gallery
-    }%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+    }%2F${adonisConfig.path.gallery}%2F${fileName}.${fileExtension}?alt=media`,
     gallery_thumbnail: `${baseCloudURL}${
       admin.storage().app.options.storageBucket
     }/o/${adonisConfig.path.rootFolder}%2F${
       adonisConfig.path.galleryThumbnail
-    }%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+    }%2F${fileName}.${fileExtension}?alt=media`,
     gallery_thumbnail_blur: `${baseCloudURL}${
       admin.storage().app.options.storageBucket
     }/o/${adonisConfig.path.rootFolder}%2F${
       adonisConfig.path.galleryThumbnailBlur
-    }%2F${nanoID}%2F${fileName}.${fileExtension}?alt=media`,
+    }%2F${fileName}.${fileExtension}?alt=media`,
   };
 
   return res.json(optimizationResponse).status(200);

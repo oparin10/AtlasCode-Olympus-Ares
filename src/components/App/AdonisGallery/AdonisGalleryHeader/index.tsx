@@ -126,30 +126,32 @@ const AdonisGalleryHeader = ({
   };
 
   const onFileCopy = () => {
-    navigator.clipboard
-      .writeText(selectedPhoto.gallery)
-      .then((result) => {
-        dispatch(
-          globalNotificationCustom(
-            "Link da imagem copiado com sucesso",
-            "success"
-          )
-        );
+    if (isPhotoSelected) {
+      navigator.clipboard
+        .writeText(selectedPhoto.gallery)
+        .then((result) => {
+          dispatch(
+            globalNotificationCustom(
+              "Link da imagem copiado com sucesso",
+              "success"
+            )
+          );
 
-        dispatch(setActivePhotoNull());
-      })
-      .catch((error) => {
-        dispatch(
-          globalNotificationCustom(
-            "Ocorreu um erro ao tentar copiar o link da imagem",
-            "error"
-          )
-        );
-      });
+          dispatch(setActivePhotoNull());
+        })
+        .catch((error) => {
+          dispatch(
+            globalNotificationCustom(
+              "Ocorreu um erro ao tentar copiar o link da imagem",
+              "error"
+            )
+          );
+        });
+    }
   };
 
   const onFileDelete = () => {
-    dispatch(deleteImage(selectedPhoto.gallery));
+    dispatch(deleteImage());
   };
 
   return (

@@ -3,6 +3,7 @@ import { RootStateOrAny } from "react-redux";
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 import {
+  AdonisGalleryState,
   DeleteAdonisImageActionTypes,
   DELETE_ADONIS_IMAGE_FAIL,
   DELETE_ADONIS_IMAGE_START,
@@ -76,52 +77,39 @@ export const getAllImageLinks = (): ThunkAction<
     });
 
     try {
-      let allThumbNailFolder = await storage
+      let allThumbnailRefs = await storage
         .ref()
         .child(
           `${adonisConfig.path.rootFolder}/${adonisConfig.path.galleryThumbnail}`
         )
         .listAll();
 
-      let allFilesPaths: Array<string> = [];
+      let allThumbnailPath = allThumbnailRefs.items;
 
-      allThumbNailFolder.prefixes.forEach((item) => {
-        allFilesPaths.push(item.fullPath);
-      });
+      let adonisImageGallery: Array<AdonisImage> = [];
 
-      let adonisImages: Array<AdonisImage> = [];
+      for (let i = 0; i < allThumbnailPath.length; i++) {
+        let fileMetadata = await allThumbnailPath[i].getMetadata();
 
-      for (let i = 0; i < allFilesPaths.length; i++) {
-        const element = allFilesPaths[i];
-
-        let fullImagePath: string = (
-          await storage.ref().child(element).listAll()
-        ).items[0].fullPath;
-
-        let thumbNailMetadata: any = await storage
-          .ref()
-          .child(fullImagePath)
-          .getMetadata();
-
-        let orderTripleLocal: AdonisOrderedTriple = getAdonisOrderedTriple(
-          thumbNailMetadata.name,
-          thumbNailMetadata.customMetadata.uuid
+        let adonisOrderedTripleInternal: AdonisOrderedTriple = getAdonisOrderedTriple(
+          fileMetadata.name
         );
 
-        let orderedTripleWithMeta: AdonisImage = {
-          fileName: thumbNailMetadata.name,
-          uuid: thumbNailMetadata.customMetadata.uuid,
-          gallery: orderTripleLocal.gallery,
-          gallery_thumbnail: orderTripleLocal.gallery_thumbnail,
-          gallery_thumbnail_blur: orderTripleLocal.gallery_thumbnail_blur,
+        let adonisImageInternal: AdonisImage = {
+          fileName: fileMetadata.customMetadata.fileName,
+          uuid: fileMetadata.customMetadata.uuid,
+          gallery: adonisOrderedTripleInternal.gallery,
+          gallery_thumbnail: adonisOrderedTripleInternal.gallery_thumbnail,
+          gallery_thumbnail_blur:
+            adonisOrderedTripleInternal.gallery_thumbnail_blur,
         };
 
-        adonisImages.push(orderedTripleWithMeta);
+        adonisImageGallery.push(adonisImageInternal);
       }
 
       dispatch({
         type: GET_ADONIS_GALLERY_PHOTOS_SUCCESS,
-        payload: adonisImages,
+        payload: adonisImageGallery,
       });
     } catch (error) {
       dispatch({
@@ -132,30 +120,41 @@ export const getAllImageLinks = (): ThunkAction<
   };
 };
 
-export const deleteImage = (
-  imageURL: string
-): ThunkAction<void, RootStateOrAny, unknown, Action<string>> => {
-  return (dispatch: Dispatch<DeleteAdonisImageActionTypes>) => {
+export const deleteImage = (): ThunkAction<
+  void,
+  RootStateOrAny,
+  unknown,
+  Action<string>
+> => {
+  return async (dispatch: Dispatch<DeleteAdonisImageActionTypes>, getState) => {
     dispatch({
       type: DELETE_ADONIS_IMAGE_START,
     });
 
-    storage
-      .refFromURL(imageURL)
-      .delete()
-      .then((deleteSuccessResult) => {
-        console.log(deleteSuccessResult);
-        dispatch({
-          type: DELETE_ADONIS_IMAGE_SUCCESS,
-          payload: { deletedImageURL: imageURL },
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-        dispatch({
-          type: DELETE_ADONIS_IMAGE_FAIL,
-        });
+    let currentState: AdonisGalleryState = getState().adonis;
+
+    let selectedImageFull: string = currentState.selectedPhoto.gallery;
+    let selectedImageThumbnail: string =
+      currentState.selectedPhoto.gallery_thumbnail;
+    let selectedImageThumbnailBlur: string =
+      currentState.selectedPhoto.gallery_thumbnail_blur;
+
+    try {
+      await storage.refFromURL(selectedImageFull).delete();
+      await storage.refFromURL(selectedImageThumbnail).delete();
+      await storage.refFromURL(selectedImageThumbnailBlur).delete();
+
+      dispatch({
+        type: DELETE_ADONIS_IMAGE_SUCCESS,
+        payload: {
+          deletedImageURL: selectedImageFull,
+        },
       });
+    } catch (error) {
+      dispatch({
+        type: DELETE_ADONIS_IMAGE_FAIL,
+      });
+    }
   };
 };
 

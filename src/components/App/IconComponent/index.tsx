@@ -44,17 +44,17 @@ const IconComponent = ({
   const IconComponentDynamic = IconDictonary[iconType as IconTypes];
 
   const [helperState, setHelperState] = React.useState<boolean>(false);
-  const [helperTimeout, setHelperTimeout] = React.useState<number>(0);
+  const [helperTime, setHelperTime] = React.useState<number>(0);
 
-  React.useEffect(() => {
-    if (helperState) {
-      setTimeout(() => {
-        setHelperTimeout((prevState) => prevState + 1);
-      }, 1000);
-    } else {
-      setHelperTimeout(0);
-    }
-  }, [helperState, helperTimeout]);
+  // React.useEffect(() => {
+  //   if (helperState) {
+  //     setTimeout(() => {
+  //       setHelperTime((prevState) => prevState + 1);
+  //     }, 1000);
+  //   } else {
+  //     setHelperTime(0);
+  //   }
+  // }, [helperState]);
 
   return (
     <div style={{ position: "relative" }}>
@@ -75,7 +75,7 @@ const IconComponent = ({
       {helper ? (
         <div style={{ position: "fixed", zIndex: 7000 }}>
           <Grow
-            in={helperState && helperTimeout >= 1 && disabled}
+            in={helperState && helperTime > 1 && disabled}
             timeout={{ enter: 350, exit: 350 }}
           >
             <div>

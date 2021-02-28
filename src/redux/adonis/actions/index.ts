@@ -3,6 +3,10 @@ import { RootStateOrAny } from "react-redux";
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 import {
+  DeleteAdonisImageActionTypes,
+  DELETE_ADONIS_IMAGE_FAIL,
+  DELETE_ADONIS_IMAGE_START,
+  DELETE_ADONIS_IMAGE_SUCCESS,
   GetAdonisGalleryPhotosActionTypes,
   GET_ADONIS_GALLERY_PHOTOS_FAIL,
   GET_ADONIS_GALLERY_PHOTOS_START,
@@ -125,6 +129,33 @@ export const getAllImageLinks = (): ThunkAction<
         payload: error.message,
       });
     }
+  };
+};
+
+export const deleteImage = (
+  imageURL: string
+): ThunkAction<void, RootStateOrAny, unknown, Action<string>> => {
+  return (dispatch: Dispatch<DeleteAdonisImageActionTypes>) => {
+    dispatch({
+      type: DELETE_ADONIS_IMAGE_START,
+    });
+
+    storage
+      .refFromURL(imageURL)
+      .delete()
+      .then((deleteSuccessResult) => {
+        console.log(deleteSuccessResult);
+        dispatch({
+          type: DELETE_ADONIS_IMAGE_SUCCESS,
+          payload: { deletedImageURL: imageURL },
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        dispatch({
+          type: DELETE_ADONIS_IMAGE_FAIL,
+        });
+      });
   };
 };
 

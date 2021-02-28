@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { AdonisImage } from "../../../../config/adonis.config";
 import convertBase64 from "../../../../helper/converFileUploadToBase64";
 import {
+  deleteImage,
   galleryClose,
+  setActivePhotoNull,
   uploadAndOptimizeImage,
 } from "../../../../redux/adonis/actions";
 import { globalNotificationCustom } from "../../../../redux/globalUI/actions";
@@ -133,6 +135,8 @@ const AdonisGalleryHeader = ({
             "success"
           )
         );
+
+        dispatch(setActivePhotoNull());
       })
       .catch((error) => {
         dispatch(
@@ -142,6 +146,10 @@ const AdonisGalleryHeader = ({
           )
         );
       });
+  };
+
+  const onFileDelete = () => {
+    dispatch(deleteImage(selectedPhoto.gallery));
   };
 
   return (
@@ -160,12 +168,14 @@ const AdonisGalleryHeader = ({
         </AdonisGalleryUploadButtonContainer>
 
         <AdonisGalleryAltActionsContainer>
-          <IconComponent
-            helper={"Selecione uma imagem para deletá-la"}
-            clickable
-            disabled={!isPhotoSelected}
-            iconType="DeleteForever"
-          />
+          <div onClick={onFileDelete}>
+            <IconComponent
+              helper={"Selecione uma imagem para deletá-la"}
+              clickable
+              disabled={!isPhotoSelected}
+              iconType="DeleteForever"
+            />
+          </div>
           <div onClick={onFileCopy}>
             <IconComponent
               helper={"Selecione uma imagem para copiar seu link"}

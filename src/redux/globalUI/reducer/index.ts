@@ -1,4 +1,8 @@
 import {
+  DeleteAdonisImageActionTypes,
+  DELETE_ADONIS_IMAGE_FAIL,
+  DELETE_ADONIS_IMAGE_START,
+  DELETE_ADONIS_IMAGE_SUCCESS,
   UploadAdonisPhotoActionTypes,
   UPLOAD_ADONIS_PHOTO_FAIL,
   UPLOAD_ADONIS_PHOTO_START,
@@ -33,6 +37,7 @@ export const globalUIReducer = (
     | GlobalStateActionTypes
     | UploadAdonisPhotoActionTypes
     | ConfigurationActionTypes
+    | DeleteAdonisImageActionTypes
 ): GlobalUIState => {
   switch (action.type) {
     case GLOBAL_NOTIFICATION_CUSTOM:
@@ -41,6 +46,29 @@ export const globalUIReducer = (
         notificationOpen: true,
         notificationMessage: action.payload.notificationMessage,
         notificationSeverity: action.payload.notificationSeverity,
+      };
+
+    // Delete Adonis Image
+    case DELETE_ADONIS_IMAGE_START:
+      return { ...state, isLoading: true };
+
+    case DELETE_ADONIS_IMAGE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        notificationMessage: "Imagem deletada com sucesso",
+        notificationOpen: true,
+        notificationSeverity: "success",
+      };
+
+    case DELETE_ADONIS_IMAGE_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        notificationMessage:
+          "Ocorreu um erro ao tentar deletar uma imagem da galeria",
+        notificationOpen: true,
+        notificationSeverity: "error",
       };
 
     // General Global UI events

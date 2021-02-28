@@ -15,6 +15,7 @@ import {
   GET_ADONIS_GALLERY_PHOTOS_FAIL,
   SET_ADONIS_ACTIVE_PHOTO,
   SET_ADONIS_ACTIVE_PHOTO_NULL,
+  DELETE_ADONIS_IMAGE_SUCCESS,
 } from "../types";
 
 let initialState: AdonisGalleryState = {
@@ -34,10 +35,34 @@ let initialState: AdonisGalleryState = {
 export const adonisReducer = (
   state = initialState,
   action: AdonisActionTypes
-) => {
+): AdonisGalleryState => {
   switch (action.type) {
+    case DELETE_ADONIS_IMAGE_SUCCESS:
+      let localGalleryArray: Array<AdonisImage> = [...state.gallery];
+
+      let removeDeletedItem: Array<AdonisImage> = localGalleryArray.filter(
+        (adonisImage) => {
+          return adonisImage.gallery !== action.payload.deletedImageURL;
+        }
+      );
+
+      return { ...state, gallery: removeDeletedItem };
+
     case SET_ADONIS_ACTIVE_PHOTO:
       return { ...state, selectedPhoto: action.payload, isPhotoSelected: true };
+
+    case SET_ADONIS_ACTIVE_PHOTO_NULL:
+      return {
+        ...state,
+        isPhotoSelected: false,
+        selectedPhoto: {
+          fileName: "",
+          gallery: "",
+          gallery_thumbnail: "",
+          gallery_thumbnail_blur: "",
+          uuid: "",
+        },
+      };
 
     case SET_ADONIS_GALLERY_OPEN:
       return { ...state, isOpen: true };

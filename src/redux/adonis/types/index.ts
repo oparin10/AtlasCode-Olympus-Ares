@@ -21,6 +21,32 @@ export const UPLOAD_ADONIS_PHOTO_FAIL = "UPLOAD_ADONIS_PHOTO_FAIL";
 export const SET_ADONIS_ACTIVE_PHOTO = "SET_ADONIS_ACTIVE_PHOTO";
 export const SET_ADONIS_ACTIVE_PHOTO_NULL = "SET_ADONIS_ACTIVE_PHOTO_NULL";
 
+export const DELETE_ADONIS_IMAGE_START = "DELETE_ADONIS_IMAGE_START";
+export const DELETE_ADONIS_IMAGE_SUCCESS = "DELETE_ADONIS_IMAGE_SUCCESS";
+export const DELETE_ADONIS_IMAGE_FAIL = "DELETE_ADONIS_IMAGE_FAIL";
+
+interface DeleteAdonisImageStart {
+  type: typeof DELETE_ADONIS_IMAGE_START;
+}
+
+interface DeleteAdonisImageSuccessPayload {
+  deletedImageURL: string;
+}
+
+interface DeleteAdonisImageSuccess {
+  type: typeof DELETE_ADONIS_IMAGE_SUCCESS;
+  payload: DeleteAdonisImageSuccessPayload;
+}
+
+interface DeleteAdonisImageFail {
+  type: typeof DELETE_ADONIS_IMAGE_FAIL;
+}
+
+export type DeleteAdonisImageActionTypes =
+  | DeleteAdonisImageStart
+  | DeleteAdonisImageSuccess
+  | DeleteAdonisImageFail;
+
 interface SetAdonisActivePhoto {
   type: typeof SET_ADONIS_ACTIVE_PHOTO;
   payload: AdonisImage;
@@ -84,7 +110,7 @@ interface GetAdonisGalleryPhotosStart {
 
 interface GetAdonisGalleryPhotosSuccess {
   type: typeof GET_ADONIS_GALLERY_PHOTOS_SUCCESS;
-  payload: Array<AdonisOrderedTriple>;
+  payload: Array<AdonisImage>;
 }
 
 interface GetAdonisGalleryPhotosFail {
@@ -102,4 +128,5 @@ export type AdonisActionTypes =
   | SetAdonisGalleryComponentActionTypes
   | SetAdonisSelectedPhotoActionTypes
   | UploadAdonisPhotoActionTypes
-  | SetAdonisActivePhotoActionTypes;
+  | SetAdonisActivePhotoActionTypes
+  | DeleteAdonisImageActionTypes;

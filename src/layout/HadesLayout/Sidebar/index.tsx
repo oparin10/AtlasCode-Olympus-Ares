@@ -8,7 +8,12 @@ import SidebarItemMain from "./SidebarItem";
 const SidebarRoot = styled.div`
   height: 100vh;
   background-color: #363740;
-  width: calc((100% * 0.18525));
+  width: calc((100% * 0.18));
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.35);
+
+  @media (min-width: 1024px) {
+    width: calc((100% * 0.13));
+  }
 `;
 
 const SidebarLogoContainer = styled.div`
@@ -80,7 +85,7 @@ const Sidebar = ({
             <SidebarItemMain
               key={index}
               icon={value.icon}
-              label={value.label}
+              label={value.menuLabel}
               path={value.path}
             />
           );

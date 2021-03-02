@@ -25,11 +25,15 @@ import {
   Settings,
 } from "@material-ui/icons";
 import Login from "../components/App/Login";
+import ImageFieldWidget from "../components/FieldWidgets/ImageFieldWidget";
+import SelectFieldWidget from "../components/FieldWidgets/SelectedFieldWidget";
+import StringFieldWidget from "../components/FieldWidgets/StringFieldWidget";
+import TextFieldWidget from "../components/FieldWidgets/TextFieldWidget";
 import ImageWidget from "../components/Widgets/ImageWidget";
 import MarkdownWidget from "../components/Widgets/MarkdownWidget";
 import StringWidget from "../components/Widgets/StringWidget";
 import TextWidget from "../components/Widgets/TextWidget";
-import { IconTypes, WidgetsTypes } from "../types";
+import { FieldWidgetTypes, IconTypes, WidgetsTypes } from "../types";
 
 export const IconDictonary: Record<
   IconTypes,
@@ -57,6 +61,16 @@ export const IconDictonary: Record<
   Delete: Delete,
   DeleteForever: DeleteForever,
   FileCopy: FileCopy,
+};
+
+export const FieldWidgetDictionary: Record<
+  FieldWidgetTypes,
+  JSX.Element | React.FC | React.ElementType
+> = {
+  string: StringFieldWidget,
+  image: ImageFieldWidget,
+  select: SelectFieldWidget,
+  text: TextFieldWidget,
 };
 
 export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {

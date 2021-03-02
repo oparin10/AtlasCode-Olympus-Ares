@@ -38,16 +38,23 @@ const SidebarItemContainer = styled.div<SidebarItemContainerProps>`
   }
 
   .menuName {
-    font-size: 16px;
+    font-size: 10px;
     margin-left: 15px;
     margin-right: 15px;
     display: none;
   }
 
+  
+
   @media (min-width: 1024px) {
     .menuName {
-      font-size: 16px;
+      font-size: 12px;
       display: block;
+    }
+
+    .MuiSvgIcon-root {
+      width: 0.8em !important;
+      height: 0.8em !important;
     }
   }
 `;

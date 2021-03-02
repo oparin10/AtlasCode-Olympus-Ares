@@ -10,11 +10,12 @@ export const activeCollectionReducer = (
   switch (action.type) {
     case SET_ACTIVE_CONTENT:
       let activeAdminItem: AdminItem = {
-        name: action.payload.name,
+        collectionID: action.payload.collectionID,
         icon: action.payload.icon,
-        label: action.payload.label,
+        menuLabel: action.payload.menuLabel,
         path: action.payload.path,
         widget: action.payload.widget,
+        fields: action.payload.fields,
       };
 
       return activeAdminItem;

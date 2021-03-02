@@ -13,10 +13,20 @@ export const theme: Theme = createMuiTheme({
   },
 
   typography: {
+    body2: {
+      fontFamily: "Iceland",
+    },
+
     fontFamily: "Iceland",
   },
 
   overrides: {
+    MuiScopedCssBaseline: {
+      root: {
+        fontFamily: "Iceland",
+      },
+    },
+
     MuiLinearProgress: {
       colorPrimary: {
         backgroundColor: "#fff",

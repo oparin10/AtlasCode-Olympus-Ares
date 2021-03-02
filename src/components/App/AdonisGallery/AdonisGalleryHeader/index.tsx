@@ -151,7 +151,7 @@ const AdonisGalleryHeader = ({
   };
 
   const onFileDelete = () => {
-    dispatch(deleteImage());
+    if (isPhotoSelected) dispatch(deleteImage());
   };
 
   return (

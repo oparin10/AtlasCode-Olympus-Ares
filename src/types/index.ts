@@ -1,7 +1,5 @@
 import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
-import { AdonisConfig } from "../config/adonis.config";
-import { BrandingConfig } from "../config/branding.config";
 
 export type RouterItem = {
   path: string;
@@ -10,6 +8,7 @@ export type RouterItem = {
   icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
 };
 
+export type FieldWidgetTypes = "image" | "select" | "text" | "string";
 export type WidgetsTypes = "string" | "image" | "markdown" | "text" | "login";
 export type IconTypes =
   | "AttachMoney"

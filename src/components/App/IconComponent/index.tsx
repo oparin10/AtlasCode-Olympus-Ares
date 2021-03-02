@@ -64,7 +64,7 @@ const IconComponent = ({
         style={{
           width: `${width ? width : "1em"}`,
           height: `${height ? height : "1em"}`,
-          cursor: `${clickable && !disabled ? "pointer" : "initial"}`,
+          cursor: `${clickable && !disabled ? "pointer" : "not-allowed"}`,
           color: `${disabled ? "#bdbdbd" : "inherit"}`,
           transition: "all 0.5s ease",
         }}

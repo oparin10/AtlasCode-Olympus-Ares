@@ -1,49 +1,91 @@
 import { IconTypes, WidgetsTypes } from "../types";
 
-export interface AdminItem {
+export interface AdminCollectionField {
   name: string;
   widget: WidgetsTypes;
-  path: string;
   label: string;
+  validation: Array<string> | string | null | undefined;
+}
+
+export interface AdminItem {
+  collectionID: string;
+  widget: WidgetsTypes;
+  path: string;
+  menuLabel: string;
   icon: IconTypes;
+  fields: Array<AdminCollectionField>;
 }
 
 export const collectionsConfig: Array<AdminItem> = [
   {
-    name: "id1",
+    collectionID: "id1",
     widget: "string",
     icon: "AttachMoney",
-    label: "Teste1",
+    menuLabel: "Teste1",
     path: "test",
+    fields: [
+      { label: "Título", name: "title", widget: "string", validation: "" },
+    ],
   },
   {
-    name: "id2",
+    collectionID: "id2",
     widget: "markdown",
     icon: "AddAPhoto",
-    label: "Money1",
+    menuLabel: "Money1",
     path: "test2",
+    fields: [
+      {
+        label: "Blog title",
+        name: "blogTitle",
+        widget: "markdown",
+        validation: null,
+      },
+    ],
   },
   {
-    name: "id3",
+    collectionID: "id3",
     widget: "image",
     icon: "AddCircle",
-    label: "Image",
+    menuLabel: "Image",
     path: "image",
+    fields: [
+      {
+        label: "Blog title",
+        name: "blogTitle",
+        widget: "markdown",
+        validation: null,
+      },
+    ],
   },
 
   {
-    name: "id4",
+    collectionID: "id4",
     widget: "text",
     icon: "AddShoppingCart",
-    label: "Security",
+    menuLabel: "Security",
     path: "security",
+    fields: [
+      {
+        label: "Blog title",
+        name: "blogTitle",
+        widget: "markdown",
+        validation: null,
+      },
+    ],
   },
   {
-    name: "id5",
+    collectionID: "id5",
     widget: "string",
     icon: "AcUnit",
     path: "amostra",
-    label: "Amostra label",
+    menuLabel: "Amostra label",
+    fields: [
+      {
+        label: "Blog title",
+        name: "blogTitle",
+        widget: "markdown",
+        validation: null,
+      },
+    ],
   },
- 
 ];

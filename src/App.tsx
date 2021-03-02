@@ -9,6 +9,8 @@ import AdonisGallery from "./components/App/AdonisGallery";
 import { AdonisGalleryState } from "./redux/adonis/types";
 import GlobalAlert from "./components/Util/GlobalAlert";
 import { GlobalUIState } from "./redux/types";
+import FormCreate from "./components/App/FormCreate";
+import "./css/App.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +37,8 @@ function App() {
         alertOpen={globalUIState.notificationOpen}
         alertSeverity={globalUIState.notificationSeverity}
       />
+
+      <FormCreate />
 
       <AdonisGallery
         isPhotoSelected={adonisState.isPhotoSelected}

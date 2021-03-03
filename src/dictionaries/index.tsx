@@ -33,7 +33,12 @@ import ImageWidget from "../components/Widgets/ImageWidget";
 import MarkdownWidget from "../components/Widgets/MarkdownWidget";
 import StringWidget from "../components/Widgets/StringWidget";
 import TextWidget from "../components/Widgets/TextWidget";
-import { FieldWidgetTypes, IconTypes, WidgetsTypes } from "../types";
+import {
+  FieldComponentProps,
+  FieldWidgetTypes,
+  IconTypes,
+  WidgetsTypes,
+} from "../types";
 
 export const IconDictonary: Record<
   IconTypes,
@@ -65,7 +70,7 @@ export const IconDictonary: Record<
 
 export const FieldWidgetDictionary: Record<
   FieldWidgetTypes,
-  JSX.Element | React.FC | React.ElementType
+  React.FC<FieldComponentProps>
 > = {
   string: StringFieldWidget,
   image: ImageFieldWidget,

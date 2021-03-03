@@ -1,7 +1,7 @@
 import { TextField } from "@material-ui/core";
 import React from "react";
 
-interface Props {
+export interface StringFieldWidgetProps {
   fullWidth?: boolean;
   onChange: () => void;
   error?: boolean;
@@ -14,7 +14,7 @@ const StringFieldWidget = ({
   value,
   onChange,
   fullWidth = false,
-}: Props) => {
+}: StringFieldWidgetProps) => {
   return (
     <TextField
       label={label.toString()}

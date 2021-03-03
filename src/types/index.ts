@@ -8,6 +8,17 @@ export type RouterItem = {
   icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
 };
 
+export interface FieldComponentProps {
+  onChange: (e?: any) => void;
+  error?: boolean;
+  label: string;
+  value: any;
+}
+
+export interface FieldComponentRootProps extends FieldComponentProps {
+  fieldType: FieldWidgetTypes;
+}
+
 export type FieldWidgetTypes = "image" | "select" | "text" | "string";
 export type WidgetsTypes = "string" | "image" | "markdown" | "text" | "login";
 export type IconTypes =

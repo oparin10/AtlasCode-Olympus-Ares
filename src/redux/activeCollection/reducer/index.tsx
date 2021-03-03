@@ -11,8 +11,8 @@ export const activeCollectionReducer = (
     case SET_ACTIVE_CONTENT:
       let activeAdminItem: AdminItem = {
         collectionID: action.payload.collectionID,
-        icon: action.payload.icon,
-        menuLabel: action.payload.menuLabel,
+        sidebarIcon: action.payload.sidebarIcon,
+        sidebarLabel: action.payload.sidebarLabel,
         path: action.payload.path,
         widget: action.payload.widget,
         fields: action.payload.fields,

@@ -19,7 +19,12 @@ export interface FieldComponentRootProps extends FieldComponentProps {
   fieldType: FieldWidgetTypes;
 }
 
-export type FieldWidgetTypes = "image" | "select" | "text" | "string";
+export type FieldWidgetTypes =
+  | "image"
+  | "select"
+  | "text"
+  | "string"
+  | "markdown";
 export type WidgetsTypes = "string" | "image" | "markdown" | "text" | "login";
 export type IconTypes =
   | "AttachMoney"

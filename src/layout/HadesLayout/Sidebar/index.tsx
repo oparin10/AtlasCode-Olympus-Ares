@@ -84,8 +84,8 @@ const Sidebar = ({
           return (
             <SidebarItemMain
               key={index}
-              icon={value.icon}
-              label={value.menuLabel}
+              icon={value.sidebarIcon}
+              label={value.sidebarLabel}
               path={value.path}
             />
           );

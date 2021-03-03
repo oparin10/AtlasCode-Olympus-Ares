@@ -5,6 +5,7 @@ import styled from "styled-components";
 import IconComponent from "../../../components/App/IconComponent";
 import getCurrentPath from "../../../helper/currentPath";
 import { galleryOpen } from "../../../redux/adonis/actions";
+import { createItemOpen } from "../../../redux/createItem/actions";
 import UserProfileButton from "./UserProfileButton";
 
 const UpperbarRoot = styled.div`
@@ -51,8 +52,6 @@ interface Props {
 }
 
 const Upperbar = ({ label = "Place holder label" }: Props) => {
-  let currentPath = getCurrentPath();
-
   const dispatch = useDispatch();
 
   return (
@@ -64,7 +63,6 @@ const Upperbar = ({ label = "Place holder label" }: Props) => {
           </Fade>
         </UpperbarTitleContainer>
         <Box
-          onClick={() => dispatch(galleryOpen())}
           display="flex"
           flexDirection="row"
           flexGrow={1}
@@ -72,13 +70,25 @@ const Upperbar = ({ label = "Place holder label" }: Props) => {
           mr={5}
           color={"#e4e5ed"}
         >
-          <IconComponent
-            clickable
-            height="2em"
-            width="1.2em"
-            iconType="PhotoLibrary"
-          />
+          <Box onClick={() => dispatch(galleryOpen())}>
+            <IconComponent
+              clickable
+              height="2em"
+              width="1.2em"
+              iconType="PhotoLibrary"
+            />
+          </Box>
+
+          <Box ml={3} mr={2} onClick={() => dispatch(createItemOpen())}>
+            <IconComponent
+              height="2em"
+              width="1.2em"
+              clickable
+              iconType="Add"
+            />
+          </Box>
         </Box>
+
         <UserProfileButton />
       </UpperbarInnerContainer>
     </UpperbarRoot>

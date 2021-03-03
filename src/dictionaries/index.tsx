@@ -26,6 +26,7 @@ import {
 } from "@material-ui/icons";
 import Login from "../components/App/Login";
 import ImageFieldWidget from "../components/FieldWidgets/ImageFieldWidget";
+import MarkdownFieldWiget from "../components/FieldWidgets/MarkdownFieldWidget";
 import SelectFieldWidget from "../components/FieldWidgets/SelectedFieldWidget";
 import StringFieldWidget from "../components/FieldWidgets/StringFieldWidget";
 import TextFieldWidget from "../components/FieldWidgets/TextFieldWidget";
@@ -76,6 +77,7 @@ export const FieldWidgetDictionary: Record<
   image: ImageFieldWidget,
   select: SelectFieldWidget,
   text: TextFieldWidget,
+  markdown: MarkdownFieldWiget,
 };
 
 export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {

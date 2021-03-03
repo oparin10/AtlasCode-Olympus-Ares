@@ -2,9 +2,15 @@ import { Fade } from "@material-ui/core";
 import React from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import FullScreenDialog from "../../components/App/FullscreenDialog";
 import { AdminItem } from "../../config/collections.config";
 import getCurrentPath from "../../helper/currentPath";
 import { setActiveCollection } from "../../redux/activeCollection/actions";
+import {
+  createItemClose,
+  setCreateItemFields,
+} from "../../redux/createItem/actions";
+import { CreateItemState } from "../../redux/createItem/types";
 import Sidebar from "./Sidebar";
 import Upperbar from "./Upperbar";
 
@@ -18,7 +24,6 @@ const HadesLayoutRoot = styled.div`
 `;
 const HadesContentContainer = styled.div`
   width: calc(100% * 0.82);
-
 
   @media (min-width: 1024px) {
     width: calc(100% * 0.87);
@@ -34,6 +39,10 @@ const HadesLayout = ({ any, ...rest }: Props) => {
     (state: RootStateOrAny) => state.activeCollection
   );
 
+  const createItem: CreateItemState = useSelector(
+    (state: RootStateOrAny) => state.createItem
+  );
+
   const dispatch = useDispatch();
   const currentPath = getCurrentPath();
 
@@ -43,16 +52,28 @@ const HadesLayout = ({ any, ...rest }: Props) => {
     });
 
     dispatch(setActiveCollection(activeCollection[0] as AdminItem));
+
+    dispatch(setCreateItemFields(activeCollection[0].fields));
   }, []);
 
   return (
     <HadesLayoutRoot>
       <Sidebar collections={collectionsState} />
       <HadesContentContainer>
-        <Upperbar label={activeCollection ? activeCollection.menuLabel : ""} />
+        <Upperbar
+          label={activeCollection ? activeCollection.sidebarLabel : ""}
+        />
 
         <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
-          <div>{rest.children}</div>
+          <div style={{ position: "relative" }}>
+            {rest.children}
+            {activeCollection && activeCollection.fields.length > 0 ? (
+              <FullScreenDialog
+                open={createItem.isOpen}
+                handleClose={() => dispatch(createItemClose())}
+              />
+            ) : null}
+          </div>
         </Fade>
       </HadesContentContainer>
     </HadesLayoutRoot>

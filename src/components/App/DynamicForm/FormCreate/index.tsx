@@ -3,7 +3,7 @@ import FieldWidgetComponent from "../../../FieldWidgets/FieldWidgetComponent";
 import { AdminItem } from "../../../../config/collections.config";
 import FormBase from "../FormBase";
 import { useDispatch } from "react-redux";
-import { setCreateItemFields } from "../../../../redux/entries/actions";
+import { setEntryInitialFields } from "../../../../redux/entries/actions";
 
 interface Props {
   activeCollection: AdminItem;

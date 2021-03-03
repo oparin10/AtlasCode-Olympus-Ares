@@ -9,14 +9,14 @@ export interface AdminCollectionField {
   name: string;
   fieldType: FieldWidgetTypes;
   label: string;
-  validation: Array<string> | string | null | undefined;
-  value?: string;
+  validation: Array<string> | string | null | undefined | RegExp;
+  defaultValue?: string;
 }
 
 export interface AdminItem {
   collectionRef: string;
   dataWidget: DataWidgetTypes;
-  path: string;
+  routerPath: string;
   sidebarLabel: string;
   sidebarIcon: IconTypes;
   fields: Array<AdminCollectionField>;
@@ -24,13 +24,19 @@ export interface AdminItem {
 
 export const collectionsConfig: Array<AdminItem> = [
   {
-    collectionRef: "id1",
+    collectionRef: "testCollection",
     dataWidget: "table",
     sidebarIcon: "AttachMoney",
     sidebarLabel: "Teste1",
-    path: "test",
+    routerPath: "test",
     fields: [
-      { label: "Título", name: "title", fieldType: "string", validation: "" },
+      {
+        label: "Título",
+        name: "title",
+        fieldType: "string",
+        validation: "",
+        defaultValue: "defaultValueTest",
+      },
       {
         label: "Other string field",
         name: "other",
@@ -44,7 +50,7 @@ export const collectionsConfig: Array<AdminItem> = [
     dataWidget: "table",
     sidebarIcon: "AddAPhoto",
     sidebarLabel: "Money1",
-    path: "test2",
+    routerPath: "test2",
     fields: [
       {
         label: "Blog title",
@@ -59,7 +65,7 @@ export const collectionsConfig: Array<AdminItem> = [
     dataWidget: "table",
     sidebarIcon: "AddCircle",
     sidebarLabel: "Image",
-    path: "image",
+    routerPath: "image",
     fields: [
       {
         label: "Blog title",
@@ -75,7 +81,7 @@ export const collectionsConfig: Array<AdminItem> = [
     dataWidget: "table",
     sidebarIcon: "AddShoppingCart",
     sidebarLabel: "Security",
-    path: "security",
+    routerPath: "security",
     fields: [
       {
         label: "Blog title",
@@ -89,7 +95,7 @@ export const collectionsConfig: Array<AdminItem> = [
     collectionRef: "id5",
     dataWidget: "table",
     sidebarIcon: "AcUnit",
-    path: "amostra",
+    routerPath: "amostra",
     sidebarLabel: "Amostra label",
     fields: [
       {

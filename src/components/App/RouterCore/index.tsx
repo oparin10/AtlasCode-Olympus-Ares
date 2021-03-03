@@ -45,7 +45,7 @@ const RouterCore = ({
             isAuth={testAuth}
             layout={layoutComponent}
             component={routerItem.dataWidget}
-            path={`/${basePath}/${routerItem.path}`}
+            path={`/${basePath}/${routerItem.routerPath}`}
             basePath={basePath}
             startingPath={startingPath}
           />

@@ -3,9 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import IconComponent from "../../../components/App/IconComponent";
-import getCurrentPath from "../../../helper/currentPath";
 import { galleryOpen } from "../../../redux/adonis/actions";
-import { createItemOpen } from "../../../redux/entries/actions";
 import UserProfileButton from "./UserProfileButton";
 
 const UpperbarRoot = styled.div`
@@ -76,15 +74,6 @@ const Upperbar = ({ label = "Place holder label" }: Props) => {
               height="2em"
               width="1.2em"
               iconType="PhotoLibrary"
-            />
-          </Box>
-
-          <Box ml={3} mr={2} onClick={() => dispatch(createItemOpen())}>
-            <IconComponent
-              height="2em"
-              width="1.2em"
-              clickable
-              iconType="Add"
             />
           </Box>
         </Box>

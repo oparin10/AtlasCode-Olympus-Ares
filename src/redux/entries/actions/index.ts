@@ -1,5 +1,4 @@
 import { AdminCollectionField } from "../../../config/collections.config";
-import { fieldValues } from "../../../firebase";
 import {
   EntrySetInitialActionTypes,
   EntryCreateVisibilityActionTypes,
@@ -7,11 +6,28 @@ import {
   ENTRY_CREATE_VISIBILITY_SHOW,
   ENTRY_SET_INITIAL_VALUE,
   ENTRY_SET_INITIAL_NULL,
+  EntryDraftSaveActionTypes,
+  EntryDraftActionTypes,
+  ENTRY_DRAFT_NEW,
+  ENTRY_DRAFT_DISCARD,
 } from "../types";
 
-export const hehe = "hehe";
+export const entryDraftNew = (
+  fields: Array<AdminCollectionField>
+): EntryDraftActionTypes => {
+  return {
+    type: ENTRY_DRAFT_NEW,
+    payload: fields,
+  };
+};
 
-export const setCreateItemFields = (
+export const entryDraftDiscard = (): EntryDraftActionTypes => {
+  return {
+    type: ENTRY_DRAFT_DISCARD,
+  };
+};
+
+export const setEntryInitialFields = (
   fields: Array<AdminCollectionField>
 ): EntrySetInitialActionTypes => {
   return {
@@ -20,19 +36,19 @@ export const setCreateItemFields = (
   };
 };
 
-export const SetCreateItemFieldsNull = (): EntrySetInitialActionTypes => {
+export const setEntryFieldsNull = (): EntrySetInitialActionTypes => {
   return {
     type: ENTRY_SET_INITIAL_NULL,
   };
 };
 
-export const createItemOpen = (): EntryCreateVisibilityActionTypes => {
+export const entryComponentOpen = (): EntryCreateVisibilityActionTypes => {
   return {
     type: ENTRY_CREATE_VISIBILITY_SHOW,
   };
 };
 
-export const createItemClose = (): EntryCreateVisibilityActionTypes => {
+export const entryComponentClose = (): EntryCreateVisibilityActionTypes => {
   return {
     type: ENTRY_CREATE_VISIBILITY_HIDE,
   };

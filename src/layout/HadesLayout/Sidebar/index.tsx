@@ -86,7 +86,7 @@ const Sidebar = ({
               key={index}
               icon={value.sidebarIcon}
               label={value.sidebarLabel}
-              path={value.path}
+              path={value.routerPath}
             />
           );
         })}

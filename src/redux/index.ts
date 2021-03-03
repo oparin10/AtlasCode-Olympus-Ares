@@ -9,7 +9,7 @@ import { activeCollectionReducer } from "./activeCollection/reducer";
 import { adonisReducer } from "./adonis/reducer";
 import { entriesReducer } from "./entries/reducer";
 
-const rootReducers = combineReducers({
+const rootReducer = combineReducers({
   auth: authenticationReducer,
   config: configurationReducer,
   globalUI: globalUIReducer,
@@ -20,8 +20,10 @@ const rootReducers = combineReducers({
 });
 
 const store = createStore(
-  rootReducers,
+  rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 export default store;

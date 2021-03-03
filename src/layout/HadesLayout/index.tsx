@@ -7,8 +7,9 @@ import { AdminItem } from "../../config/collections.config";
 import getCurrentPath from "../../helper/currentPath";
 import { setActiveCollection } from "../../redux/activeCollection/actions";
 import {
-  createItemClose,
-  setCreateItemFields,
+  entryComponentClose,
+  entryDraftDiscard,
+  setEntryInitialFields,
 } from "../../redux/entries/actions";
 import { EntriesState } from "../../redux/entries/types";
 import Sidebar from "./Sidebar";
@@ -48,12 +49,12 @@ const HadesLayout = ({ any, ...rest }: Props) => {
 
   React.useEffect(() => {
     const activeCollection = collectionsState.filter((obj) => {
-      return obj.path == currentPath;
+      return obj.routerPath == currentPath;
     });
 
     dispatch(setActiveCollection(activeCollection[0] as AdminItem));
 
-    dispatch(setCreateItemFields(activeCollection[0].fields));
+    dispatch(setEntryInitialFields(activeCollection[0].fields));
   }, []);
 
   return (
@@ -68,10 +69,7 @@ const HadesLayout = ({ any, ...rest }: Props) => {
           <div style={{ position: "relative" }}>
             {rest.children}
             {activeCollection && activeCollection.fields.length > 0 ? (
-              <FullScreenDialog
-                open={entries.isOpen}
-                handleClose={() => dispatch(createItemClose())}
-              />
+              <FullScreenDialog />
             ) : null}
           </div>
         </Fade>

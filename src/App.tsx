@@ -9,9 +9,7 @@ import AdonisGallery from "./components/App/AdonisGallery";
 import { AdonisGalleryState } from "./redux/adonis/types";
 import GlobalAlert from "./components/Util/GlobalAlert";
 import { GlobalUIState } from "./redux/types";
-import FormCreate from "./components/App/DynamicForm/FormCreate";
 import "./css/App.css";
-import { EntriesState } from "./redux/entries/types";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,8 +27,6 @@ function App() {
   const activeCollection: AdminItem = useSelector(
     (state: RootStateOrAny) => state.activeCollection
   );
-
-
 
   React.useEffect(() => {
     dispatch(configurationSetup());
@@ -56,7 +52,7 @@ function App() {
       {collectionsState.length > 0 ? (
         <RouterCore
           layoutComponent={HadesLayout}
-          startingPath={collectionsState[0].path}
+          startingPath={collectionsState[0].routerPath}
           routes={collectionsState}
         />
       ) : null}

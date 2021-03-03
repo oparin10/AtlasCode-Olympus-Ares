@@ -13,7 +13,7 @@ export const activeCollectionReducer = (
         collectionRef: action.payload.collectionRef,
         sidebarIcon: action.payload.sidebarIcon,
         sidebarLabel: action.payload.sidebarLabel,
-        path: action.payload.path,
+        routerPath: action.payload.routerPath,
         dataWidget: action.payload.dataWidget,
         fields: action.payload.fields,
       };

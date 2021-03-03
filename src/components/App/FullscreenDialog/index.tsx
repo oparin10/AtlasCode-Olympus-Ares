@@ -13,12 +13,12 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 import { TransitionProps } from "@material-ui/core/transitions";
-import { AdminItem } from "../../../config/collections.config";
-import { useDispatch } from "react-redux";
-import { setCreateItemFields } from "../../../redux/entries/actions";
+import { connect, ConnectedProps, useDispatch } from "react-redux";
 import IconComponent from "../IconComponent";
 import { Box } from "@material-ui/core";
 import { galleryOpen } from "../../../redux/adonis/actions";
+import { entryComponentClose } from "../../../redux/entries/actions";
+import { RootState } from "../../../redux/";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -39,20 +39,18 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-interface Props {
-  open: boolean;
-  handleClose: () => void;
-}
+interface Props extends PropsFromRedux {}
 
-export default function FullScreenDialog({ handleClose, open = false }: Props) {
+function FullScreenDialog({ handleClose, isOpen, openGallery, fields }: Props) {
   const classes = useStyles();
-  const dispatch = useDispatch();
+
+  console.log(fields);
 
   return (
     <div>
       <Dialog
         fullScreen
-        open={open}
+        open={isOpen}
         onClose={handleClose}
         TransitionComponent={Transition}
       >
@@ -67,7 +65,7 @@ export default function FullScreenDialog({ handleClose, open = false }: Props) {
               <CloseIcon />
             </IconButton>
 
-            <Box onClick={() => dispatch(galleryOpen())}>
+            <Box onClick={openGallery}>
               <IconComponent clickable iconType="AddAPhoto" />
             </Box>
             <Typography variant="h6" className={classes.title}>
@@ -94,3 +92,21 @@ export default function FullScreenDialog({ handleClose, open = false }: Props) {
     </div>
   );
 }
+
+const mapState = (state: RootState) => {
+  return {
+    isOpen: state.entries.isOpen,
+    fields: state.activeCollection?.fields,
+  };
+};
+
+const mapDispatch = {
+  handleClose: entryComponentClose,
+  openGallery: galleryOpen,
+};
+
+const connector = connect(mapState, mapDispatch);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+export default connector(FullScreenDialog);

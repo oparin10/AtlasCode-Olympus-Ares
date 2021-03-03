@@ -11,7 +11,7 @@ import GlobalAlert from "./components/Util/GlobalAlert";
 import { GlobalUIState } from "./redux/types";
 import FormCreate from "./components/App/DynamicForm/FormCreate";
 import "./css/App.css";
-import { CreateItemState } from "./redux/createItem/types";
+import { EntriesState } from "./redux/entries/types";
 
 function App() {
   const dispatch = useDispatch();

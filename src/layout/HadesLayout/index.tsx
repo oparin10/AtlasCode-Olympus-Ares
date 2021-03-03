@@ -9,8 +9,8 @@ import { setActiveCollection } from "../../redux/activeCollection/actions";
 import {
   createItemClose,
   setCreateItemFields,
-} from "../../redux/createItem/actions";
-import { CreateItemState } from "../../redux/createItem/types";
+} from "../../redux/entries/actions";
+import { EntriesState } from "../../redux/entries/types";
 import Sidebar from "./Sidebar";
 import Upperbar from "./Upperbar";
 
@@ -39,8 +39,8 @@ const HadesLayout = ({ any, ...rest }: Props) => {
     (state: RootStateOrAny) => state.activeCollection
   );
 
-  const createItem: CreateItemState = useSelector(
-    (state: RootStateOrAny) => state.createItem
+  const entries: EntriesState = useSelector(
+    (state: RootStateOrAny) => state.entries
   );
 
   const dispatch = useDispatch();
@@ -69,7 +69,7 @@ const HadesLayout = ({ any, ...rest }: Props) => {
             {rest.children}
             {activeCollection && activeCollection.fields.length > 0 ? (
               <FullScreenDialog
-                open={createItem.isOpen}
+                open={entries.isOpen}
                 handleClose={() => dispatch(createItemClose())}
               />
             ) : null}

@@ -25,6 +25,7 @@ import {
   Settings,
 } from "@material-ui/icons";
 import Login from "../components/App/Login";
+import DataTable from "../components/DataWidgets/DataTable";
 import ImageFieldWidget from "../components/FieldWidgets/ImageFieldWidget";
 import MarkdownFieldWiget from "../components/FieldWidgets/MarkdownFieldWidget";
 import SelectFieldWidget from "../components/FieldWidgets/SelectedFieldWidget";
@@ -35,6 +36,7 @@ import MarkdownWidget from "../components/Widgets/MarkdownWidget";
 import StringWidget from "../components/Widgets/StringWidget";
 import TextWidget from "../components/Widgets/TextWidget";
 import {
+  DataWidgetTypes,
   FieldComponentProps,
   FieldWidgetTypes,
   IconTypes,
@@ -78,6 +80,10 @@ export const FieldWidgetDictionary: Record<
   select: SelectFieldWidget,
   text: TextFieldWidget,
   markdown: MarkdownFieldWiget,
+};
+
+export const DataWidgetDictionary: Record<DataWidgetTypes, React.FC<any>> = {
+  table: DataTable,
 };
 
 export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {

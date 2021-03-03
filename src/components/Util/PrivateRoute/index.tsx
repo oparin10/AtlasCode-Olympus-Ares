@@ -1,10 +1,11 @@
 import React from "react";
 import { navigate } from "@reach/router";
-import { WidgetsTypes } from "../../../types";
+import { DataWidgetTypes, WidgetsTypes } from "../../../types";
 import CollectionField from "../../App/CollectionField";
+import DataWidgetComponent from "../../DataWidgets/DataWidgetComponent";
 
 interface Props {
-  component: WidgetsTypes;
+  component: DataWidgetTypes | WidgetsTypes;
   layout?: React.ElementType;
   location?: Location;
   isAuth: boolean;
@@ -33,11 +34,19 @@ const PrivateRoute: React.FC<Props> = ({
   }
 
   if (typeof Layout == null || typeof Layout == "undefined") {
-    return <CollectionField widgetType={component} />;
+    return (
+      <DataWidgetComponent
+        props="ble"
+        widgetType={component as DataWidgetTypes}
+      />
+    );
   } else {
     return (
       <Layout>
-        <CollectionField widgetType={component} />
+        <DataWidgetComponent
+          props="ble"
+          widgetType={component as DataWidgetTypes}
+        />
       </Layout>
     );
   }

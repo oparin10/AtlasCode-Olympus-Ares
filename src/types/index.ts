@@ -19,12 +19,23 @@ export interface FieldComponentRootProps extends FieldComponentProps {
   fieldType: FieldWidgetTypes;
 }
 
+export interface DataWidgetComponentProps {
+  props: any;
+}
+
+export interface DataWidgetComponentRootProps extends DataWidgetComponentProps {
+  widgetType: DataWidgetTypes;
+}
+
 export type FieldWidgetTypes =
   | "image"
   | "select"
   | "text"
   | "string"
   | "markdown";
+
+export type DataWidgetTypes = "table";
+
 export type WidgetsTypes = "string" | "image" | "markdown" | "text" | "login";
 export type IconTypes =
   | "AttachMoney"

@@ -1,8 +1,6 @@
 import React from "react";
-import { RouterItem } from "../../../types";
 import { Router, navigate } from "@reach/router";
 import PrivateRoute from "../../Util/PrivateRoute";
-import NotFoundRoute from "../../Util/NotFoundRoute";
 import { AdminItem } from "../../../config/collections.config";
 
 interface Props {
@@ -46,7 +44,7 @@ const RouterCore = ({
             key={index}
             isAuth={testAuth}
             layout={layoutComponent}
-            component={routerItem.widget}
+            component={routerItem.dataWidget}
             path={`/${basePath}/${routerItem.path}`}
             basePath={basePath}
             startingPath={startingPath}

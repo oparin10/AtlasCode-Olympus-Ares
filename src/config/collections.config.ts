@@ -1,4 +1,9 @@
-import { FieldWidgetTypes, IconTypes, WidgetsTypes } from "../types";
+import {
+  DataWidgetTypes,
+  FieldWidgetTypes,
+  IconTypes,
+  WidgetsTypes,
+} from "../types";
 
 export interface AdminCollectionField {
   name: string;
@@ -9,8 +14,8 @@ export interface AdminCollectionField {
 }
 
 export interface AdminItem {
-  collectionID: string;
-  widget: WidgetsTypes;
+  collectionRef: string;
+  dataWidget: DataWidgetTypes;
   path: string;
   sidebarLabel: string;
   sidebarIcon: IconTypes;
@@ -19,8 +24,8 @@ export interface AdminItem {
 
 export const collectionsConfig: Array<AdminItem> = [
   {
-    collectionID: "id1",
-    widget: "string",
+    collectionRef: "id1",
+    dataWidget: "table",
     sidebarIcon: "AttachMoney",
     sidebarLabel: "Teste1",
     path: "test",
@@ -35,8 +40,8 @@ export const collectionsConfig: Array<AdminItem> = [
     ],
   },
   {
-    collectionID: "id2",
-    widget: "markdown",
+    collectionRef: "id2",
+    dataWidget: "table",
     sidebarIcon: "AddAPhoto",
     sidebarLabel: "Money1",
     path: "test2",
@@ -50,8 +55,8 @@ export const collectionsConfig: Array<AdminItem> = [
     ],
   },
   {
-    collectionID: "id3",
-    widget: "image",
+    collectionRef: "id3",
+    dataWidget: "table",
     sidebarIcon: "AddCircle",
     sidebarLabel: "Image",
     path: "image",
@@ -66,8 +71,8 @@ export const collectionsConfig: Array<AdminItem> = [
   },
 
   {
-    collectionID: "id4",
-    widget: "text",
+    collectionRef: "id4",
+    dataWidget: "table",
     sidebarIcon: "AddShoppingCart",
     sidebarLabel: "Security",
     path: "security",
@@ -81,8 +86,8 @@ export const collectionsConfig: Array<AdminItem> = [
     ],
   },
   {
-    collectionID: "id5",
-    widget: "string",
+    collectionRef: "id5",
+    dataWidget: "table",
     sidebarIcon: "AcUnit",
     path: "amostra",
     sidebarLabel: "Amostra label",

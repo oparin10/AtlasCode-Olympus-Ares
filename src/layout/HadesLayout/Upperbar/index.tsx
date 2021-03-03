@@ -5,7 +5,7 @@ import styled from "styled-components";
 import IconComponent from "../../../components/App/IconComponent";
 import getCurrentPath from "../../../helper/currentPath";
 import { galleryOpen } from "../../../redux/adonis/actions";
-import { createItemOpen } from "../../../redux/createItem/actions";
+import { createItemOpen } from "../../../redux/entries/actions";
 import UserProfileButton from "./UserProfileButton";
 
 const UpperbarRoot = styled.div`

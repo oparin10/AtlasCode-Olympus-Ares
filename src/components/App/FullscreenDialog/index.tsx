@@ -15,7 +15,10 @@ import Slide from "@material-ui/core/Slide";
 import { TransitionProps } from "@material-ui/core/transitions";
 import { AdminItem } from "../../../config/collections.config";
 import { useDispatch } from "react-redux";
-import { setCreateItemFields } from "../../../redux/createItem/actions";
+import { setCreateItemFields } from "../../../redux/entries/actions";
+import IconComponent from "../IconComponent";
+import { Box } from "@material-ui/core";
+import { galleryOpen } from "../../../redux/adonis/actions";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -63,6 +66,10 @@ export default function FullScreenDialog({ handleClose, open = false }: Props) {
             >
               <CloseIcon />
             </IconButton>
+
+            <Box onClick={() => dispatch(galleryOpen())}>
+              <IconComponent clickable iconType="AddAPhoto" />
+            </Box>
             <Typography variant="h6" className={classes.title}>
               Sound
             </Typography>

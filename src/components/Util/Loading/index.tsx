@@ -1,9 +1,9 @@
 import { Fade, LinearProgress, makeStyles } from "@material-ui/core";
 import React from "react";
+import { connect, ConnectedProps } from "react-redux";
+import { RootState } from "../../../redux";
 
-interface Props {
-  isLoading: boolean;
-}
+interface Props extends PropsFromRedux {}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Loading = ({ isLoading = true }: Props) => {
+const Loading = ({ isLoading }: Props) => {
   const classes = useStyles();
 
   return (
@@ -30,4 +30,14 @@ const Loading = ({ isLoading = true }: Props) => {
   );
 };
 
-export default Loading;
+const mapStateToProps = (state: RootState) => ({
+  isLoading: state.globalUI.isLoading,
+});
+
+const mapDispatchToProps = {};
+
+const globalUILoadingConnector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof globalUILoadingConnector>;
+
+export default globalUILoadingConnector(Loading);

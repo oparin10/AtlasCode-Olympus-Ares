@@ -58,7 +58,7 @@ function FullScreenDialog({ handleClose, isOpen, openGallery, fields }: Props) {
         TransitionComponent={Transition}
       >
         <AppBar className={classes.appBar}>
-          <Toolbar>
+          <Toolbar> 
             <IconButton
               edge="start"
               color="inherit"

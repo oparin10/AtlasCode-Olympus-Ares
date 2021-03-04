@@ -8,25 +8,17 @@ import { AdminItem } from "./config/collections.config";
 import AdonisGallery from "./components/App/AdonisGallery";
 import { AdonisGalleryState } from "./redux/adonis/types";
 import GlobalAlert from "./components/Util/GlobalAlert";
-import { GlobalUIState } from "./redux/types";
 import "./css/App.css";
 import FullscreenDialog from "./components/App/FullscreenDialog";
 
 function App() {
   const dispatch = useDispatch();
 
-  const globalUIState: GlobalUIState = useSelector(
-    (state: RootStateOrAny) => state.globalUI
-  );
   const collectionsState: Array<AdminItem> = useSelector(
     (state: RootStateOrAny) => state.collections
   );
   const adonisState: AdonisGalleryState = useSelector(
     (state: RootStateOrAny) => state.adonis
-  );
-
-  const activeCollection: AdminItem = useSelector(
-    (state: RootStateOrAny) => state.activeCollection
   );
 
   React.useEffect(() => {
@@ -35,12 +27,8 @@ function App() {
 
   return (
     <div>
-      <Loading isLoading={globalUIState.isLoading} />
-      <GlobalAlert
-        alertMessage={globalUIState.notificationMessage}
-        alertOpen={globalUIState.notificationOpen}
-        alertSeverity={globalUIState.notificationSeverity}
-      />
+      <Loading />
+      <GlobalAlert />
 
       <AdonisGallery
         isPhotoSelected={adonisState.isPhotoSelected}

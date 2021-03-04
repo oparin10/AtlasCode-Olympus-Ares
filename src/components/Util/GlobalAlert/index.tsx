@@ -1,25 +1,24 @@
 import { Snackbar } from "@material-ui/core";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { connect, ConnectedProps, useDispatch } from "react-redux";
+import { RootState } from "../../../redux";
 import { setGlobalNotificationClosed } from "../../../redux/globalUI/actions";
-import { AlertSeverity } from "../../../redux/globalUI/types";
 
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props}></MuiAlert>;
 };
 
-interface Props {
-  alertMessage: string;
-  alertSeverity: AlertSeverity;
-  alertOpen: boolean;
-}
+interface Props extends PropsFromRedux {}
 
-const GlobalAlert = ({ alertMessage, alertOpen, alertSeverity }: Props) => {
-  const dispatch = useDispatch();
-
+const GlobalAlert = ({
+  alertMessage,
+  alertOpen,
+  alertSeverity,
+  setGlobalNotificationClosed,
+}: Props) => {
   const closeAlert = () => {
-    dispatch(setGlobalNotificationClosed());
+    setGlobalNotificationClosed();
   };
 
   return (
@@ -33,4 +32,18 @@ const GlobalAlert = ({ alertMessage, alertOpen, alertSeverity }: Props) => {
   );
 };
 
-export default GlobalAlert;
+const mapDispatchToProps = {
+  setGlobalNotificationClosed: setGlobalNotificationClosed,
+};
+
+const mapStateToProps = (state: RootState) => ({
+  alertMessage: state.globalUI.notificationMessage,
+  alertSeverity: state.globalUI.notificationSeverity,
+  alertOpen: state.globalUI.notificationOpen,
+});
+
+const globalUIConnector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof globalUIConnector>;
+
+export default globalUIConnector(GlobalAlert);

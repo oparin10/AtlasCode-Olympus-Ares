@@ -10,6 +10,7 @@ import { AdonisGalleryState } from "./redux/adonis/types";
 import GlobalAlert from "./components/Util/GlobalAlert";
 import { GlobalUIState } from "./redux/types";
 import "./css/App.css";
+import FullscreenDialog from "./components/App/FullscreenDialog";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,8 @@ function App() {
         isOpen={adonisState.isOpen}
         isLoading={adonisState.isLoading}
       />
+
+      <FullscreenDialog />
 
       {collectionsState.length > 0 ? (
         <RouterCore

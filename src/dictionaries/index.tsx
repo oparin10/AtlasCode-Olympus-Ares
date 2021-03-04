@@ -26,6 +26,7 @@ import {
 } from "@material-ui/icons";
 import Login from "../components/App/Login";
 import DataTable from "../components/DataWidgets/DataTable";
+import OrderedList from "../components/DataWidgets/OrderedList";
 import ImageFieldWidget from "../components/FieldWidgets/ImageFieldWidget";
 import MarkdownFieldWiget from "../components/FieldWidgets/MarkdownFieldWidget";
 import SelectFieldWidget from "../components/FieldWidgets/SelectedFieldWidget";
@@ -94,6 +95,7 @@ export const DataWidgetDictionary: Record<
   React.FC<DataWidgetFunctionalComponentProps>
 > = {
   table: DataTable,
+  list: OrderedList,
 };
 
 export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {

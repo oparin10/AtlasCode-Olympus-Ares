@@ -66,12 +66,7 @@ const HadesLayout = ({ any, ...rest }: Props) => {
         />
 
         <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
-          <div style={{ position: "relative" }}>
-            {rest.children}
-            {activeCollection && activeCollection.fields.length > 0 ? (
-              <FullScreenDialog />
-            ) : null}
-          </div>
+          <div style={{ position: "relative" }}>{rest.children}</div>
         </Fade>
       </HadesContentContainer>
     </HadesLayoutRoot>

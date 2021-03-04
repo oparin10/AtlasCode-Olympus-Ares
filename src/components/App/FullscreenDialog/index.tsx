@@ -17,7 +17,10 @@ import { connect, ConnectedProps, useDispatch } from "react-redux";
 import IconComponent from "../IconComponent";
 import { Box } from "@material-ui/core";
 import { galleryOpen } from "../../../redux/adonis/actions";
-import { entryComponentClose } from "../../../redux/entries/actions";
+import {
+  entryComponentClose,
+  entryDraftDiscard,
+} from "../../../redux/entries/actions";
 import { RootState } from "../../../redux/";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -76,18 +79,11 @@ function FullScreenDialog({ handleClose, isOpen, openGallery, fields }: Props) {
             </Button>
           </Toolbar>
         </AppBar>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
-          </ListItem>
-        </List>
+        <div>
+          {fields?.map((value, index) => {
+            return <div key={index}>{value.label}</div>;
+          })}
+        </div>
       </Dialog>
     </div>
   );
@@ -101,7 +97,7 @@ const mapState = (state: RootState) => {
 };
 
 const mapDispatch = {
-  handleClose: entryComponentClose,
+  handleClose: entryDraftDiscard,
   openGallery: galleryOpen,
 };
 

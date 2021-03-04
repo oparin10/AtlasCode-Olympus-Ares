@@ -35,6 +35,8 @@ import ImageWidget from "../components/Widgets/ImageWidget";
 import MarkdownWidget from "../components/Widgets/MarkdownWidget";
 import StringWidget from "../components/Widgets/StringWidget";
 import TextWidget from "../components/Widgets/TextWidget";
+import { AdminCollectionField, AdminItem } from "../config/collections.config";
+import { EntryDraftActionTypes } from "../redux/entries/types";
 import {
   DataWidgetTypes,
   FieldComponentProps,
@@ -82,7 +84,15 @@ export const FieldWidgetDictionary: Record<
   markdown: MarkdownFieldWiget,
 };
 
-export const DataWidgetDictionary: Record<DataWidgetTypes, React.FC<any>> = {
+export type DataWidgetFunctionalComponentProps = {
+  activeCollection: AdminItem | null;
+  addNew: (fields: AdminCollectionField[]) => EntryDraftActionTypes;
+};
+
+export const DataWidgetDictionary: Record<
+  DataWidgetTypes,
+  React.FC<DataWidgetFunctionalComponentProps>
+> = {
   table: DataTable,
 };
 

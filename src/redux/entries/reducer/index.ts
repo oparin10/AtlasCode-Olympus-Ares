@@ -10,8 +10,9 @@ import {
 
 let initialState: EntriesState = {
   isOpen: false,
-  fields: null,
   draft: {},
+  entryUpdate: {},
+  data: [],
 };
 
 export const entriesReducer = (
@@ -35,18 +36,18 @@ export const entriesReducer = (
     case ENTRY_DRAFT_DISCARD:
       return { ...state, isOpen: false, draft: {} };
 
-    case ENTRY_SET_INITIAL_VALUE:
-      let fieldObjectLocal: any = {};
+    // case ENTRY_SET_INITIAL_VALUE:
+    //   let fieldObjectLocal: any = {};
 
-      for (const collectionField of action.payload) {
-        if (collectionField.defaultValue) {
-          fieldObjectLocal[collectionField.name] = collectionField.defaultValue;
-        } else {
-          fieldObjectLocal[collectionField.name] = "";
-        }
-      }
+    //   for (const collectionField of action.payload) {
+    //     if (collectionField.defaultValue) {
+    //       fieldObjectLocal[collectionField.name] = collectionField.defaultValue;
+    //     } else {
+    //       fieldObjectLocal[collectionField.name] = "";
+    //     }
+    //   }
 
-      return { ...state, fields: fieldObjectLocal };
+    //   return { ...state, fields: fieldObjectLocal };
 
     case ENTRY_CREATE_VISIBILITY_SHOW:
       return { ...state, isOpen: true };

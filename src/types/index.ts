@@ -1,5 +1,9 @@
 import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
+import { ConnectedProps } from "react-redux";
+import { dataWidgetConnector } from "../components/DataWidgets/DataWidgetComponent";
+import { AdminCollectionField } from "../config/collections.config";
+import { EntryDraftActionTypes } from "../redux/entries/types";
 
 export type RouterItem = {
   path: string;
@@ -19,12 +23,11 @@ export interface FieldComponentRootProps extends FieldComponentProps {
   fieldType: FieldWidgetTypes;
 }
 
-export interface DataWidgetComponentProps {
-  props: any;
-}
+export type DataWidgetReduxProps = ConnectedProps<typeof dataWidgetConnector>;
 
-export interface DataWidgetComponentRootProps extends DataWidgetComponentProps {
+export interface DataWidgetComponentRootProps extends DataWidgetReduxProps {
   widgetType: DataWidgetTypes;
+  newEntry: (fields: Array<AdminCollectionField>) => EntryDraftActionTypes;
 }
 
 export type FieldWidgetTypes =

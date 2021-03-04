@@ -34,19 +34,11 @@ const PrivateRoute: React.FC<Props> = ({
   }
 
   if (typeof Layout == null || typeof Layout == "undefined") {
-    return (
-      <DataWidgetComponent
-        props="ble"
-        widgetType={component as DataWidgetTypes}
-      />
-    );
+    return <DataWidgetComponent widgetType={component as DataWidgetTypes} />;
   } else {
     return (
       <Layout>
-        <DataWidgetComponent
-          props="ble"
-          widgetType={component as DataWidgetTypes}
-        />
+        <DataWidgetComponent widgetType={component as DataWidgetTypes} />
       </Layout>
     );
   }

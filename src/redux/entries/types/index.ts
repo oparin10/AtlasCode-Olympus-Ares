@@ -1,9 +1,10 @@
 import { AdminCollectionField } from "../../../config/collections.config";
 
 export interface EntriesState {
-  fields: Record<string, any> | null;
   isOpen: boolean;
   draft: Record<string, any> | null;
+  entryUpdate: Record<string, any> | null;
+  data: Array<any> | Record<string, any> | null;
 }
 
 export const ENTRY_CREATE_VISIBILITY_SHOW = "ENTRY_CREATE_VISIBILITY_SHOW";

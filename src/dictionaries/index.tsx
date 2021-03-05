@@ -24,7 +24,6 @@ import {
   PhotoLibrary,
   Settings,
 } from "@material-ui/icons";
-import Login from "../components/App/Login";
 import DataTable from "../components/DataWidgets/DataTable";
 import OrderedList from "../components/DataWidgets/OrderedList";
 import ImageFieldWidget from "../components/FieldWidgets/ImageFieldWidget";
@@ -32,13 +31,8 @@ import MarkdownFieldWiget from "../components/FieldWidgets/MarkdownFieldWidget";
 import SelectFieldWidget from "../components/FieldWidgets/SelectedFieldWidget";
 import StringFieldWidget from "../components/FieldWidgets/StringFieldWidget";
 import TextFieldWidget from "../components/FieldWidgets/TextFieldWidget";
-import ImageWidget from "../components/Widgets/ImageWidget";
-import MarkdownWidget from "../components/Widgets/MarkdownWidget";
-import StringWidget from "../components/Widgets/StringWidget";
-import TextWidget from "../components/Widgets/TextWidget";
-import { AdminCollectionField, AdminItem } from "../config/collections.config";
+
 import HadesLayout from "../layout/HadesLayout";
-import { EntryDraftActionTypes } from "../redux/entries/types";
 import {
   DataWidgetFunctionalComponentProps,
   DataWidgetTypes,
@@ -47,7 +41,6 @@ import {
   IconTypes,
   LayoutFunctionalComponentProps,
   LayoutTypes,
-  WidgetsTypes,
 } from "../types";
 
 export const IconDictonary: Record<
@@ -103,12 +96,4 @@ export const LayoutDictionary: Record<
 > = {
   hades: HadesLayout,
   zeus: HadesLayout,
-};
-
-export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {
-  image: ImageWidget,
-  markdown: MarkdownWidget,
-  string: StringWidget,
-  text: TextWidget,
-  login: Login,
 };

@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { DataWidgetDictionary } from "../../../dictionaries";
 import { RootState } from "../../../redux";
 import { entryDraftNew } from "../../../redux/entries/actions";
-import { DataWidgetComponentRootProps, DataWidgetTypes } from "../../../types";
+import { DataWidgetComponentRootProps } from "../../../types";
 
 const DataWidgetComponent = ({
   widgetType,

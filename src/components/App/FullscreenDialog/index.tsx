@@ -23,7 +23,7 @@ import {
   entryDraftDiscard,
 } from "../../../redux/entries/actions";
 import { RootState } from "../../../redux/";
-import FieldWidgetComponent from "../../FieldWidgets/FieldWidgetComponent";
+import FieldWidgetComponent from "../../RootComponents/FieldWidgetComponent";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

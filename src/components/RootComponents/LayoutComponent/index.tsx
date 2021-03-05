@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { LayoutDictionary } from "../../dictionaries";
-import { RootState } from "../../redux";
-import { setActiveCollection } from "../../redux/activeCollection/actions";
-import { setEntryInitialFields } from "../../redux/entries/actions";
-import { LayoutComponentRootProps } from "../../types";
+import { LayoutDictionary } from "../../../dictionaries";
+import { RootState } from "../../../redux";
+import { setActiveCollection } from "../../../redux/activeCollection/actions";
+import { setEntryInitialFields } from "../../../redux/entries/actions";
+import { LayoutComponentRootProps } from "../../../types";
 
 const LayoutComponent = ({
   activeCollection,

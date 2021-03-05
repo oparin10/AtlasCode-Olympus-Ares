@@ -1,11 +1,11 @@
 import React from "react";
 import { navigate } from "@reach/router";
-import { DataWidgetTypes, LayoutTypes, WidgetsTypes } from "../../../types";
-import DataWidgetComponent from "../../DataWidgets/DataWidgetComponent";
-import LayoutComponent from "../../LayoutComponent";
+import { DataWidgetTypes, LayoutTypes } from "../../../types";
+import DataWidgetComponent from "../../RootComponents/DataWidgetComponent";
+import LayoutComponent from "../../RootComponents/LayoutComponent";
 
 interface Props {
-  component: DataWidgetTypes | WidgetsTypes;
+  component: DataWidgetTypes;
   layout: LayoutTypes;
   location?: Location;
   isAuth: boolean;

@@ -1,8 +1,8 @@
 import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import { ConnectedProps } from "react-redux";
-import { dataWidgetConnector } from "../components/DataWidgets/DataWidgetComponent";
-import { layoutComponentConnector } from "../components/LayoutComponent";
+import { dataWidgetConnector } from "../components/RootComponents/DataWidgetComponent";
+import { layoutComponentConnector } from "../components/RootComponents/LayoutComponent";
 import { AdminCollectionField, AdminItem } from "../config/collections.config";
 import {
   EntryDraftActionTypes,
@@ -69,7 +69,6 @@ export type DataWidgetTypes = "table" | "list";
 
 export type LayoutTypes = "hades" | "zeus";
 
-export type WidgetsTypes = "string" | "image" | "markdown" | "text" | "login";
 export type IconTypes =
   | "AttachMoney"
   | "AccountBalance"

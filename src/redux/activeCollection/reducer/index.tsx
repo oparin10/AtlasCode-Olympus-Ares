@@ -1,12 +1,24 @@
 import { AdminItem } from "../../../config/collections.config";
-import { ActiveContentActionTypes, SET_ACTIVE_CONTENT } from "../types";
+import {
+  ActiveCollectionState,
+  ActiveContentActionTypes,
+  SET_ACTIVE_CONTENT,
+} from "../types";
 
-let initialState: AdminItem | null = null;
+let initialState: ActiveCollectionState = {
+  entries: [],
+  collectionRef: "",
+  dataWidget: "table",
+  fields: [],
+  routerPath: "",
+  sidebarIcon: "Add",
+  sidebarLabel: "",
+};
 
 export const activeCollectionReducer = (
   state = initialState,
   action: ActiveContentActionTypes
-) => {
+): ActiveCollectionState => {
   switch (action.type) {
     case SET_ACTIVE_CONTENT:
       let activeAdminItem: AdminItem = {
@@ -18,7 +30,11 @@ export const activeCollectionReducer = (
         fields: action.payload.fields,
       };
 
-      return activeAdminItem;
+      if (action.payload.categories) {
+        activeAdminItem.categories = action.payload.categories;
+      }
+
+      return { ...activeAdminItem, entries: [] };
 
     default:
       return state;

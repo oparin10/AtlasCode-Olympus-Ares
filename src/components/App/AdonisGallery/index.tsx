@@ -6,7 +6,7 @@ import {
   Slide,
 } from "@material-ui/core";
 import React from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import {
   galleryClose,
   getAllImageLinks,

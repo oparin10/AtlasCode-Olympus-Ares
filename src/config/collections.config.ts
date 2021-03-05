@@ -26,7 +26,7 @@ export const collectionsConfig: Array<AdminItem> = [
     sidebarIcon: "AttachMoney",
     sidebarLabel: "Teste1",
     routerPath: "test",
-    categories: [],
+    categories: ["category1", "category2", "category3"],
     categoryDynamic: true,
     fields: [
       {

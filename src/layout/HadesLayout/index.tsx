@@ -1,10 +1,9 @@
 import { Fade } from "@material-ui/core";
 import React from "react";
 import styled from "styled-components";
+import { LayoutFunctionalComponentProps } from "../../components/RootComponents/LayoutComponent/types";
 import { AdminItem } from "../../config/collections.config";
 import getCurrentPath from "../../helper/currentPath";
-
-import { LayoutFunctionalComponentProps } from "../../types";
 import Sidebar from "./Sidebar";
 import Upperbar from "./Upperbar";
 
@@ -25,6 +24,7 @@ const HadesLayout = ({
   collections,
   setActiveCollection,
   setEntryInitialFields,
+  setupActiveCollection,
 }: LayoutFunctionalComponentProps) => {
   let currentPath: string = getCurrentPath();
 
@@ -35,8 +35,10 @@ const HadesLayout = ({
       return obj.routerPath == currentPath;
     });
 
-    setActiveCollection(activeCollectionInner[0] as AdminItem);
-    setEntryInitialFields(activeCollectionInner[0].fields);
+    setupActiveCollection(activeCollectionInner[0]);
+
+    // setActiveCollection(activeCollectionInner[0] as AdminItem);
+    // setEntryInitialFields(activeCollectionInner[0].fields);
   }, []);
 
   return (

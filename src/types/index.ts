@@ -10,6 +10,9 @@ import {
 } from "../redux/entries/types";
 import { SetActiveContent } from "../redux/activeCollection/types/";
 import { adonisGalleryConnector } from "../components/App/AdonisGallery";
+import { ThunkAction } from "redux-thunk";
+import { RootState } from "../redux";
+import { Action } from "redux";
 
 export type RouterItem = {
   path: string;
@@ -33,25 +36,6 @@ export type DataWidgetFunctionalComponentProps = {
   activeCollection: AdminItem | null;
   addNew: (fields: AdminCollectionField[]) => EntryDraftActionTypes;
 };
-
-export type LayoutFunctionalComponentProps = {
-  collections: never;
-  activeCollection: AdminItem | null;
-  setActiveCollection: (activeCollection: AdminItem) => SetActiveContent;
-  setEntryInitialFields: (
-    fields: AdminCollectionField[]
-  ) => EntrySetInitialActionTypes;
-  children: React.ReactNode;
-};
-
-export type LayouComponentReduxProps = ConnectedProps<
-  typeof layoutComponentConnector
->;
-
-export interface LayoutComponentRootProps extends LayouComponentReduxProps {
-  layoutType: LayoutTypes;
-  children: React.ReactNode;
-}
 
 export type DataWidgetReduxProps = ConnectedProps<typeof dataWidgetConnector>;
 export type AdonisGalleryReduxProps = ConnectedProps<

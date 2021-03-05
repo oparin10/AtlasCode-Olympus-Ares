@@ -1,5 +1,5 @@
 import React from "react";
-import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { configurationSetup } from "./redux/configuration/actions";
 import Loading from "./components/Util/Loading";
 import RouterCore from "./components/App/RouterCore";
@@ -24,14 +24,15 @@ function App() {
 
   const getShitFromdb = db
     .collection("collections")
-    .doc("testCollection")
-    .collection("entries")
-    .onSnapshot((snapShot) => {
-      let snapShotData: Array<any> = [];
+    .doc("test")
+    .onSnapshot((observer) => {
+      let categoriesData: Array<string> = observer.data()?.categories ?? [];
 
-      snapShot.forEach((doc) => {
-        console.log(doc.data());
-      });
+      if (categoriesData?.length > 0) {
+        console.log(categoriesData);
+      } else {
+        console.log("No categories were found");
+      }
     });
 
   return (

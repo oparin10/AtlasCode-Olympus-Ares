@@ -21,7 +21,7 @@ export interface AdminItem {
 
 export const collectionsConfig: Array<AdminItem> = [
   {
-    collectionRef: "testCollection",
+    collectionRef: "test",
     dataWidget: "table",
     sidebarIcon: "AttachMoney",
     sidebarLabel: "Teste1",

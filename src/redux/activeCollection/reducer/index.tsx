@@ -2,6 +2,9 @@ import { AdminItem } from "../../../config/collections.config";
 import {
   ActiveCollectionState,
   ActiveContentActionTypes,
+  ACTIVE_COLLECTION_SET_FAIL,
+  ACTIVE_COLLECTION_SET_START,
+  ACTIVE_COLLECTION_SET_SUCCESS,
   SET_ACTIVE_CONTENT,
 } from "../types";
 
@@ -35,6 +38,15 @@ export const activeCollectionReducer = (
       }
 
       return { ...activeAdminItem, entries: [] };
+
+    case ACTIVE_COLLECTION_SET_START:
+      return { ...state };
+
+    case ACTIVE_COLLECTION_SET_SUCCESS:
+      return action.payload;
+
+    case ACTIVE_COLLECTION_SET_FAIL:
+      return { ...state };
 
     default:
       return state;

@@ -24,6 +24,7 @@ import {
   PhotoLibrary,
   Settings,
 } from "@material-ui/icons";
+import { LayoutFunctionalComponentProps } from "../components/RootComponents/LayoutComponent/types";
 import DataTable from "../components/Widgets/DataWidgets/DataTable";
 import OrderedList from "../components/Widgets/DataWidgets/OrderedList";
 import ImageFieldWidget from "../components/Widgets/FieldWidgets/ImageFieldWidget";
@@ -39,7 +40,6 @@ import {
   FieldComponentProps,
   FieldWidgetTypes,
   IconTypes,
-  LayoutFunctionalComponentProps,
   LayoutTypes,
 } from "../types";
 

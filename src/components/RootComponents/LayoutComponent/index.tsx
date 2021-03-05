@@ -1,10 +1,16 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, RootStateOrAny } from "react-redux";
+import { Action } from "redux";
+import { ThunkAction } from "redux-thunk";
+import { AdminItem } from "../../../config/collections.config";
 import { LayoutDictionary } from "../../../dictionaries";
 import { RootState } from "../../../redux";
-import { setActiveCollection } from "../../../redux/activeCollection/actions";
+import {
+  setActiveCollection,
+  setupActiveCollection,
+} from "../../../redux/activeCollection/actions";
 import { setEntryInitialFields } from "../../../redux/entries/actions";
-import { LayoutComponentRootProps } from "../../../types";
+import { LayoutComponentRootProps } from "./types";
 
 const LayoutComponent = ({
   activeCollection,
@@ -13,6 +19,7 @@ const LayoutComponent = ({
   setActiveCollection,
   setEntryInitialFields,
   children,
+  setupCollection,
 }: LayoutComponentRootProps) => {
   const LayoutComponentDynamic = LayoutDictionary[layoutType];
 
@@ -23,6 +30,11 @@ const LayoutComponent = ({
         collections={collections}
         setActiveCollection={setActiveCollection}
         setEntryInitialFields={setEntryInitialFields}
+        setupActiveCollection={
+          setupCollection as (
+            activeCollection: AdminItem
+          ) => ThunkAction<void, RootStateOrAny, unknown, Action<string>>
+        }
         children={children}
       ></LayoutComponentDynamic>
     </div>
@@ -32,6 +44,7 @@ const LayoutComponent = ({
 const mapDispatchToProps = {
   setActiveCollection: setActiveCollection,
   setEntryInitialFields: setEntryInitialFields,
+  setupCollection: setupActiveCollection,
 };
 
 const mapStateToProps = (rootState: RootState) => ({

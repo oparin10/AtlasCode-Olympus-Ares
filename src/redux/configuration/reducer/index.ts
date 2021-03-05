@@ -14,8 +14,6 @@ let initialState: AppConfigState = {
   },
 
   collections: [],
-
-  error: [],
 };
 
 export const configurationReducer = (
@@ -27,7 +25,7 @@ export const configurationReducer = (
       return { ...state };
 
     case GET_CONFIG_FAIL:
-      return { ...state, error: action.error };
+      return { ...state };
 
     case GET_CONFIG_SUCCESS:
       return {

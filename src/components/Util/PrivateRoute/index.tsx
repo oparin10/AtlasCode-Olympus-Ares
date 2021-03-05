@@ -1,12 +1,12 @@
 import React from "react";
 import { navigate } from "@reach/router";
-import { DataWidgetTypes, WidgetsTypes } from "../../../types";
-import CollectionField from "../../App/CollectionField";
+import { DataWidgetTypes, LayoutTypes, WidgetsTypes } from "../../../types";
 import DataWidgetComponent from "../../DataWidgets/DataWidgetComponent";
+import LayoutComponent from "../../LayoutComponent";
 
 interface Props {
   component: DataWidgetTypes | WidgetsTypes;
-  layout?: React.ElementType;
+  layout: LayoutTypes;
   location?: Location;
   isAuth: boolean;
   path: string;
@@ -17,7 +17,7 @@ interface Props {
 
 const PrivateRoute: React.FC<Props> = ({
   component = "string",
-  layout: Layout,
+  layout,
   location,
   isAuth,
   path,
@@ -33,15 +33,11 @@ const PrivateRoute: React.FC<Props> = ({
     navigate(`/${basePath}/${startingPath}`);
   }
 
-  if (typeof Layout == null || typeof Layout == "undefined") {
-    return <DataWidgetComponent widgetType={component as DataWidgetTypes} />;
-  } else {
-    return (
-      <Layout>
-        <DataWidgetComponent widgetType={component as DataWidgetTypes} />
-      </Layout>
-    );
-  }
+  return (
+    <LayoutComponent layoutType={layout}>
+      <DataWidgetComponent widgetType={component as DataWidgetTypes} />
+    </LayoutComponent>
+  );
 };
 
 export default PrivateRoute;

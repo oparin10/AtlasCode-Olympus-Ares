@@ -10,6 +10,8 @@ import { AdonisGalleryState } from "./redux/adonis/types";
 import GlobalAlert from "./components/Util/GlobalAlert";
 import "./css/App.css";
 import FullscreenDialog from "./components/App/FullscreenDialog";
+import { db } from "./firebase";
+import { LayoutDictionary } from "./dictionaries";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +26,18 @@ function App() {
   React.useEffect(() => {
     dispatch(configurationSetup());
   }, []);
+
+  const getShitFromdb = db
+    .collection("collections")
+    .doc("testCollection")
+    .collection("entries")
+    .onSnapshot((snapShot) => {
+      let snapShotData: Array<any> = [];
+
+      snapShot.forEach((doc) => {
+        console.log(doc.data());
+      });
+    });
 
   return (
     <div>
@@ -42,7 +56,7 @@ function App() {
 
       {collectionsState.length > 0 ? (
         <RouterCore
-          layoutComponent={HadesLayout}
+          layoutComponent={"hades"}
           startingPath={collectionsState[0].routerPath}
           routes={collectionsState}
         />

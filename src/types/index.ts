@@ -2,8 +2,13 @@ import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import { ConnectedProps } from "react-redux";
 import { dataWidgetConnector } from "../components/DataWidgets/DataWidgetComponent";
-import { AdminCollectionField } from "../config/collections.config";
-import { EntryDraftActionTypes } from "../redux/entries/types";
+import { layoutComponentConnector } from "../components/LayoutComponent";
+import { AdminCollectionField, AdminItem } from "../config/collections.config";
+import {
+  EntryDraftActionTypes,
+  EntrySetInitialActionTypes,
+} from "../redux/entries/types";
+import { SetActiveContent } from "../redux/activeCollection/types/";
 
 export type RouterItem = {
   path: string;
@@ -23,11 +28,34 @@ export interface FieldComponentRootProps extends FieldComponentProps {
   fieldType: FieldWidgetTypes;
 }
 
+export type DataWidgetFunctionalComponentProps = {
+  activeCollection: AdminItem | null;
+  addNew: (fields: AdminCollectionField[]) => EntryDraftActionTypes;
+};
+
+export type LayoutFunctionalComponentProps = {
+  collections: never;
+  activeCollection: AdminItem | null;
+  setActiveCollection: (activeCollection: AdminItem) => SetActiveContent;
+  setEntryInitialFields: (
+    fields: AdminCollectionField[]
+  ) => EntrySetInitialActionTypes;
+  children: React.ReactNode;
+};
+
+export type LayouComponentReduxProps = ConnectedProps<
+  typeof layoutComponentConnector
+>;
+
+export interface LayoutComponentRootProps extends LayouComponentReduxProps {
+  layoutType: LayoutTypes;
+  children: React.ReactNode;
+}
+
 export type DataWidgetReduxProps = ConnectedProps<typeof dataWidgetConnector>;
 
 export interface DataWidgetComponentRootProps extends DataWidgetReduxProps {
   widgetType: DataWidgetTypes;
-  newEntry: (fields: Array<AdminCollectionField>) => EntryDraftActionTypes;
 }
 
 export type FieldWidgetTypes =
@@ -38,6 +66,8 @@ export type FieldWidgetTypes =
   | "markdown";
 
 export type DataWidgetTypes = "table" | "list";
+
+export type LayoutTypes = "hades" | "zeus";
 
 export type WidgetsTypes = "string" | "image" | "markdown" | "text" | "login";
 export type IconTypes =

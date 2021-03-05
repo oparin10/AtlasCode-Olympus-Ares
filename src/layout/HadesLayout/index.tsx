@@ -1,24 +1,12 @@
 import { Fade } from "@material-ui/core";
 import React from "react";
-import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import FullScreenDialog from "../../components/App/FullscreenDialog";
 import { AdminItem } from "../../config/collections.config";
 import getCurrentPath from "../../helper/currentPath";
-import { setActiveCollection } from "../../redux/activeCollection/actions";
-import {
-  entryComponentClose,
-  entryDraftDiscard,
-  setEntryInitialFields,
-} from "../../redux/entries/actions";
-import { EntriesState } from "../../redux/entries/types";
+
+import { LayoutFunctionalComponentProps } from "../../types";
 import Sidebar from "./Sidebar";
 import Upperbar from "./Upperbar";
-
-interface Props {
-  any: any;
-  children: React.ReactNode;
-}
 
 const HadesLayoutRoot = styled.div`
   display: flex;
@@ -31,42 +19,35 @@ const HadesContentContainer = styled.div`
   }
 `;
 
-const HadesLayout = ({ any, ...rest }: Props) => {
-  const collectionsState: Array<AdminItem> = useSelector(
-    (state: RootStateOrAny) => state.collections
-  );
-
-  const activeCollection: AdminItem = useSelector(
-    (state: RootStateOrAny) => state.activeCollection
-  );
-
-  const entries: EntriesState = useSelector(
-    (state: RootStateOrAny) => state.entries
-  );
-
-  const dispatch = useDispatch();
-  const currentPath = getCurrentPath();
+const HadesLayout = ({
+  children,
+  activeCollection,
+  collections,
+  setActiveCollection,
+  setEntryInitialFields,
+}: LayoutFunctionalComponentProps) => {
+  let currentPath: string = getCurrentPath();
 
   React.useEffect(() => {
-    const activeCollection = collectionsState.filter((obj) => {
+    let innerCollections: Array<any> = collections as Array<AdminItem>;
+
+    const activeCollectionInner = innerCollections.filter((obj) => {
       return obj.routerPath == currentPath;
     });
 
-    dispatch(setActiveCollection(activeCollection[0] as AdminItem));
-
-    dispatch(setEntryInitialFields(activeCollection[0].fields));
+    setActiveCollection(activeCollectionInner[0] as AdminItem);
+    setEntryInitialFields(activeCollectionInner[0].fields);
   }, []);
 
   return (
     <HadesLayoutRoot>
-      <Sidebar collections={collectionsState} />
+      <Sidebar collections={collections} />
       <HadesContentContainer>
         <Upperbar
           label={activeCollection ? activeCollection.sidebarLabel : ""}
         />
-
         <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
-          <div style={{ position: "relative" }}>{rest.children}</div>
+          <div style={{ position: "relative" }}>{children}</div>
         </Fade>
       </HadesContentContainer>
     </HadesLayoutRoot>

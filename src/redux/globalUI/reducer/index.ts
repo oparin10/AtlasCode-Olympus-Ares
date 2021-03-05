@@ -40,6 +40,15 @@ export const globalUIReducer = (
     | DeleteAdonisImageActionTypes
 ): GlobalUIState => {
   switch (action.type) {
+    case GET_CONFIG_FAIL:
+      return {
+        ...state,
+        notificationOpen: true,
+        notificationMessage:
+          "Ocorreu um erro no processo de configuração do app",
+        notificationSeverity: "error",
+      };
+
     case GLOBAL_NOTIFICATION_CUSTOM:
       return {
         ...state,

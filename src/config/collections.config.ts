@@ -20,6 +20,8 @@ export interface AdminItem {
   sidebarLabel: string;
   sidebarIcon: IconTypes;
   fields: Array<AdminCollectionField>;
+  categories?: Array<string>;
+  categoryDynamic?: boolean;
 }
 
 export const collectionsConfig: Array<AdminItem> = [
@@ -29,6 +31,8 @@ export const collectionsConfig: Array<AdminItem> = [
     sidebarIcon: "AttachMoney",
     sidebarLabel: "Teste1",
     routerPath: "test",
+    categories: [],
+    categoryDynamic: true,
     fields: [
       {
         label: "Título",
@@ -46,7 +50,7 @@ export const collectionsConfig: Array<AdminItem> = [
       {
         label: "Cigarette",
         fieldType: "string",
-        name: "fuckmeimhot",
+        name: "more",
         validation: "",
       },
     ],

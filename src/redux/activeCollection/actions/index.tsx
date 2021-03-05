@@ -1,5 +1,5 @@
 import { AdminItem } from "../../../config/collections.config";
-import { ActiveContentActionTypes, SET_ACTIVE_CONTENT } from "../../types";
+import { ActiveContentActionTypes, SET_ACTIVE_CONTENT } from "../types";
 
 export const setActiveCollection = (
   activeCollection: AdminItem

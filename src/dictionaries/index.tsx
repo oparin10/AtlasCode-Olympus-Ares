@@ -37,12 +37,16 @@ import MarkdownWidget from "../components/Widgets/MarkdownWidget";
 import StringWidget from "../components/Widgets/StringWidget";
 import TextWidget from "../components/Widgets/TextWidget";
 import { AdminCollectionField, AdminItem } from "../config/collections.config";
+import HadesLayout from "../layout/HadesLayout";
 import { EntryDraftActionTypes } from "../redux/entries/types";
 import {
+  DataWidgetFunctionalComponentProps,
   DataWidgetTypes,
   FieldComponentProps,
   FieldWidgetTypes,
   IconTypes,
+  LayoutFunctionalComponentProps,
+  LayoutTypes,
   WidgetsTypes,
 } from "../types";
 
@@ -85,17 +89,20 @@ export const FieldWidgetDictionary: Record<
   markdown: MarkdownFieldWiget,
 };
 
-export type DataWidgetFunctionalComponentProps = {
-  activeCollection: AdminItem | null;
-  addNew: (fields: AdminCollectionField[]) => EntryDraftActionTypes;
-};
-
 export const DataWidgetDictionary: Record<
   DataWidgetTypes,
   React.FC<DataWidgetFunctionalComponentProps>
 > = {
   table: DataTable,
   list: OrderedList,
+};
+
+export const LayoutDictionary: Record<
+  LayoutTypes,
+  React.FC<LayoutFunctionalComponentProps>
+> = {
+  hades: HadesLayout,
+  zeus: HadesLayout,
 };
 
 export const WidgetDictonary: Record<WidgetsTypes, JSX.Element | React.FC> = {

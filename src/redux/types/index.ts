@@ -25,18 +25,9 @@ export const CREATE_USER_WITH_FIELDS_FAIL = "CREATE_USER_WITH_FIELDS_FAIL";
 export const SET_LOADING_TRUE = "SET_LOADING_TRUE";
 export const SET_LOADING_FALSE = "SET_LOADING_FALSE";
 export const CHANGE_CONTENT_FIELD = "CHANGE_CONTENT_FIELD";
-export const SET_ACTIVE_CONTENT = "SET_ACTIVE_CONTENT";
 
-interface SetActiveContent {
-  type: typeof SET_ACTIVE_CONTENT;
-  payload: AdminItem;
-}
 
-export type ActiveContentActionTypes = SetActiveContent;
-
-export interface AppConfigState extends AppConfig {
-  error: string | Array<string> | null | undefined;
-}
+export interface AppConfigState extends AppConfig {}
 export interface GlobalUIState {
   isLoading: boolean;
   notificationOpen: boolean;

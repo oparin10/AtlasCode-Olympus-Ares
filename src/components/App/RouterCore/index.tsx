@@ -2,12 +2,15 @@ import React from "react";
 import { Router, navigate } from "@reach/router";
 import PrivateRoute from "../../Util/PrivateRoute";
 import { AdminItem } from "../../../config/collections.config";
+import { LayoutTypes } from "../../../types";
+import Login from "../Login";
+import NotFoundRoute from "../../Util/NotFoundRoute";
 
 interface Props {
   basePath?: string;
   routes: Array<AdminItem>;
   startingPath?: string;
-  layoutComponent?: (props: any) => JSX.Element;
+  layoutComponent: LayoutTypes;
 }
 
 const RouterCore = ({
@@ -30,13 +33,15 @@ const RouterCore = ({
 
   return (
     <Router>
-      <PrivateRoute
+      {/* <Login path="/admin/login" /> */}
+
+      {/* <PrivateRoute
         isAuth={testAuth}
         component={"login"}
         path={"/admin/login"}
         basePath={basePath}
         startingPath={startingPath}
-      ></PrivateRoute>
+      ></PrivateRoute> */}
 
       {routes.map((routerItem: AdminItem, index: number) => {
         return (
@@ -52,7 +57,7 @@ const RouterCore = ({
         );
       })}
 
-      {/* <NotFoundRoute default /> */}
+      {/* <NotFoundRoute default  /> */}
     </Router>
   );
 };

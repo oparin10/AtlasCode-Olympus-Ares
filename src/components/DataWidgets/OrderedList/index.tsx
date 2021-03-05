@@ -1,5 +1,5 @@
 import React from "react";
-import { DataWidgetFunctionalComponentProps } from "../../../dictionaries";
+import { DataWidgetFunctionalComponentProps } from "../../../types";
 
 interface Props extends DataWidgetFunctionalComponentProps {}
 

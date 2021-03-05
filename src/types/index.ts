@@ -9,6 +9,7 @@ import {
   EntrySetInitialActionTypes,
 } from "../redux/entries/types";
 import { SetActiveContent } from "../redux/activeCollection/types/";
+import { adonisGalleryConnector } from "../components/App/AdonisGallery";
 
 export type RouterItem = {
   path: string;
@@ -53,6 +54,9 @@ export interface LayoutComponentRootProps extends LayouComponentReduxProps {
 }
 
 export type DataWidgetReduxProps = ConnectedProps<typeof dataWidgetConnector>;
+export type AdonisGalleryReduxProps = ConnectedProps<
+  typeof adonisGalleryConnector
+>;
 
 export interface DataWidgetComponentRootProps extends DataWidgetReduxProps {
   widgetType: DataWidgetTypes;

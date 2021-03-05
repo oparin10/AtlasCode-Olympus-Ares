@@ -44,13 +44,7 @@ function App() {
       <Loading />
       <GlobalAlert />
 
-      <AdonisGallery
-        isPhotoSelected={adonisState.isPhotoSelected}
-        selectedPhoto={adonisState.selectedPhoto}
-        gallery={adonisState.gallery}
-        isOpen={adonisState.isOpen}
-        isLoading={adonisState.isLoading}
-      />
+      <AdonisGallery />
 
       <FullscreenDialog />
 

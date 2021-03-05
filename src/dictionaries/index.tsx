@@ -24,13 +24,13 @@ import {
   PhotoLibrary,
   Settings,
 } from "@material-ui/icons";
-import DataTable from "../components/DataWidgets/DataTable";
-import OrderedList from "../components/DataWidgets/OrderedList";
-import ImageFieldWidget from "../components/FieldWidgets/ImageFieldWidget";
-import MarkdownFieldWiget from "../components/FieldWidgets/MarkdownFieldWidget";
-import SelectFieldWidget from "../components/FieldWidgets/SelectedFieldWidget";
-import StringFieldWidget from "../components/FieldWidgets/StringFieldWidget";
-import TextFieldWidget from "../components/FieldWidgets/TextFieldWidget";
+import DataTable from "../components/Widgets/DataWidgets/DataTable";
+import OrderedList from "../components/Widgets/DataWidgets/OrderedList";
+import ImageFieldWidget from "../components/Widgets/FieldWidgets/ImageFieldWidget";
+import MarkdownFieldWiget from "../components/Widgets/FieldWidgets/MarkdownFieldWidget";
+import SelectFieldWidget from "../components/Widgets/FieldWidgets/SelectedFieldWidget";
+import StringFieldWidget from "../components/Widgets/FieldWidgets/StringFieldWidget";
+import TextFieldWidget from "../components/Widgets/FieldWidgets/TextFieldWidget";
 
 import HadesLayout from "../layout/HadesLayout";
 import {

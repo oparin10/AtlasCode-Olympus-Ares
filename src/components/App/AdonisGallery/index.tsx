@@ -6,23 +6,18 @@ import {
   Slide,
 } from "@material-ui/core";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import {
   galleryClose,
   getAllImageLinks,
   setActivePhoto,
-  setActivePhotoNull,
 } from "../../../redux/adonis/actions";
 import styled from "styled-components";
 import AdonisGalleryHeader from "./AdonisGalleryHeader";
-import {
-  adonisConfig,
-  AdonisImage,
-  AdonisOrderedTriple,
-} from "../../../config/adonis.config";
+
 import AdonisPhoto from "./AdonisPhoto";
-import { storage } from "../../../firebase";
-import getAdonisOrderedTriple from "../../../helper/getAdonisOrderedTriple";
+import { RootState } from "../../../redux";
+import { AdonisGalleryReduxProps } from "../../../types";
 
 const AdonisGalleryCircularLoaderContainer = styled.div`
   position: absolute;
@@ -93,13 +88,7 @@ const AdonisGalleryPhotoGridContainer = styled.div`
 
 // Adonis uploader
 
-interface Props {
-  isOpen: boolean;
-  gallery: Array<AdonisImage>;
-  isLoading: boolean;
-  isPhotoSelected: boolean;
-  selectedPhoto: AdonisImage;
-}
+interface Props extends AdonisGalleryReduxProps {}
 
 const AdonisGallery = ({
   isOpen = false,
@@ -107,9 +96,10 @@ const AdonisGallery = ({
   isLoading = true,
   isPhotoSelected = false,
   selectedPhoto,
+  galleryClose,
+  setActivePhoto,
+  getAllImageLinks,
 }: Props) => {
-  const dispatch = useDispatch();
-
   const bodyRootRef = React.useRef<HTMLDivElement>(null);
 
   const eventOnParent = (e: any) => {
@@ -117,12 +107,12 @@ const AdonisGallery = ({
       return;
     }
 
-    dispatch(galleryClose());
+    galleryClose();
   };
 
   React.useEffect(() => {
     if (gallery.length <= 0) {
-      dispatch(getAllImageLinks());
+      getAllImageLinks();
     }
 
     return () => {
@@ -131,7 +121,7 @@ const AdonisGallery = ({
   }, []);
 
   const handleGalleryClose = () => {
-    dispatch(galleryClose());
+    galleryClose();
   };
 
   return (
@@ -183,11 +173,7 @@ const AdonisGallery = ({
                           in={true}
                           timeout={{ enter: 1000, exit: 500 }}
                         >
-                          <div
-                            onClick={() =>
-                              dispatch(setActivePhoto(adonisPhoto))
-                            }
-                          >
+                          <div onClick={() => setActivePhoto(adonisPhoto)}>
                             <AdonisPhoto
                               uuid={adonisPhoto.uuid}
                               imageName={adonisPhoto.fileName}
@@ -212,4 +198,23 @@ const AdonisGallery = ({
   );
 };
 
-export default AdonisGallery;
+const mapDispatchToProps = {
+  setActivePhoto: setActivePhoto,
+  galleryClose: galleryClose,
+  getAllImageLinks: getAllImageLinks,
+};
+
+const mapStateToProps = (rootState: RootState) => ({
+  isPhotoSelected: rootState.adonis.isPhotoSelected,
+  selectedPhoto: rootState.adonis.selectedPhoto,
+  gallery: rootState.adonis.gallery,
+  isOpen: rootState.adonis.isOpen,
+  isLoading: rootState.adonis.isLoading,
+});
+
+export const adonisGalleryConnector = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
+
+export default adonisGalleryConnector(AdonisGallery);

@@ -6,6 +6,7 @@ import {
   ENTRY_CREATE_VISIBILITY_HIDE,
   ENTRY_DRAFT_NEW,
   ENTRY_DRAFT_DISCARD,
+  ENTRY_DRAFT_CHANGE_FIELD,
 } from "../types";
 
 let initialState: EntriesState = {
@@ -20,6 +21,15 @@ export const entriesReducer = (
   action: EntryActionTypes
 ): EntriesState => {
   switch (action.type) {
+    case ENTRY_DRAFT_CHANGE_FIELD:
+      return {
+        ...state,
+        draft: {
+          ...state.draft,
+          [action.payload.fieldKey]: action.payload.fieldValue,
+        },
+      };
+
     case ENTRY_DRAFT_NEW:
       let localFieldObject: any = {};
 

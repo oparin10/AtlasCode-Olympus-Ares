@@ -10,3 +10,6 @@ app.get("/hello", (req: Request, res: Response) => {
   res.send("HELLO DUDE").status(200);
 });
 export const api = functions.https.onRequest(app);
+
+
+// admin.atlascode.dev/api/v0/

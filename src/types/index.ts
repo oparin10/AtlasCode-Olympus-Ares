@@ -16,7 +16,7 @@ export interface FieldComponentProps {
   onChange: (e?: any) => void;
   error?: boolean;
   label: string;
-  value: any;
+  value?: any;
 }
 
 export interface FieldComponentRootProps extends FieldComponentProps {

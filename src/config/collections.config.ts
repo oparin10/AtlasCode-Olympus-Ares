@@ -40,7 +40,13 @@ export const collectionsConfig: Array<AdminItem> = [
       {
         label: "Other string field",
         name: "other",
-        fieldType: "markdown",
+        fieldType: "string",
+        validation: "",
+      },
+      {
+        label: "Cigarette",
+        fieldType: "string",
+        name: "fuckmeimhot",
         validation: "",
       },
     ],
@@ -55,7 +61,7 @@ export const collectionsConfig: Array<AdminItem> = [
       {
         label: "Blog title",
         name: "blogTitle",
-        fieldType: "markdown",
+        fieldType: "string",
         validation: null,
       },
     ],

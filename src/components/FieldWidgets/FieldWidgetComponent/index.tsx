@@ -6,19 +6,13 @@ const FieldWidgetComponent = ({
   fieldType,
   label,
   onChange,
-  value,
   error = false,
 }: FieldComponentRootProps) => {
   const FieldComponentDynamic = FieldWidgetDictionary[fieldType];
 
   return (
     <div>
-      <FieldComponentDynamic
-        label={label}
-        onChange={onChange}
-        value={value}
-        error={error}
-      />
+      <FieldComponentDynamic label={label} onChange={onChange} error={error} />
     </div>
   );
 };

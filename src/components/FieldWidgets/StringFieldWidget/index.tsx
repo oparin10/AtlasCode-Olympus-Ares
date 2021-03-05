@@ -6,19 +6,19 @@ export interface StringFieldWidgetProps {
   onChange: () => void;
   error?: boolean;
   label: string;
-  value: string | number;
+  // value: string | number;
 }
 
 const StringFieldWidget = ({
   label,
-  value,
+  // value,
   onChange,
   fullWidth = false,
 }: StringFieldWidgetProps) => {
   return (
     <TextField
       label={label.toString()}
-      value={value}
+      // value={value}
       onChange={onChange}
       fullWidth={fullWidth}
     ></TextField>

@@ -19,6 +19,18 @@ export const ENTRY_DRAFT_SAVE_START = "ENTRY_DRAFT_SAVE_START";
 export const ENTRY_DRAFT_SAVE_SUCCESS = "ENTRY_DRAFT_SAVE_SUCCESS";
 export const ENTRY_DRAFT_SAVE_FAIL = "ENTRY_DRAFT_FAIL";
 
+export const ENTRY_DRAFT_CHANGE_FIELD = "ENTRY_DRAFT_CHANGE_FIELD";
+
+export interface EntryDraftChangePayload {
+  fieldKey: string;
+  fieldValue: any;
+}
+
+interface EntryDraftChangeField {
+  type: typeof ENTRY_DRAFT_CHANGE_FIELD;
+  payload: EntryDraftChangePayload;
+}
+
 interface EntryDraftSaveStart {
   type: typeof ENTRY_DRAFT_SAVE_START;
 }
@@ -57,6 +69,8 @@ interface EntryCreateVisibilityHide {
   type: typeof ENTRY_CREATE_VISIBILITY_HIDE;
 }
 
+export type EntryDraftChangeActionTypes = EntryDraftChangeField;
+
 export type EntryDraftSaveActionTypes =
   | EntryDraftSaveStart
   | EntryDraftSaveSuccess
@@ -76,4 +90,5 @@ export type EntryActionTypes =
   | EntryCreateVisibilityActionTypes
   | EntrySetInitialActionTypes
   | EntryDraftActionTypes
-  | EntryDraftSaveActionTypes;
+  | EntryDraftSaveActionTypes
+  | EntryDraftChangeActionTypes;

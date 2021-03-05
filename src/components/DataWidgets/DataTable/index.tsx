@@ -9,7 +9,7 @@ const DataTable = ({ activeCollection, addNew }: Props) => {
       <div>this is a datatable, believe it or not</div>
 
       <button onClick={() => addNew(activeCollection!.fields)}>
-        Open this mofo and add some shit bruv
+        Open action creation
       </button>
     </div>
   );

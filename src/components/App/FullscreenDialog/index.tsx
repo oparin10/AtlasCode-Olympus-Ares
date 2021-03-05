@@ -19,9 +19,11 @@ import { Box } from "@material-ui/core";
 import { galleryOpen } from "../../../redux/adonis/actions";
 import {
   entryComponentClose,
+  entryDraftChangeField,
   entryDraftDiscard,
 } from "../../../redux/entries/actions";
 import { RootState } from "../../../redux/";
+import FieldWidgetComponent from "../../FieldWidgets/FieldWidgetComponent";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,10 +46,14 @@ const Transition = React.forwardRef(function Transition(
 
 interface Props extends PropsFromRedux {}
 
-function FullScreenDialog({ handleClose, isOpen, openGallery, fields }: Props) {
+function FullScreenDialog({
+  handleClose,
+  isOpen,
+  openGallery,
+  fields,
+  changeField,
+}: Props) {
   const classes = useStyles();
-
-  console.log(fields);
 
   return (
     <div>
@@ -58,7 +64,7 @@ function FullScreenDialog({ handleClose, isOpen, openGallery, fields }: Props) {
         TransitionComponent={Transition}
       >
         <AppBar className={classes.appBar}>
-          <Toolbar> 
+          <Toolbar>
             <IconButton
               edge="start"
               color="inherit"
@@ -81,7 +87,19 @@ function FullScreenDialog({ handleClose, isOpen, openGallery, fields }: Props) {
         </AppBar>
         <div>
           {fields?.map((value, index) => {
-            return <div key={index}>{value.label}</div>;
+            return (
+              <FieldWidgetComponent
+                key={index}
+                label={value.label}
+                onChange={(e: any) =>
+                  changeField({
+                    fieldKey: value.name,
+                    fieldValue: e.target.value,
+                  })
+                }
+                fieldType={value.fieldType}
+              />
+            );
           })}
         </div>
       </Dialog>
@@ -93,12 +111,14 @@ const mapState = (state: RootState) => {
   return {
     isOpen: state.entries.isOpen,
     fields: state.activeCollection?.fields,
+    draftValue: state.entries.draft,
   };
 };
 
 const mapDispatch = {
   handleClose: entryDraftDiscard,
   openGallery: galleryOpen,
+  changeField: entryDraftChangeField,
 };
 
 const connector = connect(mapState, mapDispatch);

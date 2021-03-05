@@ -10,7 +10,19 @@ import {
   EntryDraftActionTypes,
   ENTRY_DRAFT_NEW,
   ENTRY_DRAFT_DISCARD,
+  EntryDraftChangePayload,
+  EntryDraftChangeActionTypes,
+  ENTRY_DRAFT_CHANGE_FIELD,
 } from "../types";
+
+export const entryDraftChangeField = (
+  keyValuePair: EntryDraftChangePayload
+): EntryDraftChangeActionTypes => {
+  return {
+    type: ENTRY_DRAFT_CHANGE_FIELD,
+    payload: keyValuePair,
+  };
+};
 
 export const entryDraftNew = (
   fields: Array<AdminCollectionField>

@@ -9,7 +9,6 @@ import {
   setActiveCollection,
   setupActiveCollection,
 } from "../../../redux/activeCollection/actions";
-import { setEntryInitialFields } from "../../../redux/entries/actions";
 import { LayoutComponentRootProps } from "./types";
 
 const LayoutComponent = ({
@@ -17,7 +16,6 @@ const LayoutComponent = ({
   collections,
   layoutType,
   setActiveCollection,
-  setEntryInitialFields,
   children,
   setupCollection,
 }: LayoutComponentRootProps) => {
@@ -29,7 +27,6 @@ const LayoutComponent = ({
         activeCollection={activeCollection}
         collections={collections}
         setActiveCollection={setActiveCollection}
-        setEntryInitialFields={setEntryInitialFields}
         setupActiveCollection={
           setupCollection as (
             activeCollection: AdminItem
@@ -43,7 +40,6 @@ const LayoutComponent = ({
 
 const mapDispatchToProps = {
   setActiveCollection: setActiveCollection,
-  setEntryInitialFields: setEntryInitialFields,
   setupCollection: setupActiveCollection,
 };
 

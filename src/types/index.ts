@@ -4,10 +4,7 @@ import { ConnectedProps } from "react-redux";
 import { dataWidgetConnector } from "../components/RootComponents/DataWidgetComponent";
 import { layoutComponentConnector } from "../components/RootComponents/LayoutComponent";
 import { AdminCollectionField, AdminItem } from "../config/collections.config";
-import {
-  EntryDraftActionTypes,
-  EntrySetInitialActionTypes,
-} from "../redux/entries/types";
+
 import { SetActiveContent } from "../redux/activeCollection/types/";
 import { adonisGalleryConnector } from "../components/App/AdonisGallery";
 import { ThunkAction } from "redux-thunk";
@@ -32,26 +29,17 @@ export interface FieldComponentRootProps extends FieldComponentProps {
   fieldType: FieldWidgetTypes;
 }
 
-export type DataWidgetFunctionalComponentProps = {
-  activeCollection: AdminItem | null;
-  addNew: (fields: AdminCollectionField[]) => EntryDraftActionTypes;
-};
-
-export type DataWidgetReduxProps = ConnectedProps<typeof dataWidgetConnector>;
 export type AdonisGalleryReduxProps = ConnectedProps<
   typeof adonisGalleryConnector
 >;
-
-export interface DataWidgetComponentRootProps extends DataWidgetReduxProps {
-  widgetType: DataWidgetTypes;
-}
 
 export type FieldWidgetTypes =
   | "image"
   | "select"
   | "text"
   | "string"
-  | "markdown";
+  | "markdown"
+  | "categorySelect";
 
 export type DataWidgetTypes = "table" | "list";
 
@@ -79,4 +67,5 @@ export type IconTypes =
   | "Settings"
   | "FileCopy"
   | "Delete"
-  | "DeleteForever";
+  | "DeleteForever"
+  | "Category";

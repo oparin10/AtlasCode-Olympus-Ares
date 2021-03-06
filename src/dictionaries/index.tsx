@@ -16,6 +16,7 @@ import {
   AddShoppingCart,
   Apps,
   AttachMoney,
+  Category,
   Close,
   Delete,
   DeleteForever,
@@ -32,16 +33,17 @@ import MarkdownFieldWiget from "../components/Widgets/FieldWidgets/MarkdownField
 import SelectFieldWidget from "../components/Widgets/FieldWidgets/SelectedFieldWidget";
 import StringFieldWidget from "../components/Widgets/FieldWidgets/StringFieldWidget";
 import TextFieldWidget from "../components/Widgets/FieldWidgets/TextFieldWidget";
+import CategoryListFieldWidget from "../components/Widgets/FieldWidgets/CategoryListFieldWidget";
 
 import HadesLayout from "../layout/HadesLayout";
 import {
-  DataWidgetFunctionalComponentProps,
   DataWidgetTypes,
   FieldComponentProps,
   FieldWidgetTypes,
   IconTypes,
   LayoutTypes,
 } from "../types";
+import { DataWidgetFunctionalComponentProps } from "../components/RootComponents/DataWidgetComponent";
 
 export const IconDictonary: Record<
   IconTypes,
@@ -69,6 +71,7 @@ export const IconDictonary: Record<
   Delete: Delete,
   DeleteForever: DeleteForever,
   FileCopy: FileCopy,
+  Category: Category,
 };
 
 export const FieldWidgetDictionary: Record<
@@ -80,6 +83,7 @@ export const FieldWidgetDictionary: Record<
   select: SelectFieldWidget,
   text: TextFieldWidget,
   markdown: MarkdownFieldWiget,
+  categorySelect: CategoryListFieldWidget,
 };
 
 export const DataWidgetDictionary: Record<

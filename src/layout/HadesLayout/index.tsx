@@ -22,8 +22,6 @@ const HadesLayout = ({
   children,
   activeCollection,
   collections,
-  setActiveCollection,
-  setEntryInitialFields,
   setupActiveCollection,
 }: LayoutFunctionalComponentProps) => {
   let currentPath: string = getCurrentPath();
@@ -36,9 +34,6 @@ const HadesLayout = ({
     });
 
     setupActiveCollection(activeCollectionInner[0]);
-
-    // setActiveCollection(activeCollectionInner[0] as AdminItem);
-    // setEntryInitialFields(activeCollectionInner[0].fields);
   }, []);
 
   return (

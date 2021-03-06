@@ -1,6 +1,13 @@
 {
   "collections": {
     "testCollection": {
+      "categories": [
+        "Category1",
+        "Category2",
+        "Category3",
+        "Category4",
+        "Category5"
+      ],
       "aggregator": {
         "total_entries": 10,
         "last_updated": "i dont know"

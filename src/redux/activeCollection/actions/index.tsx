@@ -2,12 +2,13 @@ import { Dispatch } from "react";
 import { RootStateOrAny } from "react-redux";
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
-import { RootState } from "../..";
 import {
   AdminCollectionField,
   AdminItem,
 } from "../../../config/collections.config";
 import { db } from "../../../firebase";
+import { globalNotificationCustom } from "../../globalUI/actions";
+import { GlobalStateActionTypes } from "../../types";
 import {
   ActiveCollectionState,
   ActiveContentActionTypes,
@@ -30,7 +31,9 @@ export const setActiveCollection = (
 export const setupActiveCollection = (
   activeCollection: AdminItem
 ): ThunkAction<void, RootStateOrAny, unknown, Action<string>> => {
-  return async (dispatch: Dispatch<ActiveContentActionTypes>) => {
+  return async (
+    dispatch: Dispatch<ActiveContentActionTypes | GlobalStateActionTypes>
+  ) => {
     dispatch({
       type: ACTIVE_COLLECTION_SET_START,
     });

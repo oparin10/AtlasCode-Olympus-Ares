@@ -20,6 +20,7 @@ const FieldWidgetComponent = ({
 }: FieldComponentRootProps) => {
   const FieldComponentDynamic = FieldWidgetDictionary[fieldType];
 
+
   return (
     <div>
       <FieldComponentDynamic
@@ -36,9 +37,7 @@ export interface FieldComponentProps {
   label: string;
   name: string;
   changeField: (key: string, value: any) => DraftChangeField;
-  currentValues:
-    | Record<string, DraftStateField | Partial<DraftStateField>>
-    | undefined;
+  currentValues: Record<string, Partial<DraftStateField>> | undefined;
 }
 
 export interface FieldComponentRootProps extends FieldComponentReduxProps {

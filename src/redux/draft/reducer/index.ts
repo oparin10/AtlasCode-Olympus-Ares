@@ -37,15 +37,23 @@ export const draftReducer = (
             fieldType: collectionField.fieldType,
             label: collectionField.label,
             name: collectionField.name,
-            value: collectionField.defaultValue,
+            defaultValue: collectionField.defaultValue,
+            value: "",
           };
         } else {
           fieldsLocal[collectionField.name] = {
             fieldType: collectionField.fieldType,
             label: collectionField.label,
             name: collectionField.name,
+            defaultValue: "",
             value: "",
           };
+        }
+
+        if (collectionField.fieldType == "select") {
+          fieldsLocal[collectionField.name].arrayValues = [
+            ...(collectionField.defaultValue as Array<string>),
+          ];
         }
       }
 

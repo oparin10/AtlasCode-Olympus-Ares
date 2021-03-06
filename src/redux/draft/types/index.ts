@@ -55,7 +55,9 @@ export interface DraftStateField {
   name: string;
   label: string;
   fieldType: FieldWidgetTypes;
+  defaultValue: any;
   value: any;
+  arrayValues?: Array<string>;
 }
 
 export type DraftActionTypes =

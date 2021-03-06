@@ -12,9 +12,10 @@ const StringFieldWidget = ({
   let currentFieldValue: DraftStateField | string =
     currentValues?.[name].value ?? "";
 
+  React.useEffect(() => {}, []);
+
   return (
     <div>
-      {currentValues?.name}
       <TextField
         label={label.toString()}
         value={currentFieldValue}

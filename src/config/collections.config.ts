@@ -5,7 +5,7 @@ export interface AdminCollectionField {
   fieldType: FieldWidgetTypes;
   label: string;
   validation: Array<string> | string | null | undefined | RegExp;
-  defaultValue?: string;
+  defaultValue?: string | Array<string>;
 }
 
 export interface AdminItem {
@@ -39,8 +39,9 @@ export const collectionsConfig: Array<AdminItem> = [
       {
         label: "Other string field",
         name: "other",
-        fieldType: "string",
+        fieldType: "select",
         validation: "",
+        defaultValue: ["Will i be able to rest", "i gotta take a piss", "yeah"],
       },
       {
         label: "Cigarette",

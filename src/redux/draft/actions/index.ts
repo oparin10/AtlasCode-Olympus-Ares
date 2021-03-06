@@ -1,7 +1,9 @@
 import { AdminItem } from "../../../config/collections.config";
 import {
+  DraftChangeActionTypes,
   DraftComponentVisibilityActionTypes,
   DraftEntryNewActionTypes,
+  DRAFT_CHANGE_FIELD,
   DRAFT_COMPONENT_HIDE,
   DRAFT_COMPONENT_SHOW,
   DRAFT_ENTRY_NEW_CREATE,
@@ -32,5 +34,18 @@ export const draftCreateNew = (
 export const draftDiscard = (): DraftEntryNewActionTypes => {
   return {
     type: DRAFT_ENTRY_NEW_DISCARD,
+  };
+};
+
+export const draftChange = (
+  key: string,
+  value: any
+): DraftChangeActionTypes => {
+  return {
+    type: DRAFT_CHANGE_FIELD,
+    payload: {
+      key: key,
+      value: value,
+    },
   };
 };

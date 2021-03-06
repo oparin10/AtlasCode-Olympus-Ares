@@ -30,7 +30,7 @@ import DataTable from "../components/Widgets/DataWidgets/DataTable";
 import OrderedList from "../components/Widgets/DataWidgets/OrderedList";
 import ImageFieldWidget from "../components/Widgets/FieldWidgets/ImageFieldWidget";
 import MarkdownFieldWiget from "../components/Widgets/FieldWidgets/MarkdownFieldWidget";
-import SelectFieldWidget from "../components/Widgets/FieldWidgets/SelectedFieldWidget";
+import SelectFieldWidget from "../components/Widgets/FieldWidgets/SelectFieldWidget";
 import StringFieldWidget from "../components/Widgets/FieldWidgets/StringFieldWidget";
 import TextFieldWidget from "../components/Widgets/FieldWidgets/TextFieldWidget";
 import CategoryListFieldWidget from "../components/Widgets/FieldWidgets/CategoryListFieldWidget";
@@ -38,12 +38,12 @@ import CategoryListFieldWidget from "../components/Widgets/FieldWidgets/Category
 import HadesLayout from "../layout/HadesLayout";
 import {
   DataWidgetTypes,
-  FieldComponentProps,
   FieldWidgetTypes,
   IconTypes,
   LayoutTypes,
 } from "../types";
 import { DataWidgetFunctionalComponentProps } from "../components/RootComponents/DataWidgetComponent";
+import { FieldComponentProps } from "../components/RootComponents/FieldWidgetComponent";
 
 export const IconDictonary: Record<
   IconTypes,

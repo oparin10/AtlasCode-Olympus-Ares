@@ -3,15 +3,24 @@ import {
   DraftActionTypes,
   DRAFT_ENTRY_NEW_CREATE,
   DRAFT_ENTRY_NEW_DISCARD,
+  DRAFT_CHANGE_FIELD,
 } from "../types";
 
-const initialState: Partial<DraftState> = {};
+const initialState: Partial<DraftState> = {
+  isOpen: false,
+};
 
 export const draftReducer = (
   state = initialState,
   action: DraftActionTypes
 ): Partial<DraftState> => {
   switch (action.type) {
+    case DRAFT_CHANGE_FIELD:
+      return {
+        ...state,
+        fields: { ...state.fields, [action.payload.key]: action.payload.value },
+      };
+
     case DRAFT_ENTRY_NEW_CREATE:
       let fieldsLocal: Record<string, any> = {};
 

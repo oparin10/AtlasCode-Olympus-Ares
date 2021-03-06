@@ -1,9 +1,14 @@
 import React from "react";
-import { FieldComponentProps } from "../../../../types";
+import { FieldComponentProps } from "../../../RootComponents/FieldWidgetComponent";
 
 interface Props extends FieldComponentProps {}
 
-const CategoryListFieldWidget = ({ label, onChange, error, value }: Props) => {
+const CategoryListFieldWidget = ({
+  label,
+  changeField,
+  currentValues,
+  name,
+}: Props) => {
   return <div>this is a list with categories in it</div>;
 };
 

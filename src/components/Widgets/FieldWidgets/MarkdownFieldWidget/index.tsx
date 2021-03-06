@@ -1,13 +1,13 @@
 import React from "react";
-import { FieldComponentProps } from "../../../../types";
+import { FieldComponentProps } from "../../../RootComponents/FieldWidgetComponent";
 
 interface MarkdownFieldProps extends FieldComponentProps {}
 
 const MarkdownFieldWiget = ({
   label,
-  onChange,
-  value,
-  error = false,
+  changeField,
+  currentValues,
+  name,
   ...props
 }: MarkdownFieldProps) => {
   return <div {...props}>markdown field widget</div>;

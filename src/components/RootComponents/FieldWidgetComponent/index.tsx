@@ -1,20 +1,57 @@
 import React from "react";
+import { connect, ConnectedProps } from "react-redux";
 import { FieldWidgetDictionary } from "../../../dictionaries";
-import { FieldComponentRootProps } from "../../../types";
+import { RootState } from "../../../redux";
+import { draftChange } from "../../../redux/draft/actions";
+import { FieldWidgetTypes } from "../../../types";
+import { DraftChangeField } from "../../../redux/draft/types";
 
 const FieldWidgetComponent = ({
   fieldType,
+  changeField,
+  currentFieldValues,
   label,
-  onChange,
-  error = false,
+  name,
 }: FieldComponentRootProps) => {
   const FieldComponentDynamic = FieldWidgetDictionary[fieldType];
 
   return (
     <div>
-      <FieldComponentDynamic label={label} onChange={onChange} error={error} />
+      <FieldComponentDynamic
+        currentValues={currentFieldValues}
+        changeField={changeField}
+        name={name}
+        label={label}
+      />
     </div>
   );
 };
 
-export default FieldWidgetComponent;
+export interface FieldComponentProps {
+  label: string;
+  name: string;
+  changeField: (key: string, value: any) => DraftChangeField;
+  currentValues: Record<string, any> | undefined;
+}
+
+export interface FieldComponentRootProps extends FieldComponentReduxProps {
+  fieldType: FieldWidgetTypes;
+  label: string;
+  name: string;
+}
+
+const mapStateToProps = (rootState: RootState) => ({
+  currentFieldValues: rootState.draft.fields,
+});
+
+const mapDispatchToProps = {
+  changeField: draftChange,
+};
+
+const fieldWidgetConnector = connect(mapStateToProps, mapDispatchToProps);
+
+export type FieldComponentReduxProps = ConnectedProps<
+  typeof fieldWidgetConnector
+>;
+
+export default fieldWidgetConnector(FieldWidgetComponent);

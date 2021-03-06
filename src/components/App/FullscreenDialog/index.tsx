@@ -51,7 +51,7 @@ function FullScreenDialog({
     <div>
       <Dialog
         fullScreen
-        open={isOpen!}
+        open={isOpen as boolean}
         onClose={draftDiscard}
         TransitionComponent={Transition}
       >
@@ -81,9 +81,9 @@ function FullScreenDialog({
           {fields?.map((value, index) => {
             return (
               <FieldWidgetComponent
+                name={value.name}
                 key={index}
                 label={value.label}
-                onChange={(e: any) => console.log("hehe")}
                 fieldType={value.fieldType}
               />
             );

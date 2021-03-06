@@ -6,6 +6,18 @@ export const DRAFT_COMPONENT_HIDE = "DRAFT_COMPONENT_HIDE";
 export const DRAFT_ENTRY_NEW_CREATE = "DRAFT_ENTRY_NEW_CREATE";
 export const DRAFT_ENTRY_NEW_DISCARD = "DRAFT_ENTRY_NEW_DISCARD";
 
+export const DRAFT_CHANGE_FIELD = "DRAFT_CHANGE_FIELD";
+
+export interface DraftChangeField {
+  type: typeof DRAFT_CHANGE_FIELD;
+  payload: {
+    key: string;
+    value: any;
+  };
+}
+
+export type DraftChangeActionTypes = DraftChangeField;
+
 interface DraftEntryNewCreate {
   type: typeof DRAFT_ENTRY_NEW_CREATE;
   payload: AdminItem;
@@ -40,4 +52,5 @@ export interface DraftState {
 
 export type DraftActionTypes =
   | DraftComponentVisibilityActionTypes
-  | DraftEntryNewActionTypes;
+  | DraftEntryNewActionTypes
+  | DraftChangeActionTypes;

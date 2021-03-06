@@ -1,27 +1,22 @@
 import { TextField } from "@material-ui/core";
 import React from "react";
-
-export interface StringFieldWidgetProps {
-  fullWidth?: boolean;
-  onChange: () => void;
-  error?: boolean;
-  label: string;
-  // value: string | number;
-}
+import { FieldComponentProps } from "../../../RootComponents/FieldWidgetComponent";
 
 const StringFieldWidget = ({
+  changeField,
+  currentValues,
   label,
-  // value,
-  onChange,
-  fullWidth = false,
-}: StringFieldWidgetProps) => {
+  name,
+}: FieldComponentProps) => {
   return (
-    <TextField
-      label={label.toString()}
-      // value={value}
-      onChange={onChange}
-      fullWidth={fullWidth}
-    ></TextField>
+    <div>
+      {currentValues?.name}
+      <TextField
+        label={label.toString()}
+        value={currentValues![name] ?? ""}
+        onChange={(e: any) => changeField(name, e.target.value)}
+      ></TextField>
+    </div>
   );
 };
 

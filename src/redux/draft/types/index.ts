@@ -1,4 +1,5 @@
 import { AdminItem } from "../../../config/collections.config";
+import { FieldWidgetTypes } from "../../../types";
 
 export const DRAFT_COMPONENT_SHOW = "DRAFT_COMPONENT_SHOW";
 export const DRAFT_COMPONENT_HIDE = "DRAFT_COMPONENT_HIDE";
@@ -46,8 +47,15 @@ export type DraftComponentVisibilityActionTypes =
 export interface DraftState {
   isOpen: boolean;
   collectionRef: string;
-  fields: Record<string, any>;
+  fields: Record<string, Partial<DraftStateField>>;
   categories?: Array<string>;
+}
+
+export interface DraftStateField {
+  name: string;
+  label: string;
+  fieldType: FieldWidgetTypes;
+  value: any;
 }
 
 export type DraftActionTypes =

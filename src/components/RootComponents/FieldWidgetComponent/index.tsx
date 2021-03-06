@@ -4,7 +4,11 @@ import { FieldWidgetDictionary } from "../../../dictionaries";
 import { RootState } from "../../../redux";
 import { draftChange } from "../../../redux/draft/actions";
 import { FieldWidgetTypes } from "../../../types";
-import { DraftChangeField } from "../../../redux/draft/types";
+import {
+  DraftChangeField,
+  DraftState,
+  DraftStateField,
+} from "../../../redux/draft/types";
 
 const FieldWidgetComponent = ({
   fieldType,
@@ -12,6 +16,7 @@ const FieldWidgetComponent = ({
   currentFieldValues,
   label,
   name,
+  activeFields,
 }: FieldComponentRootProps) => {
   const FieldComponentDynamic = FieldWidgetDictionary[fieldType];
 
@@ -31,7 +36,9 @@ export interface FieldComponentProps {
   label: string;
   name: string;
   changeField: (key: string, value: any) => DraftChangeField;
-  currentValues: Record<string, any> | undefined;
+  currentValues:
+    | Record<string, DraftStateField | Partial<DraftStateField>>
+    | undefined;
 }
 
 export interface FieldComponentRootProps extends FieldComponentReduxProps {
@@ -42,6 +49,7 @@ export interface FieldComponentRootProps extends FieldComponentReduxProps {
 
 const mapStateToProps = (rootState: RootState) => ({
   currentFieldValues: rootState.draft.fields,
+  activeFields: rootState.activeCollection.fields,
 });
 
 const mapDispatchToProps = {

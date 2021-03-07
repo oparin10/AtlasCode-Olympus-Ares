@@ -57,6 +57,11 @@ export const draftReducer = (
             fieldsLocal[collectionField.name].array_options = [
               ...(collectionField.selectOptions as Array<string>),
             ];
+            break;
+          case "categorySelect":
+            fieldsLocal[collectionField.name].array_options = [
+              ...(action.payload.categories as Array<string>),
+            ];
         }
       }
 

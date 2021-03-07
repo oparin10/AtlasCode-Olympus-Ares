@@ -4,7 +4,7 @@ export interface AdminCollectionField {
   name: string;
   fieldType: FieldWidgetTypes;
   label: string;
-  validation: Array<string> | string | null | undefined | RegExp;
+  validation?: Array<string> | string | null | undefined | RegExp;
   initialValue?: string | Array<string>;
   selectOptions?: Array<string>;
 }
@@ -36,6 +36,12 @@ export const collectionsConfig: Array<AdminItem> = [
         fieldType: "string",
         validation: "",
         initialValue: "defaultValueTest",
+      },
+      {
+        label: "Categorias nib",
+        name: "categoryList",
+        fieldType: "categorySelect",
+        validation: "",
       },
       {
         label: "Other string field",

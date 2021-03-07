@@ -83,7 +83,7 @@ export const FieldWidgetDictionary: Record<
   select: SelectFieldWidget,
   text: TextFieldWidget,
   markdown: MarkdownFieldWiget,
-  categorySelect: CategoryListFieldWidget,
+  categorySelect: SelectFieldWidget,
 };
 
 export const DataWidgetDictionary: Record<

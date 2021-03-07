@@ -1,4 +1,4 @@
-import { Box, TextField } from "@material-ui/core";
+import { Box, Grow, TextField } from "@material-ui/core";
 import React from "react";
 import {
   DraftAdditionalConfigTypes,
@@ -23,20 +23,31 @@ const ImageFieldWidget = ({
   return (
     <div>
       <Box mb={3} width={"100%"} display="flex" justifyContent="center">
-        {currentImageValue.toString().length > 0 ? (
-          <Box
-            width={"200px"}
-            height={"200px"}
-            display="flex"
-            justifyContent="center"
-          >
-            <img
-              style={{ width: "100%", height: "100%", borderRadius: "35px" }}
-              src={currentImageValue as string}
-              alt={currentImageDescriptionValue as string}
-            />
-          </Box>
-        ) : null}
+        <Grow
+          mountOnEnter
+          unmountOnExit
+          in={Boolean(currentImageValue.toString().length > 0)}
+          timeout={{ enter: 750, exit: 750 }}
+        >
+          <div>
+            <Box
+              width={"200px"}
+              height={"200px"}
+              display="flex"
+              justifyContent="center"
+            >
+              <img
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "35px",
+                }}
+                src={currentImageValue as string}
+                alt={currentImageDescriptionValue as string}
+              />
+            </Box>
+          </div>
+        </Grow>
       </Box>
 
       <Box

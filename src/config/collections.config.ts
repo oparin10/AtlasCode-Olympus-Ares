@@ -34,14 +34,12 @@ export const collectionsConfig: Array<AdminItem> = [
         label: "Título",
         name: "title",
         fieldType: "string",
-        validation: "",
         initialValue: "defaultValueTest",
       },
       {
         label: "Categorias",
         name: "categoryList",
         fieldType: "categorySelect",
-        validation: "",
       },
       {
         label: "Other string field",
@@ -55,7 +53,11 @@ export const collectionsConfig: Array<AdminItem> = [
         label: "Cigarette",
         fieldType: "text",
         name: "more",
-        validation: "",
+      },
+      {
+        name: "featuredImage",
+        fieldType: "image",
+        label: "Imagem principal",
       },
     ],
   },

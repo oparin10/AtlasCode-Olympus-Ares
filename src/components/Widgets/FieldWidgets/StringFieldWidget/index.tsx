@@ -20,7 +20,9 @@ const StringFieldWidget = ({
         variant="outlined"
         label={label.toString()}
         value={currentFieldValue}
-        onChange={(e: any) => changeField(name, e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          changeField(name, e.target.value)
+        }
       ></TextField>
     </div>
   );

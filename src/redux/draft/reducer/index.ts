@@ -19,6 +19,44 @@ export const draftReducer = (
 ): Partial<DraftState> => {
   switch (action.type) {
     case DRAFT_CHANGE_FIELD:
+      if (
+        action.payload.fieldType == "image" &&
+        action.payload.additionalConfig == "url"
+      ) {
+        return {
+          ...state,
+          fields: {
+            ...state.fields,
+            [action.payload.key]: {
+              ...state.fields?.[action.payload.key],
+              value: {
+                imageURL: action.payload.value,
+                imageDescription:
+                  state.fields?.[action.payload.key].value.imageDescription,
+              },
+            },
+          },
+        };
+      }
+
+      if (
+        action.payload.fieldType == "image" &&
+        action.payload.additionalConfig == "description"
+      ) {
+        return {
+          ...state,
+          fields: {
+            ...state.fields,
+            [action.payload.key]: {
+              ...state.fields?.[action.payload.key],
+              value: {
+                imageDescription: action.payload.value,
+                imageURL: state.fields?.[action.payload.key].value.imageURL,
+              },
+            },
+          },
+        };
+      }
       return {
         ...state,
         fields: {
@@ -62,6 +100,13 @@ export const draftReducer = (
             fieldsLocal[collectionField.name].array_options = [
               ...(action.payload.categories as Array<string>),
             ];
+            break;
+
+          case "image":
+            fieldsLocal[collectionField.name].value = {
+              imageURL: "",
+              imageDescription: "",
+            };
         }
       }
 

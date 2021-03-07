@@ -12,17 +12,14 @@ const TextFieldWidget = ({
   let currentFieldValue: DraftStateField | string =
     currentValues?.[name].value ?? "";
 
+    
+
   return (
     <Box width={{ xs: "300px", md: "500px" }}>
       <TextField
         multiline
         fullWidth
         rows={6}
-        defaultValue={
-          currentValues?.[name].default_value
-            ? currentValues?.[name].default_value
-            : ""
-        }
         variant="outlined"
         label={label.toString()}
         value={currentFieldValue}

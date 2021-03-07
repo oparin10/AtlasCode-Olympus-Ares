@@ -14,6 +14,8 @@ export interface DraftChangeField {
   payload: {
     key: string;
     value: any;
+    fieldType?: FieldWidgetTypes;
+    additionalConfig?: any;
   };
 }
 

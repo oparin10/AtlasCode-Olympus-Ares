@@ -1,4 +1,5 @@
 import { AdminItem } from "../../../config/collections.config";
+import { FieldWidgetTypes } from "../../../types";
 import {
   DraftChangeActionTypes,
   DraftComponentVisibilityActionTypes,
@@ -39,13 +40,17 @@ export const draftDiscard = (): DraftEntryNewActionTypes => {
 
 export const draftChange = (
   key: string,
-  value: any
+  value: any,
+  fieldType?: FieldWidgetTypes,
+  additionalConfig?: any
 ): DraftChangeActionTypes => {
   return {
     type: DRAFT_CHANGE_FIELD,
     payload: {
       key: key,
       value: value,
+      fieldType: fieldType,
+      additionalConfig: additionalConfig
     },
   };
 };

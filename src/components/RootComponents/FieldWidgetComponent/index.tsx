@@ -5,6 +5,7 @@ import { RootState } from "../../../redux";
 import { draftChange } from "../../../redux/draft/actions";
 import { FieldWidgetTypes } from "../../../types";
 import {
+  DraftAdditionalConfigTypes,
   DraftChangeField,
   DraftState,
   DraftStateField,
@@ -39,7 +40,7 @@ export interface FieldComponentProps {
     key: string,
     value: any,
     fieldType?: FieldWidgetTypes,
-    additionalConfig?: any
+    additionalConfig?: DraftAdditionalConfigTypes
   ) => DraftChangeField;
   currentValues: Record<string, Partial<DraftStateField>> | undefined;
 }

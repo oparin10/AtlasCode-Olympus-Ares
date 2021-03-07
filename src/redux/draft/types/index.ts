@@ -9,13 +9,20 @@ export const DRAFT_ENTRY_NEW_DISCARD = "DRAFT_ENTRY_NEW_DISCARD";
 
 export const DRAFT_CHANGE_FIELD = "DRAFT_CHANGE_FIELD";
 
+export type DraftAdditionalConfigImage = "url" | "description";
+export type DraftAdditionalConfigMarkdown = "parsed" | "raw" | "html";
+
+export type DraftAdditionalConfigTypes =
+  | DraftAdditionalConfigImage
+  | DraftAdditionalConfigMarkdown;
+
 export interface DraftChangeField {
   type: typeof DRAFT_CHANGE_FIELD;
   payload: {
     key: string;
     value: any;
     fieldType?: FieldWidgetTypes;
-    additionalConfig?: any;
+    additionalConfig?: DraftAdditionalConfigTypes;
   };
 }
 

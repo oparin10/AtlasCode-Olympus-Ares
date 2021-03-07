@@ -50,7 +50,7 @@ export const draftChange = (
       key: key,
       value: value,
       fieldType: fieldType,
-      additionalConfig: additionalConfig
+      additionalConfig: additionalConfig,
     },
   };
 };

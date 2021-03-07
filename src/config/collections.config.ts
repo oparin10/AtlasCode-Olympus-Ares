@@ -4,7 +4,7 @@ export interface AdminCollectionField {
   name: string;
   fieldType: FieldWidgetTypes;
   label: string;
-  validation?: Array<string> | string | null | undefined | RegExp;
+  validation?: Array<string> | string | RegExp;
   initialValue?: string | Array<string>;
   selectOptions?: Array<string>;
 }
@@ -38,7 +38,7 @@ export const collectionsConfig: Array<AdminItem> = [
         initialValue: "defaultValueTest",
       },
       {
-        label: "Categorias nib",
+        label: "Categorias",
         name: "categoryList",
         fieldType: "categorySelect",
         validation: "",
@@ -70,7 +70,6 @@ export const collectionsConfig: Array<AdminItem> = [
         label: "Blog title",
         name: "blogTitle",
         fieldType: "string",
-        validation: null,
       },
     ],
   },
@@ -85,7 +84,6 @@ export const collectionsConfig: Array<AdminItem> = [
         label: "Blog title",
         name: "blogTitle",
         fieldType: "markdown",
-        validation: null,
       },
     ],
   },
@@ -101,7 +99,6 @@ export const collectionsConfig: Array<AdminItem> = [
         label: "Blog title",
         name: "blogTitle",
         fieldType: "markdown",
-        validation: null,
       },
     ],
   },
@@ -116,7 +113,6 @@ export const collectionsConfig: Array<AdminItem> = [
         label: "Blog title",
         name: "blogTitle",
         fieldType: "markdown",
-        validation: null,
       },
     ],
   },

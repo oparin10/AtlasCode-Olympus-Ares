@@ -53,7 +53,7 @@ export const collectionsConfig: Array<AdminItem> = [
       },
       {
         label: "Cigarette",
-        fieldType: "string",
+        fieldType: "text",
         name: "more",
         validation: "",
       },

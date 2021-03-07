@@ -17,6 +17,7 @@ const StringFieldWidget = ({
   return (
     <div>
       <TextField
+        variant="outlined"
         label={label.toString()}
         value={currentFieldValue}
         onChange={(e: any) => changeField(name, e.target.value)}

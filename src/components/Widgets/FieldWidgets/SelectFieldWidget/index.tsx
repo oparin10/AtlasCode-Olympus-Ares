@@ -6,7 +6,10 @@ import styled from "styled-components";
 
 const RootContainer = styled.div`
   width: 250px;
-  
+
+  .MuiSelect-root {
+    padding-top: 35px;
+  }
 `;
 
 interface Props extends FieldComponentProps {}
@@ -25,8 +28,9 @@ const SelectFieldWidget = ({
   return (
     <RootContainer>
       <FormControl fullWidth>
-        <InputLabel>{label}</InputLabel>
+        <InputLabel variant="filled">{label}</InputLabel>
         <Select
+          variant="outlined"
           onChange={(e: any) => changeField(name, e.target.value)}
           value={currentFieldValue}
         >

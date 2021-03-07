@@ -46,6 +46,8 @@ export type DraftComponentVisibilityActionTypes =
 
 export interface DraftState {
   isOpen: boolean;
+  entry_new: boolean;
+  entry_update: boolean;
   collectionRef: string;
   fields: Record<string, Partial<DraftStateField>>;
   categories?: Array<string>;
@@ -54,10 +56,10 @@ export interface DraftState {
 export interface DraftStateField {
   name: string;
   label: string;
-  fieldType: FieldWidgetTypes;
-  defaultValue: any;
+  field_type: FieldWidgetTypes;
+  default_value: any;
   value: any;
-  arrayValues?: Array<string>;
+  array_options?: Array<string>;
 }
 
 export type DraftActionTypes =

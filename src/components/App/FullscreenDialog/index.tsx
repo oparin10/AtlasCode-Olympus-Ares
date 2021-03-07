@@ -13,22 +13,9 @@ import { connect, ConnectedProps } from "react-redux";
 import IconComponent from "../IconComponent";
 import { Box } from "@material-ui/core";
 import { galleryOpen } from "../../../redux/adonis/actions";
-
 import { RootState } from "../../../redux/";
 import FieldWidgetComponent from "../../RootComponents/FieldWidgetComponent";
 import { draftDiscard } from "../../../redux/draft/actions";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    appBar: {
-      position: "relative",
-    },
-    title: {
-      marginLeft: theme.spacing(2),
-      flex: 1,
-    },
-  })
-);
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children?: React.ReactElement },
@@ -44,9 +31,10 @@ function FullScreenDialog({
   fields,
   isOpen,
   draftDiscard,
+  entryNew,
+  entryUpdate,
+  collectionLabel,
 }: Props) {
-  const classes = useStyles();
-
   return (
     <div>
       <Dialog
@@ -55,8 +43,8 @@ function FullScreenDialog({
         onClose={draftDiscard}
         TransitionComponent={Transition}
       >
-        <AppBar className={classes.appBar}>
-          <Toolbar>
+        <AppBar style={{ position: "relative" }}>
+          <Toolbar style={{ display: "flex" }}>
             <IconButton
               edge="start"
               color="inherit"
@@ -66,28 +54,58 @@ function FullScreenDialog({
               <CloseIcon />
             </IconButton>
 
-            <Box onClick={openGallery}>
-              <IconComponent clickable iconType="AddAPhoto" />
+            <Box flexGrow={1}>
+              <Box display="flex" justifyContent="flex-end" alignItems="center">
+                <Box mx={2} onClick={openGallery}>
+                  <IconComponent clickable iconType="AddAPhoto" />
+                </Box>
+
+                <Box mx={2} onClick={openGallery}>
+                  <IconComponent clickable iconType="Category" />
+                </Box>
+              </Box>
             </Box>
-            <Typography variant="h6" className={classes.title}>
-              Sound
-            </Typography>
-            <Button autoFocus color="inherit" onClick={draftDiscard}>
-              save
-            </Button>
+
+            <Box flexGrow={{ xs: "0.35", md: "0.1" }}>
+              <Box display="flex" justifyContent="flex-end">
+                <Button variant="contained" onClick={draftDiscard}>
+                  Criar
+                </Button>
+              </Box>
+            </Box>
           </Toolbar>
         </AppBar>
         <div>
-          {fields?.map((value, index) => {
-            return (
-              <FieldWidgetComponent
-                name={value.name}
-                key={index}
-                label={value.label}
-                fieldType={value.fieldType}
-              />
-            );
-          })}
+          <Box
+            display="flex"
+            justifyContent="center"
+            flexDirection="column"
+            alignItems="center"
+          >
+            <Box
+              fontSize={{ xs: "20px", md: "30px" }}
+              fontWeight={700}
+              marginTop={{ xs: "35px" }}
+              marginBottom={{ xs: "15px" }}
+            >
+              {entryNew
+                ? `Criando novo item em ${collectionLabel}`
+                : entryUpdate
+                ? `Atualizando item em ${collectionLabel}`
+                : "I dont know"}
+            </Box>
+            {fields?.map((value, index) => {
+              return (
+                <Box my={2} key={index}>
+                  <FieldWidgetComponent
+                    name={value.name}
+                    label={value.label}
+                    fieldType={value.fieldType}
+                  />
+                </Box>
+              );
+            })}
+          </Box>
         </div>
       </Dialog>
     </div>
@@ -97,7 +115,10 @@ function FullScreenDialog({
 const mapState = (state: RootState) => {
   return {
     fields: state.activeCollection?.fields,
+    collectionLabel: state.activeCollection.sidebarLabel,
     isOpen: state.draft.isOpen,
+    entryNew: state.draft.entry_new,
+    entryUpdate: state.draft.entry_update,
   };
 };
 

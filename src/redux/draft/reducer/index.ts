@@ -9,6 +9,8 @@ import {
 
 const initialState: Partial<DraftState> = {
   isOpen: false,
+  entry_new: false,
+  entry_update: false,
 };
 
 export const draftReducer = (
@@ -32,41 +34,44 @@ export const draftReducer = (
       let fieldsLocal: Record<string, DraftStateField> = {};
 
       for (const collectionField of action.payload.fields) {
-        if (collectionField.defaultValue) {
+        if (collectionField.initialValue) {
           fieldsLocal[collectionField.name] = {
-            fieldType: collectionField.fieldType,
+            field_type: collectionField.fieldType,
             label: collectionField.label,
             name: collectionField.name,
-            defaultValue: collectionField.defaultValue,
+            default_value: collectionField.initialValue,
             value: "",
           };
         } else {
           fieldsLocal[collectionField.name] = {
-            fieldType: collectionField.fieldType,
+            field_type: collectionField.fieldType,
             label: collectionField.label,
             name: collectionField.name,
-            defaultValue: "",
+            default_value: "",
             value: "",
           };
         }
 
-        if (collectionField.fieldType == "select") {
-          fieldsLocal[collectionField.name].arrayValues = [
-            ...(collectionField.defaultValue as Array<string>),
-          ];
+        switch (collectionField.fieldType) {
+          case "select":
+            fieldsLocal[collectionField.name].array_options = [
+              ...(collectionField.selectOptions as Array<string>),
+            ];
         }
       }
 
       let localDraftState: DraftState = {
         collectionRef: action.payload.collectionRef,
         isOpen: true,
+        entry_new: true,
+        entry_update: false,
         fields: { ...fieldsLocal },
       };
 
       return localDraftState;
 
     case DRAFT_ENTRY_NEW_DISCARD:
-      return { isOpen: false };
+      return { isOpen: false, entry_new: false, entry_update: false };
 
     default:
       return state;

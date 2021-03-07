@@ -57,7 +57,7 @@ const IconComponent = ({
   // }, [helperState]);
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", display: "flex" }}>
       <SvgIcon
         onMouseEnter={() => setHelperState(true)}
         onMouseLeave={() => setHelperState(false)}

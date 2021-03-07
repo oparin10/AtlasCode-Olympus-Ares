@@ -1,4 +1,10 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@material-ui/core";
 import React from "react";
 import { DraftStateField } from "../../../../redux/draft/types";
 import { FieldComponentProps } from "../../../RootComponents/FieldWidgetComponent";
@@ -7,9 +13,9 @@ import styled from "styled-components";
 const RootContainer = styled.div`
   width: 250px;
 
-  .MuiSelect-root {
+  /* .MuiSelect-root {
     padding-top: 35px;
-  }
+  } */
 `;
 
 interface Props extends FieldComponentProps {}
@@ -27,22 +33,24 @@ const SelectFieldWidget = ({
 
   return (
     <RootContainer>
-      <FormControl fullWidth>
-        <InputLabel variant="filled">{label}</InputLabel>
-        <Select
-          variant="outlined"
-          onChange={(e: any) => changeField(name, e.target.value)}
-          value={currentFieldValue}
-        >
-          {currentValues?.[name].array_options?.map((value, index) => {
-            return (
-              <MenuItem key={index} value={value}>
-                {value.toString()}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
+      <TextField
+        fullWidth
+        variant="outlined"
+        select
+        label={label}
+        value={currentFieldValue}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          changeField(name, e.target.value)
+        }
+      >
+        {currentValues?.[name].array_options?.map((option, index) => {
+          return (
+            <MenuItem key={index} value={option}>
+              {option.toString()}
+            </MenuItem>
+          );
+        })}
+      </TextField>
     </RootContainer>
   );
 };

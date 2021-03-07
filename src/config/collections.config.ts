@@ -36,28 +36,26 @@ export const collectionsConfig: Array<AdminItem> = [
         fieldType: "string",
         initialValue: "defaultValueTest",
       },
+
+      {
+        name: "featuredImage",
+        fieldType: "image",
+        label: "Imagem principal",
+      },
       {
         label: "Categorias",
         name: "categoryList",
         fieldType: "categorySelect",
       },
       {
-        label: "Other string field",
-        name: "other",
-        fieldType: "select",
-        validation: "",
-        initialValue: "hehe",
-        selectOptions: ["hehe", "yes", "very ass", "oh yeah"],
+        label: "Post",
+        fieldType: "markdown",
+        name: "blogPost",
       },
       {
         label: "Cigarette",
         fieldType: "text",
         name: "more",
-      },
-      {
-        name: "featuredImage",
-        fieldType: "image",
-        label: "Imagem principal",
       },
     ],
   },

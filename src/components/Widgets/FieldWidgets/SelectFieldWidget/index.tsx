@@ -49,7 +49,7 @@ const SelectFieldWidget = ({
               {option.toString()}
             </MenuItem>
           );
-        })}
+        }) || <div>placeholder children</div>}
       </TextField>
     </RootContainer>
   );

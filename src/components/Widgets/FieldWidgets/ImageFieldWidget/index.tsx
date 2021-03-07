@@ -1,11 +1,6 @@
 import { Box, Grow, TextField } from "@material-ui/core";
 import React from "react";
-import {
-  DraftAdditionalConfigTypes,
-  DraftChangeField,
-  DraftStateField,
-} from "../../../../redux/draft/types";
-import { FieldWidgetTypes } from "../../../../types";
+import { DraftStateField } from "../../../../redux/draft/types";
 import { FieldComponentProps } from "../../../RootComponents/FieldWidgetComponent";
 
 const ImageFieldWidget = ({

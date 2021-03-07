@@ -33,7 +33,6 @@ import MarkdownFieldWiget from "../components/Widgets/FieldWidgets/MarkdownField
 import SelectFieldWidget from "../components/Widgets/FieldWidgets/SelectFieldWidget";
 import StringFieldWidget from "../components/Widgets/FieldWidgets/StringFieldWidget";
 import TextFieldWidget from "../components/Widgets/FieldWidgets/TextFieldWidget";
-import CategoryListFieldWidget from "../components/Widgets/FieldWidgets/CategoryListFieldWidget";
 
 import HadesLayout from "../layout/HadesLayout";
 import {

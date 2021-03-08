@@ -50,4 +50,6 @@ export type IconTypes =
   | "Delete"
   | "DeleteForever"
   | "Category"
-  | "Palette";
+  | "Palette"
+  | "Panorama"
+  | "Build";

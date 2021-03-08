@@ -8,6 +8,7 @@ import { collectionsReducer } from "./collections/reducer";
 import { activeCollectionReducer } from "./activeCollection/reducer";
 import { adonisReducer } from "./adonis/reducer";
 import { draftReducer } from "./draft/reducer";
+import { colorPickerReducer } from "./colorPicker/reducer";
 
 const rootReducer = combineReducers({
   auth: authenticationReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   collections: collectionsReducer,
   adonis: adonisReducer,
   draft: draftReducer,
+  colorPicker: colorPickerReducer,
 });
 
 const store = createStore(

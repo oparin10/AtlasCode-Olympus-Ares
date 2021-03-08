@@ -10,6 +10,8 @@ import "./css/App.css";
 import FullscreenDialog from "./components/App/FullscreenDialog";
 import { db } from "./firebase";
 import { RootState } from "./redux";
+import Toolbox from "./components/App/Toolbox";
+import ColorPicker from "./components/App/ColorPicker";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +43,8 @@ function App() {
       <GlobalAlert />
       <AdonisGallery />
       <FullscreenDialog />
+      <Toolbox />
+      <ColorPicker />
 
       {/* Should probably be refactored and control application route state through Redux */}
       {collectionsState.length > 0 ? (

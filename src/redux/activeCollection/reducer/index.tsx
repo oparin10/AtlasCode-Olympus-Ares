@@ -5,7 +5,6 @@ import {
   ACTIVE_COLLECTION_SET_FAIL,
   ACTIVE_COLLECTION_SET_START,
   ACTIVE_COLLECTION_SET_SUCCESS,
-  SET_ACTIVE_CONTENT,
 } from "../types";
 
 let initialState: ActiveCollectionState = {

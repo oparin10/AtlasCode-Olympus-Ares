@@ -16,6 +16,7 @@ import {
   AddShoppingCart,
   Apps,
   AttachMoney,
+  Build,
   Category,
   Close,
   Delete,
@@ -23,6 +24,7 @@ import {
   FileCopy,
   MoreHoriz,
   Palette,
+  Panorama,
   PhotoLibrary,
   Settings,
 } from "@material-ui/icons";
@@ -73,6 +75,8 @@ export const IconDictonary: Record<
   FileCopy: FileCopy,
   Category: Category,
   Palette: Palette,
+  Panorama: Panorama,
+  Build: Build,
 };
 
 export const FieldWidgetDictionary: Record<

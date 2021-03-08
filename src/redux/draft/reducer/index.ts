@@ -97,9 +97,8 @@ export const draftReducer = (
             ];
             break;
           case "categorySelect":
-            fieldsLocal[collectionField.name].array_options = [
-              ...(action.payload.categories as Array<string>),
-            ];
+            fieldsLocal[collectionField.name].array_options =
+              action.payload.categories;
             break;
 
           case "image":

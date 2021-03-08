@@ -49,4 +49,5 @@ export type IconTypes =
   | "FileCopy"
   | "Delete"
   | "DeleteForever"
-  | "Category";
+  | "Category"
+  | "Palette";

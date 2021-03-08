@@ -10,7 +10,7 @@ import {
   uploadAndOptimizeImage,
 } from "../../../../redux/adonis/actions";
 import { globalNotificationCustom } from "../../../../redux/globalUI/actions";
-import IconComponent from "../../IconComponent";
+import IconComponent from "../../../Util/IconComponent";
 
 const AdonisGalleryBodyHeader = styled.div`
   width: 100%;
@@ -172,7 +172,7 @@ const AdonisGalleryHeader = ({
         <AdonisGalleryAltActionsContainer>
           <div onClick={onFileDelete}>
             <IconComponent
-              helper={"Selecione uma imagem para deletá-la"}
+              disabledHelper={"Selecione uma imagem para deletá-la"}
               clickable
               disabled={!isPhotoSelected}
               iconType="DeleteForever"
@@ -180,7 +180,7 @@ const AdonisGalleryHeader = ({
           </div>
           <div onClick={onFileCopy}>
             <IconComponent
-              helper={"Selecione uma imagem para copiar seu link"}
+              disabledHelper={"Selecione uma imagem para copiar seu link"}
               clickable
               disabled={!isPhotoSelected}
               iconType="FileCopy"

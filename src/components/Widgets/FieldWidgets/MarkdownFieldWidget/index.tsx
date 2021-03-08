@@ -24,7 +24,7 @@ const MarkdownFieldRoot = styled.div`
   .sun-editor {
     /* border: none;; */
     /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25); */
-    border: solid 0.5px rgba(0, 0, 0, 0.3);
+    border: solid 0.5px rgba(51, 51, 51, 0.2);
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
 
@@ -46,13 +46,25 @@ const MarkdownFieldRoot = styled.div`
   .se-toolbar {
     outline: none;
     border-radius: 10px;
-    border-color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(0, 0, 0, 0.1);
   }
 
   .se-resizing-bar {
     border: none;
     border-radius: 10px;
-    border-color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .se-btn-tool-font {
+    font-family: "Iceland";
+  }
+
+  .se-btn-tool-size {
+    font-family: "Iceland";
+  }
+
+  .se-btn-tool-format {
+    font-family: "Iceland";
   }
 `;
 
@@ -61,7 +73,6 @@ const MarkdownFieldWiget = ({
   changeField,
   currentValues,
   name,
-  ...props
 }: MarkdownFieldProps) => {
   const markdownEditorRef: React.RefObject<any> = React.useRef(null);
 
@@ -75,15 +86,13 @@ const MarkdownFieldWiget = ({
         ref={markdownEditorRef}
         onFocus={() => console.log("ass")}
         lang="pt_br"
-        onChange={(e: any) => console.log(e)}
+        onChange={(value: any) => changeField(name, value)}
         setOptions={{
           height: "auto",
           minHeight: "200",
           buttonList: allPlugins,
           imageUrlInput: true,
           imageFileInput: false,
-          imageGalleryUrl:
-            "https://firebasestorage.googleapis.com/v0/b/atlas-ares.appspot.com/o/adonis%2Fgallery%2Fcharles-deluvio-dziziyogahc-unsplash.webp?alt=media",
         }}
       />
     </MarkdownFieldRoot>

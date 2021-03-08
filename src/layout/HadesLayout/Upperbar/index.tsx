@@ -2,7 +2,7 @@ import { Box, Fade } from "@material-ui/core";
 import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import IconComponent from "../../../components/App/IconComponent";
+import IconComponent from "../../../components/Util/IconComponent";
 import { galleryOpen } from "../../../redux/adonis/actions";
 import UserProfileButton from "./UserProfileButton";
 

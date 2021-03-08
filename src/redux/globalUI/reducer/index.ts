@@ -3,6 +3,10 @@ import {
   DELETE_ADONIS_IMAGE_FAIL,
   DELETE_ADONIS_IMAGE_START,
   DELETE_ADONIS_IMAGE_SUCCESS,
+  GetAdonisGalleryPhotosActionTypes,
+  GET_ADONIS_GALLERY_PHOTOS_FAIL,
+  GET_ADONIS_GALLERY_PHOTOS_START,
+  GET_ADONIS_GALLERY_PHOTOS_SUCCESS,
   UploadAdonisPhotoActionTypes,
   UPLOAD_ADONIS_PHOTO_FAIL,
   UPLOAD_ADONIS_PHOTO_START,
@@ -38,6 +42,7 @@ export const globalUIReducer = (
     | UploadAdonisPhotoActionTypes
     | ConfigurationActionTypes
     | DeleteAdonisImageActionTypes
+    | GetAdonisGalleryPhotosActionTypes
 ): GlobalUIState => {
   switch (action.type) {
     case GET_CONFIG_FAIL:
@@ -55,6 +60,29 @@ export const globalUIReducer = (
         notificationOpen: true,
         notificationMessage: action.payload.notificationMessage,
         notificationSeverity: action.payload.notificationSeverity,
+      };
+
+    // Fetch Adonis Gallery
+    case GET_ADONIS_GALLERY_PHOTOS_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case GET_ADONIS_GALLERY_PHOTOS_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        notificationMessage:
+          "Houve um erro ao tentar definir as fotos da galeria. Recarregue a página",
+        notificationOpen: true,
+        notificationSeverity: "error",
+      };
+
+    case GET_ADONIS_GALLERY_PHOTOS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
       };
 
     // Delete Adonis Image

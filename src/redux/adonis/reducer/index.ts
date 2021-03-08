@@ -46,7 +46,12 @@ export const adonisReducer = (
         }
       );
 
-      return { ...state, gallery: removeDeletedItem };
+      return {
+        ...state,
+        gallery: removeDeletedItem,
+        selectedPhoto: initialState.selectedPhoto,
+        isPhotoSelected: false,
+      };
 
     case SET_ADONIS_ACTIVE_PHOTO:
       return { ...state, selectedPhoto: action.payload, isPhotoSelected: true };

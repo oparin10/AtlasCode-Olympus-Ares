@@ -16,6 +16,7 @@ let initialState: ActiveCollectionState = {
   routerPath: "",
   sidebarIcon: "Add",
   sidebarLabel: "",
+  isReady: false,
 };
 
 export const activeCollectionReducer = (
@@ -23,22 +24,6 @@ export const activeCollectionReducer = (
   action: ActiveContentActionTypes
 ): ActiveCollectionState => {
   switch (action.type) {
-    case SET_ACTIVE_CONTENT:
-      let activeAdminItem: AdminItem = {
-        collectionRef: action.payload.collectionRef,
-        sidebarIcon: action.payload.sidebarIcon,
-        sidebarLabel: action.payload.sidebarLabel,
-        routerPath: action.payload.routerPath,
-        dataWidget: action.payload.dataWidget,
-        fields: action.payload.fields,
-      };
-
-      if (action.payload.categories) {
-        activeAdminItem.categories = action.payload.categories;
-      }
-
-      return { ...activeAdminItem, entries: [] };
-
     case ACTIVE_COLLECTION_SET_START:
       return { ...state };
 

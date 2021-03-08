@@ -22,6 +22,7 @@ import {
   DeleteForever,
   FileCopy,
   MoreHoriz,
+  Palette,
   PhotoLibrary,
   Settings,
 } from "@material-ui/icons";
@@ -71,6 +72,7 @@ export const IconDictonary: Record<
   DeleteForever: DeleteForever,
   FileCopy: FileCopy,
   Category: Category,
+  Palette: Palette,
 };
 
 export const FieldWidgetDictionary: Record<

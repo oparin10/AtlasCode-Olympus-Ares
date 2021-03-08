@@ -75,6 +75,7 @@ export type ActiveCollectionSetActionTypes =
 
 export interface ActiveCollectionState extends AdminItem {
   entries: Array<any> | null | undefined;
+  isReady?: boolean;
 }
 
 export interface SetActiveContent {

@@ -3,7 +3,7 @@ import { AssignmentTurnedIn, Label } from "@material-ui/icons";
 import { Link } from "@reach/router";
 import React from "react";
 import styled from "styled-components";
-import IconComponent from "../../../../components/App/IconComponent";
+import IconComponent from "../../../../components/Util/IconComponent";
 import getCurrentPath from "../../../../helper/currentPath";
 import { IconTypes } from "../../../../types";
 
@@ -44,8 +44,6 @@ const SidebarItemContainer = styled.div<SidebarItemContainerProps>`
     display: none;
   }
 
-  
-
   @media (min-width: 1024px) {
     .menuName {
       font-size: 12px;
@@ -77,7 +75,7 @@ const SidebarItemMain = ({
       <Link to={`/admin/${path}`}>
         <SidebarItemContainer active={currentLocationFn == path ? true : false}>
           <div className="icon">
-            <IconComponent iconType={icon} />
+            <IconComponent clickable iconType={icon} />
           </div>
 
           <div className="menuName">{label}</div>

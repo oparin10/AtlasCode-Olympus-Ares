@@ -49,7 +49,9 @@ const SelectFieldWidget = ({
               {option.toString()}
             </MenuItem>
           );
-        }) || <div>placeholder children</div>}
+        }) || (
+          <div style={{ padding: "10px" }}>Nenhuma categoria encontrada.</div>
+        )}
       </TextField>
     </RootContainer>
   );

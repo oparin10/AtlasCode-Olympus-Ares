@@ -10,7 +10,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 import { TransitionProps } from "@material-ui/core/transitions";
 import { connect, ConnectedProps } from "react-redux";
-import IconComponent from "../IconComponent";
+import IconComponent from "../../Util/IconComponent";
 import { Box } from "@material-ui/core";
 import { galleryOpen } from "../../../redux/adonis/actions";
 import { RootState } from "../../../redux/";

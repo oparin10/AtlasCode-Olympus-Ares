@@ -9,6 +9,13 @@ export interface AdminCollectionField {
   selectOptions?: Array<string>;
 }
 
+export type RandomAssShit = {
+  think: string;
+  name: string;
+  fieldType: FieldWidgetTypes;
+  laymeDown: Array<boolean>;
+};
+
 export interface AdminItem {
   collectionRef: string;
   dataWidget: DataWidgetTypes;

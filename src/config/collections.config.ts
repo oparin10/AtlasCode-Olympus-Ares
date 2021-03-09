@@ -7,14 +7,13 @@ export interface AdminCollectionField {
   validation?: Array<string> | string | RegExp;
   initialValue?: string | Array<string>;
   selectOptions?: Array<string>;
+  private?: boolean;
 }
 
-export type RandomAssShit = {
-  think: string;
-  name: string;
-  fieldType: FieldWidgetTypes;
-  laymeDown: Array<boolean>;
-};
+export interface CategoryField {
+  superCategory: string;
+  subCategory?: string;
+}
 
 export interface AdminItem {
   collectionRef: string;
@@ -23,7 +22,7 @@ export interface AdminItem {
   sidebarLabel: string;
   sidebarIcon: IconTypes;
   fields: Array<AdminCollectionField>;
-  categories?: Array<string>;
+  categories?: Array<string> | Array<CategoryField>;
   categoryDynamic?: boolean;
 }
 
@@ -34,20 +33,21 @@ export const collectionsConfig: Array<AdminItem> = [
     sidebarIcon: "AttachMoney",
     sidebarLabel: "Teste1",
     routerPath: "test",
-    categories: ["category1", "category2", "category3"],
+    categories: [],
+
     categoryDynamic: true,
     fields: [
       {
-        label: "Título",
-        name: "title",
-        fieldType: "string",
-        initialValue: "defaultValueTest",
+        label: "Tipo de carta",
+        fieldType: "select",
+        selectOptions: ["CARRO", "CASA", "MOTO"],
+        name: "cardType",
       },
 
       {
-        name: "featuredImage",
-        fieldType: "image",
-        label: "Imagem principal",
+        name: "creditValue",
+        fieldType: "string",
+        label: "Valor do crédito",
       },
       {
         label: "Categorias",
@@ -61,7 +61,7 @@ export const collectionsConfig: Array<AdminItem> = [
       },
       {
         label: "Cigarette",
-        fieldType: "text",
+        fieldType: "markdown",
         name: "more",
       },
     ],

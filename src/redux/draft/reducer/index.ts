@@ -98,7 +98,7 @@ export const draftReducer = (
             break;
           case "categorySelect":
             fieldsLocal[collectionField.name].array_options =
-              action.payload.categories;
+              action.payload.categories as Array<string>;
             break;
 
           case "image":

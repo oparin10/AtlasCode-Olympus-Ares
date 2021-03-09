@@ -43,13 +43,15 @@ const SelectFieldWidget = ({
           changeField(name, e.target.value)
         }
       >
-        {currentValues?.[name].array_options?.map((option, index) => {
-          return (
-            <MenuItem key={index} value={option}>
-              {option.toString()}
-            </MenuItem>
-          );
-        }) || (
+        {currentValues?.[name].array_options?.map(
+          (option: string, index: number) => {
+            return (
+              <MenuItem key={index} value={option}>
+                {option.toString()}
+              </MenuItem>
+            );
+          }
+        ) || (
           <div style={{ padding: "10px" }}>Nenhuma categoria encontrada.</div>
         )}
       </TextField>

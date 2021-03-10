@@ -1,5 +1,5 @@
 import { AdminItem } from "../../../config/collections.config";
-import { FieldWidgetTypes } from "../../../types";
+import { FieldWidgetTypes } from "../../../dictionaries/types";
 import {
   DraftChangeActionTypes,
   DraftComponentVisibilityActionTypes,

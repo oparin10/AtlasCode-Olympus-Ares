@@ -1,4 +1,8 @@
-import { DataWidgetTypes, FieldWidgetTypes, IconTypes } from "../types";
+import {
+  DataWidgetTypes,
+  FieldWidgetTypes,
+  IconTypes,
+} from "../dictionaries/types";
 
 export interface AdminCollectionField {
   name: string;

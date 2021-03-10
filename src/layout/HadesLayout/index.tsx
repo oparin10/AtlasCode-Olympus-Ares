@@ -1,6 +1,9 @@
 import { Fade } from "@material-ui/core";
+import { CheckBox } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
+import CategorySelect from "../../components/App/CategorySelect";
+import NestedList from "../../components/App/ListComponent";
 import { LayoutFunctionalComponentProps } from "../../components/RootComponents/LayoutComponent/types";
 import { AdminItem } from "../../config/collections.config";
 import getCurrentPath from "../../helper/currentPath";
@@ -9,6 +12,7 @@ import Upperbar from "./Upperbar";
 
 const HadesLayoutRoot = styled.div`
   display: flex;
+  background-color: #eaeff2;
 `;
 const HadesContentContainer = styled.div`
   width: calc(100% * 0.82);
@@ -44,7 +48,11 @@ const HadesLayout = ({
           label={activeCollection ? activeCollection.sidebarLabel : ""}
         />
         <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
-          <div style={{ position: "relative" }}>{children}</div>
+          <div style={{ position: "relative" }}>
+            {children}
+
+            <CategorySelect></CategorySelect>
+          </div>
         </Fade>
       </HadesContentContainer>
     </HadesLayoutRoot>

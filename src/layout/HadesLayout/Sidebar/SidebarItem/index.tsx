@@ -4,8 +4,8 @@ import { Link } from "@reach/router";
 import React from "react";
 import styled from "styled-components";
 import IconComponent from "../../../../components/Util/IconComponent";
+import { IconTypes } from "../../../../dictionaries/types";
 import getCurrentPath from "../../../../helper/currentPath";
-import { IconTypes } from "../../../../types";
 
 const SidebarItemRootContainer = styled.div`
   width: 100%;

@@ -1,9 +1,9 @@
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { FieldWidgetDictionary } from "../../../dictionaries";
+import { FieldWidgetTypes } from "../../../dictionaries/types";
 import { RootState } from "../../../redux";
 import { draftChange } from "../../../redux/draft/actions";
-import { FieldWidgetTypes } from "../../../types";
 import {
   DraftAdditionalConfigTypes,
   DraftChangeField,

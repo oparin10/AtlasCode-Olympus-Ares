@@ -12,6 +12,7 @@ import { db } from "./firebase";
 import { RootState } from "./redux";
 import Toolbox from "./components/App/Toolbox";
 import ColorPicker from "./components/App/ColorPicker";
+import NestedList from "./components/App/ListComponent";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,20 +25,19 @@ function App() {
     dispatch(configurationSetup());
   }, []);
 
-  let categoriesLocal: Array<CategoryField> = [
-    { superCategory: "Super", subCategory: "alo" },
-    { superCategory: "uhuhuhu", subCategory: "Perfeitamente bem" },
-  ];
+  // let categoriesLocal: Array<CategoryField> = [
+  //   { superCategory: "Super", subCategory: "alo" },
+  //   { superCategory: "uhuhuhu", subCategory: "Perfeitamente bem" },
+  // ];
 
+  // let categories: any = {
 
-  let categories: any = {
+  // }
 
-  }
+  // for (const hotStuff of categoriesLocal) {
+  //   categories[hotStuff.superCategory]
 
-  for (const hotStuff of categoriesLocal) {
-    categories[hotStuff.superCategory]
-
-  }
+  // }
 
   return (
     <div>

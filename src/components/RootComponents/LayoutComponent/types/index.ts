@@ -6,12 +6,11 @@ import {
   AdminCollectionField,
   AdminItem,
 } from "../../../../config/collections.config";
+import { LayoutTypes } from "../../../../dictionaries/types";
 import {
   ActiveContentActionTypes,
   SetActiveContent,
 } from "../../../../redux/activeCollection/types";
-
-import { LayoutTypes } from "../../../../types";
 
 export type LayoutFunctionalComponentProps = {
   collections: never;

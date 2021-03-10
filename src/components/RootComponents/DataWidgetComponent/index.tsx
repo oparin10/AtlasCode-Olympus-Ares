@@ -5,10 +5,10 @@ import {
   AdminItem,
 } from "../../../config/collections.config";
 import { DataWidgetDictionary } from "../../../dictionaries";
+import { DataWidgetTypes } from "../../../dictionaries/types";
 import { RootState } from "../../../redux";
 import { draftCreateNew } from "../../../redux/draft/actions";
 import { DraftEntryNewActionTypes } from "../../../redux/draft/types";
-import { DataWidgetTypes } from "../../../types";
 
 export interface DataWidgetComponentRootProps extends DataWidgetReduxProps {
   widgetType: DataWidgetTypes;

@@ -1,5 +1,5 @@
 import { AdminItem, CategoryField } from "../../../config/collections.config";
-import { FieldWidgetTypes } from "../../../types";
+import { FieldWidgetTypes } from "../../../dictionaries/types";
 
 export const DRAFT_COMPONENT_SHOW = "DRAFT_COMPONENT_SHOW";
 export const DRAFT_COMPONENT_HIDE = "DRAFT_COMPONENT_HIDE";

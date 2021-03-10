@@ -1,8 +1,8 @@
 import React from "react";
 import { navigate } from "@reach/router";
-import { DataWidgetTypes, LayoutTypes } from "../../../types";
 import DataWidgetComponent from "../../RootComponents/DataWidgetComponent";
 import LayoutComponent from "../../RootComponents/LayoutComponent";
+import { DataWidgetTypes, LayoutTypes } from "../../../dictionaries/types";
 
 interface Props {
   component: DataWidgetTypes;

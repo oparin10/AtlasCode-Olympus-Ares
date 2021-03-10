@@ -2,6 +2,12 @@
   "collections": {
     "testCollection": {
       "categories": [
+        {
+          "uid": "13908asdlk0a_12",
+          "root": true,
+          "name": "Feminino",
+          "parentUID": "023123ka_123"
+        }
       ],
       "aggregator": {
         "total_entries": 10,

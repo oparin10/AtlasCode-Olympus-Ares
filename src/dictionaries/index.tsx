@@ -27,6 +27,7 @@ import {
   Panorama,
   PhotoLibrary,
   Settings,
+  SubdirectoryArrowRight,
 } from "@material-ui/icons";
 import { LayoutFunctionalComponentProps } from "../components/RootComponents/LayoutComponent/types";
 import DataTable from "../components/Widgets/DataWidgets/DataTable";
@@ -38,14 +39,15 @@ import StringFieldWidget from "../components/Widgets/FieldWidgets/StringFieldWid
 import TextFieldWidget from "../components/Widgets/FieldWidgets/TextFieldWidget";
 
 import HadesLayout from "../layout/HadesLayout";
+
+import { DataWidgetFunctionalComponentProps } from "../components/RootComponents/DataWidgetComponent";
+import { FieldComponentProps } from "../components/RootComponents/FieldWidgetComponent";
 import {
   DataWidgetTypes,
   FieldWidgetTypes,
   IconTypes,
   LayoutTypes,
-} from "../types";
-import { DataWidgetFunctionalComponentProps } from "../components/RootComponents/DataWidgetComponent";
-import { FieldComponentProps } from "../components/RootComponents/FieldWidgetComponent";
+} from "./types";
 
 export const IconDictonary: Record<
   IconTypes,
@@ -77,6 +79,7 @@ export const IconDictonary: Record<
   Palette: Palette,
   Panorama: Panorama,
   Build: Build,
+  SubdirectoryArrowRight: SubdirectoryArrowRight,
 };
 
 export const FieldWidgetDictionary: Record<

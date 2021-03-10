@@ -2,9 +2,9 @@ import React from "react";
 import { Router, navigate } from "@reach/router";
 import PrivateRoute from "../../Util/PrivateRoute";
 import { AdminItem } from "../../../config/collections.config";
-import { LayoutTypes } from "../../../types";
 import Login from "../Login";
 import NotFoundRoute from "../../Util/NotFoundRoute";
+import { LayoutTypes } from "../../../dictionaries/types";
 
 interface Props {
   basePath?: string;

@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import CategorySelect from "../../components/App/CategorySelect";
 import NestedList from "../../components/App/ListComponent";
+import RecursiveTreeView from "../../components/App/TreeView";
 import { LayoutFunctionalComponentProps } from "../../components/RootComponents/LayoutComponent/types";
 import { AdminItem } from "../../config/collections.config";
 import getCurrentPath from "../../helper/currentPath";
@@ -51,7 +52,7 @@ const HadesLayout = ({
           <div style={{ position: "relative" }}>
             {children}
 
-            <CategorySelect></CategorySelect>
+            <RecursiveTreeView />
           </div>
         </Fade>
       </HadesContentContainer>

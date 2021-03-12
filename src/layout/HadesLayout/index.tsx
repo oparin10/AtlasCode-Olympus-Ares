@@ -8,6 +8,7 @@ import RecursiveTreeView from "../../components/App/TreeView";
 import { LayoutFunctionalComponentProps } from "../../components/RootComponents/LayoutComponent/types";
 import { AdminItem } from "../../config/collections.config";
 import getCurrentPath from "../../helper/currentPath";
+import LayoutNavigation from "./Navigation";
 import Sidebar from "./Sidebar";
 import Upperbar from "./Upperbar";
 
@@ -48,13 +49,15 @@ const HadesLayout = ({
         <Upperbar
           label={activeCollection ? activeCollection.sidebarLabel : ""}
         />
-        <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
+
+        <LayoutNavigation ></LayoutNavigation>
+        {/* <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
           <div style={{ position: "relative" }}>
             {children}
 
             <RecursiveTreeView />
           </div>
-        </Fade>
+        </Fade> */}
       </HadesContentContainer>
     </HadesLayoutRoot>
   );

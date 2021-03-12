@@ -7,9 +7,8 @@ import SidebarItemMain from "./SidebarItem";
 
 const SidebarRoot = styled.div`
   height: 100vh;
-  background-color: #363740;
+  background-color: #082742;
   width: calc((100% * 0.18));
-  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.35);
 
   @media (min-width: 1024px) {
     width: calc((100% * 0.13));
@@ -18,12 +17,13 @@ const SidebarRoot = styled.div`
 
 const SidebarLogoContainer = styled.div`
   width: 100%;
-  height: calc(100% * 0.08);
+  height: calc(100% * 0.1);
   display: flex;
   align-items: center;
+  box-shadow: 0 -1px 0px #b4b7da inset;
 
   @media (min-width: 1024px) {
-    height: calc(100% * 0.17578);
+    height: calc(100% * 0.08);
   }
 `;
 
@@ -31,11 +31,7 @@ const SidebarLogo = styled.img`
   height: auto;
   width: 100%;
 
-  padding: 10%;
-`;
-
-const SidebarDivider = styled.div`
-  border: 1px solid #dfe0eb;
+  padding: 20%;
 `;
 
 const SidebarItemRootContainer = styled.div`
@@ -77,7 +73,6 @@ const Sidebar = ({
       <SidebarLogoContainer>
         <SidebarLogo src={logoURL} />
       </SidebarLogoContainer>
-      <SidebarDivider />
 
       <SidebarItemRootContainer>
         {collections.map((value: AdminItem, index: number) => {

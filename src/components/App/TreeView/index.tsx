@@ -100,10 +100,11 @@ export default function RecursiveTreeView() {
     depth: number,
     maxDepth: number = getTreeMaxDepth(tree)
   ) => {
-    return <div>
-                <h1></h1>
-
-    </div>;
+    return (
+      <div>
+        <h1></h1>
+      </div>
+    );
   };
 
   const renderLinkedList = (

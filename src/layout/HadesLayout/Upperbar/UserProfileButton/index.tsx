@@ -17,8 +17,8 @@ interface UserProfileButtonRootProps {
 }
 
 const UserProfileButtonRoot = styled.div<UserProfileButtonRootProps>`
-  width: 43px;
-  height: 43px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -33,8 +33,8 @@ const UserProfileButtonRoot = styled.div<UserProfileButtonRootProps>`
   }
 
   @media (min-width: 1024px) {
-    width: 53px;
-    height: 53px;
+    width: 35px;
+    height: 35px;
   }
 `;
 

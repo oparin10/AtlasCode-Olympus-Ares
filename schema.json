@@ -1,36 +1,56 @@
 {
   "collections": {
-    "testCollection": {
-      "categories": [
-        {
-          "uid": "13908asdlk0a_12",
-          "root": true,
-          "name": "Feminino",
-          "parentUID": "023123ka_123"
+    "clothing_store": {
+      "entries": {
+        "entry_001_uid": {
+          "uid": "b5fcd40b-b881-41d7-a11b-42adf9875858",
+          "product_title": "Black men's jeans",
+          "product_image": "https://firestore.googleapis/rest_of_the_url.webp=alt?media",
+          "product_price": "15,00",
+          "product_type": ["a", "b", "c"],
+          "product_description": "Lorem ipsum dolum salet dolor dano meko",
+          "product_markdown": "<div> markdown or HTML here </div>",
+          "product_categories": [
+            "da8aeb66-64f6-4f04-9a6a-dad93cb7fc9b",
+            "b8962614-d50b-4cdc-b504-f2747d7b1cbc"
+          ],
+          "product_attributes": {
+            "colors": ["#fff", "#333", "#F4F4F4"],
+            "sizes": ["SM", "MD", "LG", "XL", "XXL"],
+            "brand": ["Levi's"],
+            "material": ["jeans (?)"]
+          }
         }
-      ],
-      "aggregator": {
-        "total_entries": 10,
-        "last_updated": "i dont know"
       },
-      "entries": [
-        {
-          "uid": "13908asdlk0a_12",
-          "title": "Something",
-          "otherField": "something else",
-          "yetAnother": "you get the gist"
+      "categories": {
+        "categoryUUID_01": {
+          "uuid": "b8962614-d50b-4cdc-b504-f2747d7b1cbc",
+          "name": "Men",
+          "slug": "men",
+          "root": true,
+          "parent": null,
+          "path": ["men"]
         },
-        {
-          "uid": "13908asdlk0adasdo192_12",
-          "blogTitle": "This is a title",
-          "blogFeaturedImage": "https://via.placeholder.com/500",
-          "blogDescription": "This is a blog description",
-          "blogMarkdown": "Markdown saved here"
+        "categoryUUID_02": {
+          "uuid": "eb8a6284-829c-11eb-8dcd-0242ac130003",
+          "name": "Clothes",
+          "slug": "clothes",
+          "root": false,
+          "parent": "men",
+          "path": ["men", "clothes"]
+        },
+        "categoryUUID_03": {
+          "uuid": "da8aeb66-64f6-4f04-9a6a-dad93cb7fc9b",
+          "name": "Pants",
+          "slug": "pants",
+          "root": false,
+          "parent": "clothes",
+          "path": ["men", "clothes", "pants"]
         }
-      ]
+      },
+      "attributes": {}
     },
-    "collection2": {},
-    "clothes": {},
-    "MORE": {}
+    "blog": {},
+    "delivery_app": {}
   }
 }

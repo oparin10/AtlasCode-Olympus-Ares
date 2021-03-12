@@ -5,6 +5,10 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
+import { Fade, Grow, Zoom } from "@material-ui/core";
+import { AdminItem } from "../../../config/collections.config";
+import { RootState } from "../../../redux";
+import { connect, ConnectedProps } from "react-redux";
 
 interface SimpleTabsProps {
   children?: React.ReactNode;
@@ -39,16 +43,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LayoutNavigation() {
+interface LayoutNavigationProps extends LayoutNavigationReduxProps {}
+
+const LayoutNavigation = ({ activeCollection }: LayoutNavigationProps) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
-  };
-
-  const handleChangeIndex = (index: number) => {
-    setValue(index);
   };
 
   return (
@@ -60,19 +62,47 @@ export default function LayoutNavigation() {
           aria-label="simple tabs example"
         >
           <Tab label="Itens" />
-          <Tab label="Categorias" />
-          <Tab label="Atributos" />
+
+          {activeCollection?.hasCategories ? <Tab label="Categorias" /> : null}
+
+          {activeCollection?.hasAttributes ? <Tab label="Atributos" /> : null}
         </Tabs>
       </AppBar>
       <SimpleTabs value={value} index={0}>
-        <Box height={"500px"}>hehe</Box>
+        <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
+          <div>tab 1</div>
+        </Fade>
       </SimpleTabs>
-      <SimpleTabs value={value} index={1}>
-        tab2
-      </SimpleTabs>
-      <SimpleTabs value={value} index={2}>
-        tab3
-      </SimpleTabs>
+
+      {activeCollection?.hasCategories ? (
+        <SimpleTabs value={value} index={1}>
+          <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
+            <div>tab 2</div>
+          </Fade>
+        </SimpleTabs>
+      ) : null}
+
+      {activeCollection?.hasAttributes ? (
+        <SimpleTabs value={value} index={2}>
+          <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
+            <div>tab 3</div>
+          </Fade>
+        </SimpleTabs>
+      ) : null}
     </div>
   );
-}
+};
+
+const mapStateToProps = (rootState: RootState) => ({
+  activeCollection: rootState.activeCollection,
+});
+
+const mapDispatchToProps = {};
+
+const layoutNavigationConnector = connect(mapStateToProps, mapDispatchToProps);
+
+export type LayoutNavigationReduxProps = ConnectedProps<
+  typeof layoutNavigationConnector
+>;
+
+export default layoutNavigationConnector(LayoutNavigation);

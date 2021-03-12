@@ -1,4 +1,4 @@
-import { AdminItem, CategoryField } from "../../../config/collections.config";
+import { AdminItem } from "../../../config/collections.config";
 import { FieldWidgetTypes } from "../../../dictionaries/types";
 
 export const DRAFT_COMPONENT_SHOW = "DRAFT_COMPONENT_SHOW";

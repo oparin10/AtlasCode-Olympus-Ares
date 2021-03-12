@@ -2,8 +2,6 @@ import { Fade } from "@material-ui/core";
 import { CheckBox } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
-import CategorySelect from "../../components/App/CategorySelect";
-import NestedList from "../../components/App/ListComponent";
 import RecursiveTreeView from "../../components/App/TreeView";
 import { LayoutFunctionalComponentProps } from "../../components/RootComponents/LayoutComponent/types";
 import { AdminItem } from "../../config/collections.config";
@@ -49,15 +47,7 @@ const HadesLayout = ({
         <Upperbar
           label={activeCollection ? activeCollection.sidebarLabel : ""}
         />
-
-        <LayoutNavigation ></LayoutNavigation>
-        {/* <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
-          <div style={{ position: "relative" }}>
-            {children}
-
-            <RecursiveTreeView />
-          </div>
-        </Fade> */}
+        <LayoutNavigation />
       </HadesContentContainer>
     </HadesLayoutRoot>
   );

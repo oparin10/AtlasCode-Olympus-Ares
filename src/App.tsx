@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { configurationSetup } from "./redux/configuration/actions";
 import Loading from "./components/Util/Loading";
 import RouterCore from "./components/App/RouterCore";
-import { AdminItem, CategoryField } from "./config/collections.config";
+import { AdminItem } from "./config/collections.config";
 import AdonisGallery from "./components/App/AdonisGallery";
 import GlobalAlert from "./components/Util/GlobalAlert";
 import "./css/App.css";
@@ -12,7 +12,6 @@ import { db } from "./firebase";
 import { RootState } from "./redux";
 import Toolbox from "./components/App/Toolbox";
 import ColorPicker from "./components/App/ColorPicker";
-import NestedList from "./components/App/ListComponent";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,20 +23,6 @@ function App() {
   React.useEffect(() => {
     dispatch(configurationSetup());
   }, []);
-
-  // let categoriesLocal: Array<CategoryField> = [
-  //   { superCategory: "Super", subCategory: "alo" },
-  //   { superCategory: "uhuhuhu", subCategory: "Perfeitamente bem" },
-  // ];
-
-  // let categories: any = {
-
-  // }
-
-  // for (const hotStuff of categoriesLocal) {
-  //   categories[hotStuff.superCategory]
-
-  // }
 
   return (
     <div>

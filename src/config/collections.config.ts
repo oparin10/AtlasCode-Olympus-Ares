@@ -14,11 +14,6 @@ export interface AdminCollectionField {
   private?: boolean;
 }
 
-export interface CategoryField {
-  superCategory: string;
-  subCategory?: string;
-}
-
 export interface AdminItem {
   collectionRef: string;
   dataWidget: DataWidgetTypes;
@@ -26,8 +21,11 @@ export interface AdminItem {
   sidebarLabel: string;
   sidebarIcon: IconTypes;
   fields: Array<AdminCollectionField>;
-  categories?: Array<string> | Array<CategoryField>;
-  categoryDynamic?: boolean;
+  hasCategories?: boolean | null;
+  hasAttributes?: boolean | null;
+  categories?: Array<string>;
+  attributes?: Array<string>;
+  special?: boolean;
 }
 
 export const collectionsConfig: Array<AdminItem> = [
@@ -37,14 +35,14 @@ export const collectionsConfig: Array<AdminItem> = [
     sidebarIcon: "AttachMoney",
     sidebarLabel: "Teste1",
     routerPath: "test",
-    categories: [],
+    hasAttributes: true,
+    hasCategories: true,
 
-    categoryDynamic: true,
     fields: [
       {
         label: "Tipo de carta",
         fieldType: "select",
-        selectOptions: ["CARRO", "CASA", "MOTO"],
+        selectOptions: ["Carro", "Casa", "Moto"],
         name: "cardType",
       },
 
@@ -53,11 +51,7 @@ export const collectionsConfig: Array<AdminItem> = [
         fieldType: "string",
         label: "Valor do crédito",
       },
-      {
-        label: "Categorias",
-        name: "categoryList",
-        fieldType: "categorySelect",
-      },
+
       {
         label: "Post",
         fieldType: "markdown",

@@ -45,22 +45,26 @@ export const setupActiveCollection = (
       routerPath: activeCollection.routerPath,
       sidebarIcon: activeCollection.sidebarIcon,
       sidebarLabel: activeCollection.sidebarLabel,
+      hasAttributes: activeCollection.hasAttributes
+        ? activeCollection.hasAttributes
+        : false,
+      hasCategories: activeCollection.hasCategories
+        ? activeCollection.hasCategories
+        : false,
       entries: [],
     };
 
     try {
       if (
         activeCollection.categories &&
-        activeCollection.categories.length > 0 &&
-        !activeCollection.categoryDynamic
+        activeCollection.categories.length > 0
       ) {
         activeCollectionLocalState.categories = activeCollection.categories;
       }
 
       if (
         activeCollection.categories &&
-        activeCollection.categories.length == 0 &&
-        activeCollection.categoryDynamic
+        activeCollection.categories.length == 0
       ) {
         db.collection("collections")
           .doc(activeCollection.collectionRef)
@@ -74,8 +78,7 @@ export const setupActiveCollection = (
 
       if (
         activeCollection.categories &&
-        activeCollection.categories.length > 0 &&
-        activeCollection.categoryDynamic
+        activeCollection.categories.length > 0
       ) {
         db.collection("collections")
           .doc(activeCollection.collectionRef)

@@ -9,6 +9,20 @@ const SidebarRoot = styled.div`
   height: 100vh;
   background-color: #082742;
   width: calc((100% * 0.18));
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  @media (min-width: 1024px) {
+    width: calc((100% * 0.13));
+  }
+`;
+
+const SidebarAncientRoot = styled.div`
+  height: 100vh;
+  background-color: #082742;
+  width: calc((100% * 0.18));
+  position: relative;
 
   @media (min-width: 1024px) {
     width: calc((100% * 0.13));
@@ -69,24 +83,26 @@ const Sidebar = ({
   const sidebarItemContainerHeight: number = 0.07291;
 
   return (
-    <SidebarRoot>
-      <SidebarLogoContainer>
-        <SidebarLogo src={logoURL} />
-      </SidebarLogoContainer>
+    <SidebarAncientRoot>
+      <SidebarRoot>
+        <SidebarLogoContainer>
+          <SidebarLogo src={logoURL} />
+        </SidebarLogoContainer>
 
-      <SidebarItemRootContainer>
-        {collections.map((value: AdminItem, index: number) => {
-          return (
-            <SidebarItemMain
-              key={index}
-              icon={value.sidebarIcon}
-              label={value.sidebarLabel}
-              path={value.routerPath}
-            />
-          );
-        })}
-      </SidebarItemRootContainer>
-    </SidebarRoot>
+        <SidebarItemRootContainer>
+          {collections.map((value: AdminItem, index: number) => {
+            return (
+              <SidebarItemMain
+                key={index}
+                icon={value.sidebarIcon}
+                label={value.sidebarLabel}
+                path={value.routerPath}
+              />
+            );
+          })}
+        </SidebarItemRootContainer>
+      </SidebarRoot>
+    </SidebarAncientRoot>
   );
 };
 

@@ -9,6 +9,7 @@ import { Fade, Grow, Zoom } from "@material-ui/core";
 import { AdminItem } from "../../../config/collections.config";
 import { RootState } from "../../../redux";
 import { connect, ConnectedProps } from "react-redux";
+import Datagrid from "../../../components/App/Datagrid";
 
 interface SimpleTabsProps {
   children?: React.ReactNode;
@@ -21,7 +22,7 @@ function SimpleTabs({ index, value, children, dir }: SimpleTabsProps) {
   return (
     <div>
       {value === index && (
-        <Box height={"100%"} p={1.5}>
+        <Box height={"100%"} p={5}>
           {children}
         </Box>
       )}
@@ -70,7 +71,9 @@ const LayoutNavigation = ({ activeCollection }: LayoutNavigationProps) => {
       </AppBar>
       <SimpleTabs value={value} index={0}>
         <Fade in={true} timeout={{ enter: 500, exit: 500 }}>
-          <div>tab 1</div>
+          <div>
+            <Datagrid />
+          </div>
         </Fade>
       </SimpleTabs>
 
